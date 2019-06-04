@@ -59,7 +59,6 @@ html,body{
 
 .block--container{
   width:100%;
-
   padding:13px 0 13px 0;
 }
 
@@ -111,6 +110,128 @@ html,body{
 }
 
 
-
-
 /* #####################################  END OF VALUE BLOCK  ###################################### */
+
+/* #####################################  START OF ASSETS  ###################################### */
+
+
+
+.assets--container{
+  width:100%;
+  margin-top:3px;
+}
+
+.assets--inner--container{
+  margin:0 10% 0 10%;
+  padding-bottom: 1px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
+  border-radius:5px;
+}
+
+.assets--search--filter-container{
+  width:100%;
+  height:60px;
+  display:flex;
+  justify-content: space-between;
+}
+
+.assets--search--filter{
+  margin-left:25px;
+  align-self: center;
+}
+
+.assets--search--filter input{
+  width:300px;
+  height:27px;
+  border:0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.24);
+  padding-left:10px;
+
+}
+
+.assets--search--filter input::placeholder{
+  color: #797979;
+  font-family: "Nunito SemiBold",sans-serif;
+
+}
+
+.assets--sort--filter{
+  margin-right:25px;
+  align-self: center;
+
+}
+
+.assets--sort--filter select{
+  width:240px;
+  height:27px;
+  border:0;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.24);
+  padding-left:10px;
+  color: #797979;
+
+}
+
+
+.asset--container{
+  margin-left:25px;
+  margin-right:25px;
+  margin-top:2px;
+}
+
+.asset{
+  width:100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.24);
+  height:65px;
+  margin-bottom:20px;
+  position: relative;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.asset--blue--line{
+  width:10px;
+  background: #4E35F2;
+  left:0;
+  top:0;
+  height:100%;
+  position: absolute;
+  border-radius: 5px 0 0 5px ;
+}
+
+.asset--content{
+  margin-left:50px;
+  margin-right:50px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.asset--image--name--container{
+  display:flex;
+  align-items: center;
+}
+
+.asset--name{
+  margin-left:30px;
+  font-weight: 700;
+  color: #525252;
+}
+
+.asset--value{
+  font-weight: 700;
+  color: #525252;
+}
+
+.asset--amount{
+  font-weight: 700;
+  color: #525252;
+}
+
+.asset--change{
+  font-weight: 700;
+  color:#21AC00;
+}
+
+/* #####################################  END OF ASSETS  ###################################### */

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navbar from "./Components/Navbar"
 import ValueBlock from "./Components/ValueBlock";
+import Asset from "./Components/Asset";
 
 class App extends Component {
   render() {
@@ -24,6 +25,35 @@ class App extends Component {
               {/* end here */}
           </div>
         </div>
+
+      <div className="assets--container">
+        <div className="assets--inner--container">
+            <div className="assets--search--filter-container">
+                <div className="assets--search--filter">
+                    <input placeholder="Search..." type="search"/>
+                </div>
+                <div className="assets--sort--filter">
+                    <form>
+                        <select name="cars">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                            <option value="fiat">Fiat</option>
+                            <option value="audi">Audi</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div className="asset--container">
+                <Asset/>
+                <Asset/>
+                <Asset/>
+                <Asset/>
+                <Asset/>
+                <Asset/>
+                <Asset/>
+            </div>
+        </div>
+      </div>
 
       </div>
     );
