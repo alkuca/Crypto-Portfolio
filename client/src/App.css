@@ -32,10 +32,6 @@ html,body{
   justify-content: space-between;
 }
 
-.navbar--logo{
-
-}
-
 .navbar--content--left{
   display: flex;
   cursor:pointer;
@@ -56,22 +52,65 @@ html,body{
   display:flex;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* #####################################  END OF NAVBAR  ###################################### */
+
+/* #####################################  START OF VALUE BLOCK  ###################################### */
+
+
+.block--container{
+  width:100%;
+
+  padding:13px 0 13px 0;
+}
+
+.block--container--content{
+  margin:0 10% 0 10%;
+  display:flex;
+  justify-content: space-between;
+}
+
+.value--block{
+  width:32%;
+  height:150px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
+  border-radius:5px;
+  position: relative;
+}
+
+.blue--line{
+  position:absolute;
+  width:100%;
+  top:0;
+  height:7px;
+  background:#4E35F2;
+  border-radius: 5px 5px 0 0;
+}
+
+.value--block-content{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height:100%;
+}
+
+.value--block--value--type{
+  margin:0;
+  font-family: "Nunito ExtraBold",sans-serif;
+  color:#818181;
+}
+
+.value--block--value{
+  font-size:30px;
+  margin:10px 0 0 0;
+  font-weight:700;
+}
+
+.makeGreen{
+  color:#21AC00;
+}
+
+
+
+
+/* #####################################  END OF VALUE BLOCK  ###################################### */
