@@ -1,33 +1,77 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+html,body{
+  width:100%;
+  margin:0;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.App{
+  font-family: Nunito,"Nunito Black","Nunito ExtraBold","Nunito SemiBold", sans-serif !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+/* #####################################  START OF NAVBAR  ###################################### */
+
+.navbar{
+  height:55px;
+  background: linear-gradient( to right, #4E35F2, #5A35F2);
+  width:100%;
+  position:relative;
+}
+
+.navbar--wrapper{
+  margin:0 10% 0 10%;
+  height:100%;
+  display:flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar--content{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navbar--logo{
+
 }
+
+.navbar--content--left{
+  display: flex;
+  cursor:pointer;
+}
+
+.navbar--content--right{
+  display:flex;
+}
+
+.navbar--link{
+  margin-left:25px;
+  margin-right:20px;
+  color:white;
+  font-family: "Nunito ExtraBold", sans-serif;
+}
+
+.navbar--user--menu{
+  display:flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #####################################  END OF NAVBAR  ###################################### */
