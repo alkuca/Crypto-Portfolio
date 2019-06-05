@@ -23,39 +23,39 @@ class Navbar extends Component {
         return (
             <div>
                 {this.state.menuIsOpen ? <DarkenScreen toggleMenu={this.toggleMenu}/> : null}
-            <div className="navbar">
-                <div className="navbar--wrapper">
-                    <div className="navbar--content">
-                        <div className="navbar--content--left">
-                            <img alt="logo" className="navbar--logo" src={logo} />
-                        </div>
-                        <div className="navbar--content--right">
-                            <p className="navbar--link">ADD ASSET</p>
-                            <div className="navbar--user--menu" onClick={this.toggleMenu}>
-                                <p className="navbar--link">USER</p>
-                                <img src={menuArrow} className={classnames("menu--arrow",{
-                                    "rotate-arrow" : this.state.menuIsOpen})}
-                                     alt="drop-down-arrow"/>
+                <div className="navbar">
+                    <div className="navbar--wrapper">
+                        <div className="navbar--content">
+                            <div className="navbar--content--left">
+                                <img alt="logo" className="navbar--logo" src={logo} />
+                            </div>
+                            <div className="navbar--content--right">
+                                <button className="navbar--link-button">ADD ASSET</button>
+                                <div className="navbar--user--menu" onClick={this.toggleMenu}>
+                                    <p className="navbar--link">USER</p>
+                                    <img src={menuArrow} className={classnames("menu--arrow",{
+                                        "rotate-arrow" : this.state.menuIsOpen})}
+                                         alt="drop-down-arrow"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    { this.state.menuIsOpen ?
-                        <div className={classnames("navbar--dropdown--container", {
-                            "menu-collapsed": this.state.menuIsOpen
-                        })}>
-                            <div className={classnames("navbar--dropdown--content", {
-                                "fadeIn": this.state.menuIsOpen
+                        { this.state.menuIsOpen ?
+                            <div className={classnames("navbar--dropdown--container", {
+                                "menu-collapsed": this.state.menuIsOpen
                             })}>
-                                <p className="dropdown--menu--link">MY ACCOUNT</p>
-                                <p className="dropdown--menu--link">PORTFOLIO</p>
-                                <p className="dropdown--menu--link">SETTINGS</p>
-                                <p className="dropdown--menu--link">SIGN OUT</p>
+                                <div className={classnames("navbar--dropdown--content", {
+                                    "fadeIn": this.state.menuIsOpen
+                                })}>
+                                    <p className="dropdown--menu--link">MY ACCOUNT</p>
+                                    <p className="dropdown--menu--link">PORTFOLIO</p>
+                                    <p className="dropdown--menu--link">SETTINGS</p>
+                                    <p className="dropdown--menu--link">SIGN OUT</p>
+                                </div>
                             </div>
-                        </div>
-                    : null
-                    }
+                        : null
+                        }
+                    </div>
                 </div>
-            </div>
             </div>
         );
     }
