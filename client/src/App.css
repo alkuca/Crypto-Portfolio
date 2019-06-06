@@ -171,6 +171,19 @@ html,body{
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
   border-radius:5px;
   position: relative;
+  transition:0.2s;
+  cursor:pointer;
+}
+
+.value--block:hover{
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.35);
+    transition:0.2s;
+    transform:scale(1.01)perspective(1px);
+}
+
+.value--block:hover > .blue--line{
+    height:0;
+    transition:0.2s;
 }
 
 .blue--line{
@@ -180,6 +193,7 @@ html,body{
   height:7px;
   background:#4E35F2;
   border-radius: 5px 5px 0 0;
+  transition:0.2s;
 }
 
 .value--block-content{
@@ -352,7 +366,7 @@ html,body{
 
 .login--page{
     width:100%;
-    height:100vh;
+    min-height:100vh;
     background:red;
     background: linear-gradient( to right, #4E35F2, #8A28FB);
     display:flex;
@@ -457,7 +471,7 @@ button:focus{
     justify-content: center;
     margin-top:30px;
     font-size:13px;
-    font-family: "Nunito SemiBold", sans-serif;
+    font-weight: 700;
 }
 
 .sign--up--here--link{
@@ -475,6 +489,150 @@ button:focus{
     .login--container{
         margin-bottom:50px;
     }
+    .login--content--title{
+        font-size:24px;
+    }
 }
 
 /* #####################################  END OF LOGIN  ###################################### */
+
+/* #####################################  START OF REGISTER  ###################################### */
+
+.register--page{
+    width:100%;
+    min-height:100vh;
+    background:red;
+    background: linear-gradient( to left, #4E35F2, #8A28FB);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.register--container{
+    min-width:500px;
+    background:white;
+    border-radius:15px;
+    box-shadow: 0 0 11px rgba(0, 0, 0, 0.40);
+
+}
+
+.register--content{
+    margin:35px;
+}
+
+
+.register--content--title--container{
+    width:100%;
+    height:80px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register--content--title{
+    color:#5B32F4;
+    font-weight:700;
+    font-size:29px;
+}
+
+.register--content--form--container input{
+    width:98%;
+    margin-top:20px;
+    margin-bottom:15px;
+    height:35px;
+    border:0;
+    background-color:white;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.22);
+    padding-left:10px;
+    border-radius:5px;
+}
+
+.accept--terms--container{
+    display:flex;
+    margin-top:20px;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.accept--terms--label{
+    font-family: "Nunito SemiBold", sans-serif;
+    font-size:12px;
+    margin-left:5px;
+    color: #747474;
+}
+
+.make--blue{
+    color:#7B91FF;
+}
+
+
+.sign--up--button--container{
+    margin-top:50px;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign--up--button{
+    border:none;
+    padding:12px 43px;
+    color:white;
+    font-weight:700;
+    font-size:17px;
+    border-radius:4px;
+    background:#772CF8;
+}
+
+
+.sign--in--here--container{
+    display:flex;
+    justify-content: center;
+    margin-top:30px;
+    font-size:13px;
+    font-weight: 700;
+}
+
+.sign--in--here--link{
+    margin-left:5px;
+    color:#772CF8;
+}
+
+
+@media screen and (max-width: 700px) {
+    .register--container{
+        min-width:87%;
+    }
+    .register--content{
+        margin:25px;
+    }
+    .register--container{
+        margin-bottom:50px;
+    }
+    .register--content--title--container{
+        height:30px;
+    }
+    .register--content--title{
+        font-size:24px;
+    }
+    .register--content--form--container input{
+        margin-top:17px;
+        margin-bottom:12px;
+        height:35px;
+    }
+    .sign--up--button--container{
+        margin-top:20px;
+    }
+    .sign--in--here--container{
+        margin-top:10px;
+    }
+}
+
+/* #####################################  END OF REGISTER  ###################################### */

@@ -13,7 +13,7 @@ class Login extends Component {
                 <div className="login--container">
                     <div className="login--content">
                         <div className="login--content--title--container">
-                            <h1 className="login--content--title">Sign in</h1>
+                            <h1 className="login--content--title">Sign In</h1>
                         </div>
                         <div className="login--content--form--container">
                             <form>
