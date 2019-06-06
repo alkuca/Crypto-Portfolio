@@ -15,6 +15,9 @@ html,body{
   position:fixed;
   background: rgba(0, 0, 0, 0.45);
   z-index: 2;
+    animation-name:fadeInAnim;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
 }
 
 /* #####################################  START OF NAVBAR  ###################################### */
@@ -114,8 +117,7 @@ html,body{
 
 .menu-collapsed{
     animation-name:collapseMenu;
-    animation-duration: 0.5s;
-    animation-delay: 0.2s;
+    animation-duration: 0.4s;
     animation-fill-mode: forwards;
 }
 
@@ -134,8 +136,8 @@ html,body{
 
 .fadeIn{
     animation-name:fadeInAnim;
-    animation-duration: 1s;
-    animation-delay: 0.5s;
+    animation-duration: 0.5s;
+    animation-delay: 0.2s;
     animation-fill-mode: forwards;
 }
 
@@ -328,6 +330,10 @@ html,body{
   display:flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.asset--container a{
+    text-decoration: none;
 }
 
 .asset--image--name--container{
@@ -636,3 +642,67 @@ button:focus{
 }
 
 /* #####################################  END OF REGISTER  ###################################### */
+
+/* #####################################  START OF ASSETPAGE  ###################################### */
+
+
+.graph--container{
+    width:100%;
+}
+
+.graph--inner--container{
+    margin:0 10% 0 10%;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
+    border-radius:5px;
+    position: relative;
+}
+
+.graph--content{
+    width:100%;
+    height:100%;
+}
+
+.graph--content img{
+    width:100%;
+    max-width:100%;
+}
+
+
+.asset--details--container{
+    width:100%;
+    margin-top:15px;
+    margin-bottom:100px;
+}
+
+.asset--details--inner--container{
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
+    border-radius:5px;
+    height:183px;
+    margin:0 10% 0 10%;
+}
+
+.asset--details--content{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #####################################  END OF ASSETPAGE  ###################################### */
