@@ -3,7 +3,7 @@ import '../App.css';
 import ValueBlock from "./ValueBlock";
 import Asset from "./Asset";
 import Navbar from "./Navbar";
-import { Link } from 'react-router-dom';
+
 
 
 class Home extends Component {

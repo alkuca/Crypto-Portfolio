@@ -4,6 +4,7 @@ import logo from "../Images/logo.svg";
 import menuArrow from "../Images/menu-arrow.svg";
 import DarkenScreen from "./DarkenScreen";
 import classnames from "classnames";
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     constructor(props){
@@ -27,7 +28,9 @@ class Navbar extends Component {
                     <div className="navbar--wrapper">
                         <div className="navbar--content">
                             <div className="navbar--content--left">
-                                <img alt="logo" className="navbar--logo" src={logo} />
+                                <Link to="/">
+                                    <img alt="logo" className="navbar--logo" src={logo} />
+                                </Link>
                             </div>
                             <div className="navbar--content--right">
                                 <button className="navbar--link-button">ADD ASSET</button>
