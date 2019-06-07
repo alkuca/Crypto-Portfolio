@@ -33,7 +33,9 @@ class Navbar extends Component {
                                 </Link>
                             </div>
                             <div className="navbar--content--right">
-                                <button className="navbar--link-button">ADD ASSET</button>
+                                <Link to="/addasset">
+                                    <button className="navbar--link--button">ADD ASSET</button>
+                                </Link>
                                 <div className="navbar--user--menu" onClick={this.toggleMenu}>
                                     <p className="navbar--link">USER</p>
                                     <img src={menuArrow} className={classnames("menu--arrow",{
@@ -52,7 +54,12 @@ class Navbar extends Component {
                                     <p className="dropdown--menu--link">MY ACCOUNT</p>
                                     <p className="dropdown--menu--link">PORTFOLIO</p>
                                     <p className="dropdown--menu--link">SETTINGS</p>
-                                    <p className="dropdown--menu--link">SIGN OUT</p>
+                                    <Link to="/login">
+                                        <p className="dropdown--menu--link">SIGN OUT</p>
+                                    </Link>
+                                    <Link to="/register">
+                                        <p className="dropdown--menu--link">SIGN UP</p>
+                                    </Link>
                                 </div>
                             </div>
                         : null

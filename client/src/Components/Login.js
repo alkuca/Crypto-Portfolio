@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props){
@@ -40,7 +41,9 @@ class Login extends Component {
                             <label className="forgot--password--label">Forgot Password?</label>
                         </div>
                         <div className="sign--in--button--container">
-                            <button className="sign--in--button">Sign In</button>
+                            <Link to="/">
+                                <button className="sign--in--button">Sign In</button>
+                            </Link>
                         </div>
                         <div className="sign--up--here--container">
                             <p className="sign--up--here">Don't Have an Account?</p>

@@ -12,6 +12,7 @@ class AssetDetails extends Component {
         return (
             <div className="asset--details--container">
                 <div className="asset--details--inner--container">
+                    <div className="asset--blue--line"/>
                     <div className="asset--details--content">
                         <div className="asset--image--name--container">
                             <img alt="asset" className="asset--details--image" src={asset} />
