@@ -19,7 +19,7 @@ class AddAsset extends Component {
                     </div>
                     <div className="add--asset--select--image--container">
                         <div className="add--asset--select--image--content">
-                            <img className="add--asset--image" alt="lisk" src={liskImg}/>
+                            <img className="add--asset--image" alt="lisk image" src={liskImg}/>
                         </div>
                     </div>
                 </div>
