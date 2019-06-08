@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 class Registration extends Component {
     constructor(props){
@@ -51,11 +52,15 @@ class Registration extends Component {
                             </label>
                         </div>
                         <div className="sign--up--button--container">
-                            <button className="sign--in--button">Sign Up</button>
+                            <Link to="/login">
+                                <button className="sign--in--button">Sign Up</button>
+                            </Link>
                         </div>
                         <div className="sign--in--here--container">
                             <p className="sign--in--here">Already Have an Account?</p>
-                            <p className="sign--in--here--link">Sign In Here!</p>
+                            <Link to="/login">
+                                <p className="sign--in--here--link">Sign In Here!</p>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -464,6 +464,10 @@ button:focus{
     margin-left: auto;
 }
 
+.sign--up--here--container a{
+    text-decoration: none;
+}
+
 .sign--in--button--container{
     margin-top:50px;
     width:100%;
@@ -495,6 +499,8 @@ button:focus{
 
 .sign--up--here--link{
     margin-left:5px;
+    color:#772CF8;
+    cursor:pointer;
 }
 
 
@@ -619,9 +625,14 @@ button:focus{
     font-weight: 700;
 }
 
+.sign--in--here--container a{
+    text-decoration: none;
+}
+
 .sign--in--here--link{
     margin-left:5px;
     color:#772CF8;
+    cursor:pointer;
 }
 
 
@@ -740,9 +751,28 @@ button:focus{
     margin: 0 25px 0 35px;
 }
 
+.transactions--title--container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add--transaction--button{
+    font-family:"Nunito ExtraBold",sans-serif;
+    color:white;
+    border:0;
+    background:#725EF2;
+    border-radius:3px;
+    font-size:15px;
+    cursor:pointer;
+    padding:7px 15px;
+    margin-right:25px;
+    margin-top: 12px;
+}
+
 .transactions--container--title{
     font-weight:700;
-    margin-left:35px;
+    margin:16px 0 0 35px;
 }
 
 .notes--container--title{
@@ -856,7 +886,6 @@ button:focus{
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
     border-radius: 5px;
     position:relative;
-
 }
 
 .add--asset--content{
@@ -896,7 +925,6 @@ button:focus{
     font-size:21px;
 }
 
-
 .add--asset--blue--line{
     position:absolute;
     width:14px;
@@ -907,7 +935,6 @@ button:focus{
     border-radius: 5px 0 0 5px;
     transition:0.2s;
 }
-
 
 .add--asset--select--filter{
     margin-left:10%;
@@ -944,6 +971,7 @@ button:focus{
     left: 0;
     width: 100%;
 }
+
 .add--asset--input--form {
     flex:2;
 }
@@ -1003,8 +1031,6 @@ button:focus{
     font-size:16px;
     cursor:pointer;
 }
-
-
 
 
 /* #####################################  END OF ADDASSETPAGE  ###################################### */

@@ -47,7 +47,9 @@ class Login extends Component {
                         </div>
                         <div className="sign--up--here--container">
                             <p className="sign--up--here">Don't Have an Account?</p>
-                            <p className="sign--up--here--link">Sign Up Here!</p>
+                            <Link to="register">
+                                <p className="sign--up--here--link">Sign Up Here!</p>
+                            </Link>
                         </div>
                     </div>
                 </div>

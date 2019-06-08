@@ -11,7 +11,10 @@ class Transactions extends Component {
     render() {
         return (
             <div className="transactions--container">
-                <p className="transactions--container--title">Transactions:</p>
+                <div className="transactions--title--container">
+                    <p className="transactions--container--title">Transactions:</p>
+                    <button className="add--transaction--button">Add Transaction</button>
+                </div>
                 <div className="asset--blue--line"/>
                 <div className="transactions--content">
                     <Transaction/>
