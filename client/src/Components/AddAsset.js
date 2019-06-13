@@ -27,40 +27,40 @@ class AddAsset extends Component {
                     <div className={classnames("add--asset--inner--content", {
                         "fade--out": this.state.assetSuccess
                     })}>
-                    <div className="add--asset--content--left">
-                        <p className="add-asset--content--left--title">Add Asset to my portfolio</p>
-                        <div className="add--asset--select--filter">
-                            <input placeholder="Search Asset..." type="search"/>
+                        <div className="add--asset--content--left">
+                            <p className="add-asset--content--left--title">Add Asset to my portfolio</p>
+                            <div className="add--asset--select--filter">
+                                <input placeholder="Search Asset..." type="search"/>
+                            </div>
+                            <div className="add--asset--select--image--container">
+                                <div className="add--asset--select--image--content">
+                                    <img className="add--asset--image" alt="lisk image" src={liskImg}/>
+                                </div>
+                            </div>
                         </div>
-                        <div className="add--asset--select--image--container">
-                            <div className="add--asset--select--image--content">
-                                <img className="add--asset--image" alt="lisk image" src={liskImg}/>
+                        <div className="vertical--line--add--asset"/>
+                        <div className="add--asset--content--right">
+                            <div className="add--asset--input--form">
+                                <label>
+                                    Amount:
+                                    <input/>
+                                </label>
+                                <label>
+                                    Price(BTC):
+                                    <input/>
+                                </label>
+                                <label>
+                                    Date:
+                                    <input/>
+                                </label>
+                            </div>
+                            <div className="add--asset--buttons--container">
+                                <button className="add--asset--cancel--button">Cancel</button>
+                                <button onClick={this.addAsset} className="add--asset--accept--button">Accept</button>
                             </div>
                         </div>
                     </div>
-                    <div className="vertical--line--add--asset"/>
-                    <div className="add--asset--content--right">
-                        <div className="add--asset--input--form">
-                            <label>
-                                Amount:
-                                <input/>
-                            </label>
-                            <label>
-                                Price(BTC):
-                                <input/>
-                            </label>
-                            <label>
-                                Date:
-                                <input/>
-                            </label>
-                        </div>
-                        <div className="add--asset--buttons--container">
-                            <button className="add--asset--cancel--button">Cancel</button>
-                            <button onClick={this.addAsset} className="add--asset--accept--button">Accept</button>
-                        </div>
-                    </div>
-                    </div>
-                    {this.state.assetSuccess? <AssetAddedSuccess/> : null}
+                    {this.state.assetSuccess ? <AssetAddedSuccess/> : null}
                 </div>
         );
     }

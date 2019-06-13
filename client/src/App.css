@@ -88,7 +88,7 @@ html,body{
 
 .navbar--link--button:hover{
     transition:0.2s;
-    background:#0dd643;
+    background: #0db440;
 }
 
 .navbar--user--menu{
@@ -975,7 +975,7 @@ button:focus{
 }
 
 .add--asset--select--image--content{
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
     width:30%;
     height:auto;
     border-radius: 50%;
@@ -1098,6 +1098,10 @@ button:focus{
 
 }
 
+.asset--added--success--content a{
+    margin-bottom:50px;
+}
+
 .asset--added--success--content h1{
     color:white;
     opacity:0;
@@ -1105,10 +1109,10 @@ button:focus{
     animation-duration:0.8s;
     animation-fill-mode: forwards;
     animation-delay:0.8s;
+    margin: 40px 0;
 }
 
 .asset--added--success--content button{
-    margin-left:20px;
     padding:8px 40px;
     margin-top:30px;
     margin-right: 10%;
@@ -1134,6 +1138,31 @@ button:focus{
     to{
         opacity:1;
     }
+}
+
+
+
+
+.asset--added--success--image--content{
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
+    width:10%;
+    height:auto;
+    border-radius: 50%;
+    padding-top: 10%;
+    position:relative;
+    background:white;
+    opacity:0;
+    animation-name:fadeIn;
+    animation-duration:0.8s;
+    animation-fill-mode: forwards;
+    animation-delay:0.8s;
+}
+
+.add--asset--image--success{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 /* #####################################  END OF ADDASSETPAGE  ###################################### */
