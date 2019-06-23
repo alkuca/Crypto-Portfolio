@@ -767,13 +767,20 @@ button:focus{
     font-family:"Nunito ExtraBold",sans-serif;
     color:white;
     border:0;
-    background:#725EF2;
+    background: #4E35F2;
     border-radius:3px;
     font-size:15px;
     cursor:pointer;
     padding:7px 15px;
     margin-right:25px;
     margin-top: 12px;
+    transition: 0.2s;
+}
+
+.add--transaction--button:hover{
+
+    background:#725EF2;
+    transition: 0.2s;
 }
 
 .transactions--container--title{
@@ -810,7 +817,12 @@ button:focus{
     transition:0.2s;
     cursor:pointer;
     margin-top:20px;
+}
 
+.transaction:hover{
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.28);
+    transition:0.2s;
+    transform:scale(1.01)perspective(1px);
 }
 
 .transaction--content{
@@ -865,10 +877,40 @@ button:focus{
 }
 
 .note--title{
-    background: -webkit-linear-gradient(right, rgb(130, 130, 130), black);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
 }
+
+.note:hover{
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.28);
+    transition:0.2s;
+    transform:scale(1.01)perspective(1px);
+}
+
+.add--note--button{
+    font-family: "Nunito ExtraBold",sans-serif;
+    color: white;
+    border: 0;
+    background: #4E35F2;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 7px 15px;
+    margin-right: 25px;
+    margin-top: 4px;
+    transition: 0.2s;
+}
+
+.add--note--button:hover{
+    background:#725EF2;
+    transition: 0.2s;
+}
+
+.notes--title--container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 
 
@@ -1127,7 +1169,23 @@ button:focus{
     animation-name:fadeIn;
     animation-duration:0.8s;
     animation-fill-mode: forwards;
-    animation-delay:1s;
+    animation-delay:1.4s;
+    transition:background 0.2s;
+}
+
+.asset--added--success--content h2{
+    color:white;
+    opacity:0;
+    animation-name:fadeIn;
+    animation-duration:0.8s;
+    animation-fill-mode: forwards;
+    animation-delay:1.2s;
+    margin: 40px 0;
+}
+
+.asset--added--success--content button:hover{
+    background: rgba(255, 255, 255, 0.93);
+    transition:0.2s;
 }
 
 
@@ -1155,7 +1213,7 @@ button:focus{
     animation-name:fadeIn;
     animation-duration:0.8s;
     animation-fill-mode: forwards;
-    animation-delay:0.8s;
+    animation-delay:1s;
 }
 
 .add--asset--image--success{

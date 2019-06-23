@@ -11,7 +11,10 @@ class Notes extends Component {
     render() {
         return (
             <div className="notes--container">
-                <p className="notes--container--title">My Notes:</p>
+                <div className="notes--title--container">
+                    <p className="notes--container--title">My Notes:</p>
+                    <button className="add--note--button">Add Note</button>
+                </div>
                 <div className="asset--blue--line"/>
                 <div className="notes--content">
                     <Note/>

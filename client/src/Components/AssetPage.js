@@ -37,7 +37,7 @@ class AssetPage extends Component {
                     <div className="graph--container">
                         <div className="graph--inner--container">
                             <div className="graph--content">
-                                <TradingViewWidget interval="30" symbol="MATICBTC" />
+                                <TradingViewWidget interval="5" symbol="LINKBTC" />
                             </div>
                         </div>
                     </div>
