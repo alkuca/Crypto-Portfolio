@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import liskImg from "../Images/liskImg.png";
 import classnames from "classnames";
+import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
 
 class AddAsset extends Component {
@@ -30,7 +31,10 @@ class AddAsset extends Component {
                         <div className="add--asset--content--left">
                             <p className="add-asset--content--left--title">Add Asset to my portfolio</p>
                             <div className="add--asset--select--filter">
+                                <form>
                                 <input placeholder="Search Asset..." type="search"/>
+                                    {/*COINGECKO API*/}
+                                </form>
                             </div>
                             <div className="add--asset--select--image--container">
                                 <div className="add--asset--select--image--content">
@@ -55,7 +59,9 @@ class AddAsset extends Component {
                                 </label>
                             </div>
                             <div className="add--asset--buttons--container">
-                                <button className="add--asset--cancel--button">Cancel</button>
+                                <Link to="/">
+                                    <button className="add--asset--cancel--button">Cancel</button>
+                                </Link>
                                 <button onClick={this.addAsset} className="add--asset--accept--button">Accept</button>
                             </div>
                         </div>

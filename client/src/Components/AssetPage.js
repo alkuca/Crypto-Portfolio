@@ -6,11 +6,21 @@ import AssetDetails from "./AssetDetails";
 import TradingViewWidget from 'react-tradingview-widget';
 import Transactions from "./Transactions";
 import Notes from "./Notes";
+import AddTransactionModal from "./AddTransactionModal";
 
 class AssetPage extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            addTransactionModalToggled: false,
+        };
 
+        this.toggleAddTransactionModal = this.toggleAddTransactionModal.bind(this);
+    }
+
+
+    toggleAddTransactionModal() {
+        this.setState({ addTransactionModalToggled: !this.state.addTransactionModalToggled });
     }
 
     render() {
@@ -18,6 +28,7 @@ class AssetPage extends Component {
             <div>
                 <Navbar/>
                 <div className="asset--page">
+                    {this.state.addTransactionModalToggled ? <AddTransactionModal toggleAddTransactionModal={this.toggleAddTransactionModal}/> : null}
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
@@ -44,7 +55,7 @@ class AssetPage extends Component {
                     <div className="transactions--and--notes--container">
                         <div className="transactions--and--notes--inner--container">
                             <div className="transactions--and--notes--content">
-                                <Transactions/>
+                                <Transactions addTransactionModalToggled={this.state.addTransactionModalToggled} toggleAddTransactionModal={this.toggleAddTransactionModal} />
                                 <Notes/>
                             </div>
                         </div>

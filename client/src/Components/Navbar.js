@@ -51,11 +51,11 @@ class Navbar extends Component {
                                 <div className={classnames("navbar--dropdown--content", {
                                     "fadeIn": this.state.menuIsOpen
                                 })}>
-                                    <p className="dropdown--menu--link">MY ACCOUNT</p>
-                                    <p className="dropdown--menu--link">PORTFOLIO</p>
-                                    <p className="dropdown--menu--link">SETTINGS</p>
-                                    <Link to="/login">
-                                        <p className="dropdown--menu--link">SIGN OUT</p>
+                                    <Link to="/account">
+                                        <p className="dropdown--menu--link">MY ACCOUNT</p>
+                                    </Link>
+                                    <Link to="/">
+                                        <p className="dropdown--menu--link">PORTFOLIO</p>
                                     </Link>
                                     <Link to="/register">
                                         <p className="dropdown--menu--link">SIGN UP</p>

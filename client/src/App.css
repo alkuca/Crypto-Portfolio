@@ -13,6 +13,7 @@ html,body{
   width:100%;
   height:100%;
   position:fixed;
+  top: 0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 2;
     animation-name:fadeInAnim;
@@ -104,8 +105,6 @@ html,body{
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
   border-radius:0 0 5px 5px;
   background:white;
-  width: 350px;
-  height: 200px;
   opacity:0;
 }
 
@@ -116,11 +115,25 @@ html,body{
   align-items: center;
   height:100%;
   opacity:0;
-
  }
 
+.navbar--dropdown--content a{
+    width:100%;
+    text-align: center;
+    text-decoration: none;
+    color: #282828;
+    transition: 0.2s;
+    padding: 3px 0;
+}
+
+.navbar--dropdown--content a:hover{
+    color: #4f36f2;
+    transition: 0.2s;
+}
+
+
 .dropdown--menu--link{
-  margin:10px;
+  margin:11px;
   font-weight:700;
 }
 
@@ -146,8 +159,8 @@ html,body{
         opacity:0;
     }
     to{
-        width: 350px;
-        height: 200px;
+        width: 280px;
+        height: 180px;
         opacity:1;
     }
 }
@@ -400,6 +413,13 @@ html,body{
 }
 
 
+.login--page--logo--container{
+    position:absolute;
+    top:5%;
+    left:4%;
+}
+
+
 .login--container{
     min-width:500px;
     background:white;
@@ -523,6 +543,10 @@ button:focus{
     .login--content--title{
         font-size:24px;
     }
+    .login--page--logo--container{
+        position: initial;
+        padding:20px;
+    }
 }
 
 /* #####################################  END OF LOGIN  ###################################### */
@@ -541,7 +565,11 @@ button:focus{
 
 }
 
-
+.register--page--logo--container{
+    position:absolute;
+    top:5%;
+    left:4%;
+}
 
 .register--container{
     min-width:500px;
@@ -668,6 +696,10 @@ button:focus{
     }
     .sign--in--here--container{
         margin-top:10px;
+    }
+    .register--page--logo--container{
+        position: initial;
+        padding:20px;
     }
 }
 
@@ -911,7 +943,105 @@ button:focus{
     align-items: center;
 }
 
+.add--transaction--modal{
+    width:100%;
+    height:100%;
+    position:absolute;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.add--transaction--container{
+    background:white;
+    width:600px;
+    height:65%;
+    position:fixed;
+    margin-top: -55px;
+    z-index:3;
+}
+
+.add--transaction--buttons--container{
+    width:100%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.add--transaction--content{
+    margin:40px 50px;
+    height: 100%;
+}
+
+.add--transaction--form{
+    height: 70%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.add--transaction--form form{
+    display: flex;
+    flex-direction: column;
+}
+.add--transaction--form label{
+    font-size:22px;
+    display: flex;
+    justify-content: space-between;
+    margin:5px 0;
+}
+.add--transaction--form input{
+    font-size:18px;
+    width: 76%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #242424;
+    text-align: right;
+}
+
+
+.add--transaction--cancel--button{
+    margin-right:20px;
+    padding:4px 40px;
+    font-family:"Nunito ExtraBold",sans-serif;
+    color:#725EF2;
+    border:4px solid #725EF2;
+    background:transparent;
+    border-radius:3px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.add--transaction--accept--button{
+    margin-left:20px;
+    padding:8px 40px;
+    font-family:"Nunito ExtraBold",sans-serif;
+    color:white;
+    border:0;
+    background:#725EF2;
+    border-radius:3px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .add--transaction--container{
+        width:500px;
+        height:70%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .add--transaction--container{
+        width:400px;
+        height:80%;
+    }
+}
 
 
 /* #####################################  END OF ASSETPAGE  ###################################### */

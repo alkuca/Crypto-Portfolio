@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import logo from "../Images/logo.svg";
 
 class Login extends Component {
     constructor(props){
@@ -11,6 +12,9 @@ class Login extends Component {
     render() {
         return (
             <div className="login--page">
+                <div className="login--page--logo--container">
+                    <img src={logo} alt="logo"/>
+                </div>
                 <div className="login--container">
                     <div className="login--content">
                         <div className="login--content--title--container">
