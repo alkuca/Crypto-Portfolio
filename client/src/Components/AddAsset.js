@@ -32,8 +32,17 @@ class AddAsset extends Component {
                             <p className="add-asset--content--left--title">Add Asset to my portfolio</p>
                             <div className="add--asset--select--filter">
                                 <form>
-                                <input placeholder="Search Asset..." type="search"/>
+                                <input list="browsers" placeholder="Search Asset..." type="search"/>
                                     {/*COINGECKO API*/}
+                                    <datalist id="browsers">
+                                        <option value="Internet Explorer"/>
+                                        <option value="Edge"/>
+                                        <option value="Chrome"/>
+                                        <option value="Chromium"/>
+                                        <option value="Firefox"/>
+                                        <option value="Brave"/>
+                                        <option value="Opera"/>
+                                    </datalist>
                                 </form>
                             </div>
                             <div className="add--asset--select--image--container">

@@ -13,7 +13,7 @@ class Notes extends Component {
             <div className="notes--container">
                 <div className="notes--title--container">
                     <p className="notes--container--title">My Notes:</p>
-                    <button className="add--note--button">Add Note</button>
+                    <button className="add--note--button" onClick={this.props.toggleAddNoteModal}>Add Note</button>
                 </div>
                 <div className="asset--blue--line"/>
                 <div className="notes--content">

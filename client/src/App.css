@@ -960,6 +960,7 @@ button:focus{
     position:fixed;
     margin-top: -55px;
     z-index:3;
+    border-radius: 6px;
 }
 
 .add--transaction--buttons--container{
@@ -994,6 +995,33 @@ button:focus{
     margin:5px 0;
 }
 .add--transaction--form input{
+    font-size:18px;
+    width: 76%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #242424;
+    text-align: right;
+}
+
+
+
+.add--note--form{
+    height: 70%;
+    display:flex;
+    flex-direction: column;
+}
+
+.add--note--form form{
+    display: flex;
+    flex-direction: column;
+}
+.add--note--form label{
+    font-size:22px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+.add--note--form input{
     font-size:18px;
     width: 76%;
     border: 0;
@@ -1135,9 +1163,10 @@ button:focus{
 .add--asset--select--filter input{
     width:100%;
     height:30px;
-    border:1px solid #725EF2;
-    padding-left:10px;
     color: #725EF2;
+    border:0;
+    outline:0;
+    border-bottom: 1px solid black;
 }
 
 .add--asset--select--image--container{
@@ -1162,30 +1191,36 @@ button:focus{
     width: 100%;
 }
 
+
 .add--asset--input--form {
-    flex:2;
+    height: 80%;
+    display:flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+.add--asset--input--form form {
+    display: flex;
+    flex-direction: column;
 }
 
 .add--asset--input--form label{
-    display:flex;
-    margin-top:40px;
-    color: #725EF2;
-    margin-left: 10%;
-    font-family: "Nunito ExtraBold",sans-serif;
-    font-size: 18px;
-    align-items: center;
+    font-size:20px;
+    display: flex;
+    margin-top: 60px;
+    justify-content: space-between;
+    font-weight:bold;
 }
 
 .add--asset--input--form input{
-    height: 27px;
-    border: 1px solid #725EF2;
-    color: #725EF2;
-    width: 100%;
-    margin-left: 10%;
-    margin-right: 10%;
+    font-size:18px;
+    width: 67%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #242424;
     text-align: right;
-    padding-right:8px;
-    flex:2;
 }
 
 .add--asset--buttons--container{
@@ -1239,6 +1274,7 @@ button:focus{
     transition:0.2s;
     z-index:2;
 }
+
 
 .asset--added--animate{
     animation: asset--added 0.8s forwards;

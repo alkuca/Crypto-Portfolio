@@ -7,20 +7,27 @@ import TradingViewWidget from 'react-tradingview-widget';
 import Transactions from "./Transactions";
 import Notes from "./Notes";
 import AddTransactionModal from "./AddTransactionModal";
+import AddNoteModal from "./AddNoteModal";
 
 class AssetPage extends Component {
     constructor(props){
         super(props);
         this.state = {
             addTransactionModalToggled: false,
+            addNoteModalToggled: false
         };
 
         this.toggleAddTransactionModal = this.toggleAddTransactionModal.bind(this);
+        this.toggleAddNoteModal = this.toggleAddNoteModal.bind(this);
     }
 
 
     toggleAddTransactionModal() {
         this.setState({ addTransactionModalToggled: !this.state.addTransactionModalToggled });
+    }
+
+    toggleAddNoteModal() {
+        this.setState({ addNoteModalToggled: !this.state.addNoteModalToggled });
     }
 
     render() {
@@ -29,6 +36,7 @@ class AssetPage extends Component {
                 <Navbar/>
                 <div className="asset--page">
                     {this.state.addTransactionModalToggled ? <AddTransactionModal toggleAddTransactionModal={this.toggleAddTransactionModal}/> : null}
+                    {this.state.addNoteModalToggled ? <AddNoteModal toggleAddNoteModal={this.toggleAddNoteModal}/> : null}
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
@@ -56,7 +64,7 @@ class AssetPage extends Component {
                         <div className="transactions--and--notes--inner--container">
                             <div className="transactions--and--notes--content">
                                 <Transactions addTransactionModalToggled={this.state.addTransactionModalToggled} toggleAddTransactionModal={this.toggleAddTransactionModal} />
-                                <Notes/>
+                                <Notes addNoteModalToggled={this.state.addNoteModalToggled} toggleAddNoteModal={this.toggleAddNoteModal} />
                             </div>
                         </div>
                     </div>

@@ -57,8 +57,8 @@ class Navbar extends Component {
                                     <Link to="/">
                                         <p className="dropdown--menu--link">PORTFOLIO</p>
                                     </Link>
-                                    <Link to="/register">
-                                        <p className="dropdown--menu--link">SIGN UP</p>
+                                    <Link to="/login">
+                                        <p className="dropdown--menu--link">SIGN OUT</p>
                                     </Link>
                                 </div>
                             </div>

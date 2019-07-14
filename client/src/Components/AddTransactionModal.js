@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import DarkenScreen from "./DarkenScreen";
-import { Link } from 'react-router-dom';
+
 
 class AddTransactionModal extends Component {
     constructor(props){
