@@ -1084,14 +1084,17 @@ button:focus{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position:relative;
 }
 
 .add--asset--container{
-    height:85%;
-    width:80%;
+    height: 85%;
+    width: 80%;
+    min-height: 500px;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
     border-radius: 5px;
-    position:relative;
+    position: absolute;
+    top: 55px;
 }
 
 .add--asset--content{
