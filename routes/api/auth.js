@@ -1,21 +1,32 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middleware/auth");
 const { check, validationResult } = require('express-validator/check');
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const config = require("config");
+
 
 const User = require("../../models/User");
 
+
+router.get("/", auth, async (req, res) => {
+   try{
+    const user = await User.findById(req.user.id).select("-password");
+       res.json(user);
+   } catch(err) {
+       console.error(err.message);
+       res.status(500).send("server error")
+   }
+});
+
+// @route POST api/auth
+// @desc Authenticate user and get token
+// @access Public
 router.post("/",
     [
-        check('username', 'Name is required')
-            .not()
-            .isEmpty(),
-        check('email', "Please include a valid Email")
-            .isEmail(),
-        check('password', "Please enter a password with 6 or more characters")
-            .isLength({ min: 6 })
+        check('email', "Please include a valid Email").isEmail(),
+        check('password', "Password is required").exists()
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -23,31 +34,27 @@ router.post("/",
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { username, email, password} = req.body;
+        const { email, password} = req.body;
 
         try{
             let user = await User.findOne({ email });
-            if(user){
-               return res.status(400).json({ errors: [{ msg: "user already exists" }] });
+
+            if(!user){
+                return res.status(400).json({ errors: [{ msg: "invalid credentials" }] });
             }
 
-            user = new User({
-                username,
-                email,
-                password
-            });
 
-            const salt = await bcrypt.genSalt(10);
+            const isMatch = await bcrypt.compare(password, user.password);
 
-            user.password = await bcrypt.hash(password, salt);
-
-            await user.save();
+            if(!isMatch){
+                return res.status(400).json({ errors: [{ msg: "invalid credentials" }] });
+            }
 
             const payload = {
                 user: {
                     id: user.id
                 }
-            }
+            };
 
             jwt.sign(
                 payload,
