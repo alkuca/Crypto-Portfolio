@@ -1404,3 +1404,178 @@ button:focus{
 }
 
 /* #####################################  END OF ADDASSETPAGE  ###################################### */
+
+/* ##################################### START OF LANDING PAGE ###################################### */
+
+.landing--page{
+    height:100%;
+    width:100%;
+    background: white;
+}
+
+.landing--page--navbar{
+    display:flex;
+    justify-content: space-between;
+}
+
+.landing--page--navbar--logo--container{
+    width:300px;
+    position:relative;
+    align-self: center;
+}
+
+.landing--page--navbar--logo{
+    width:100%;
+    min-width:300px;
+}
+
+.landing--page--navbar--links--container{
+    display: flex;
+    width: 35%;
+    min-width:380px;
+    max-width:650px;
+    justify-content: space-between;
+}
+
+.landing--page--navbar--link{
+    color:white;
+    font-size:18px;
+    font-weight: bold;
+    align-self: center;
+}
+
+.landing--page--navbar--sign--in--button{
+    border:0;
+    height:38px !important;
+    width:120px;
+    margin:16px 0;
+    background: #3F10EC;
+    border-radius: 5px;
+    font-weight:bold;
+    box-shadow: -5px 5px 13px rgba(0, 0, 0, 0.13);
+    font-size:17px;
+    color:white;
+}
+
+.landing--page--first--section{
+    background:red;
+    background: url('Images/landingPageBg.svg') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    height:1080px;
+}
+
+.landing--page--first--section--container{
+    padding:28px 10% 0 10%;
+    width:80%;
+}
+
+.landing--page--first--section--content{
+    display:flex;
+}
+
+.landing--page--first--section--container--left{
+    padding:10% 0 250px 0;
+    width:50%;
+    min-width:450px;
+    position: relative;
+}
+
+.landing--page--first--section--container--left--title{
+    color:white;
+    font-weight:bold;
+    font-size:80px;
+}
+
+.landing--page--first--section--container--left--text{
+    color:white;
+    font-weight:bold;
+    font-size:20px;
+    width:80%;
+}
+
+.landing--page--first--section--container--left--button{
+    width:230px;
+    height:55px;
+    background:#AA16FF;
+    border:0;
+    border-radius:10px;
+    margin-top:50px;
+    color:white;
+    font-size:22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.13);
+}
+
+.landing--page--first--section--container--right{
+    width:50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing--page--first--section--container--right--image{
+    width:92%;
+    margin-top:5%;
+}
+
+
+.landing--page--second--section{
+    height:1080px;
+    background:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ##################################### END OF LANDING PAGE ###################################### */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
