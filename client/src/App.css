@@ -470,7 +470,7 @@ button:focus{
 
 .remember--me--container{
     display:flex;
-    margin-top:20px;
+    margin-top:10px;
     flex-direction: row;
     align-items: center;
 }
@@ -488,6 +488,12 @@ button:focus{
     font-size:12px;
     color: #747474;
     margin-left: auto;
+}
+
+.remember--me--checkbox{
+    box-shadow:none !important;
+    margin:0 12px 0 0 !important;
+    width:17px !important;
 }
 
 .sign--up--here--container a{
@@ -580,7 +586,7 @@ button:focus{
 }
 
 .register--content{
-    margin: 8px 25px;
+    margin: 18px 25px;
 }
 
 
@@ -618,6 +624,11 @@ button:focus{
     align-items: center;
 }
 
+.accept--terms--checkbox{
+    box-shadow:none !important;
+    margin:0 12px 0 0 !important;
+    width:17px !important;
+}
 
 .accept--terms--label{
     font-family: "Nunito SemiBold", sans-serif;
