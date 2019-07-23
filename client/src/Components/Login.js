@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import logo from "../Images/logo.svg";
+import {connect} from "react-redux";
+import {login} from "../actions/auth";
 
-const Login = () => {
+
+
+const Login = ({ login, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -14,10 +18,15 @@ const Login = () => {
 
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
-        console.log("success")
+        login(email, password);
     };
+
+    //redirect to home page if loged in
+    if(isAuthenticated){
+        return <Redirect to = "/"/>
+    }
 
     return (
         <div className="login--page">
@@ -55,7 +64,7 @@ const Login = () => {
                             </div>
 
                             <div className="remember--me--container">
-                                <input className="remember--me--checkbox" type="checkbox" name="test" value="test" required/><label className="remember--me--label">Remember Me</label>
+                                <input className="remember--me--checkbox" type="checkbox" name="test" value="test" /><label className="remember--me--label">Remember Me</label>
                                 <label className="forgot--password--label">Forgot Password?</label>
                             </div>
                             <div className="sign--in--button--container">
@@ -73,6 +82,10 @@ const Login = () => {
             </div>
         </div>
     );
-}
+};
 
-export default Login;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);

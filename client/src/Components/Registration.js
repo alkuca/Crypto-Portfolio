@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import logo from "../Images/logo.svg";
 import { connect } from "react-redux";
+import { register } from "../actions/auth";
 
-const Registration = () => {
+const Registration = ({ register, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
        username: "",
@@ -22,10 +23,14 @@ const Registration = () => {
         if(password !== password2){
             console.log("passwords do not match");
         } else{
-            console.log(formData);
+            register({ username, email, password });
         }
     };
 
+    //redirect to login page if register success
+    if(isAuthenticated){
+        return <Redirect to = "/login"/>
+    }
 
     return (
         <div className="register--page">
@@ -46,7 +51,7 @@ const Registration = () => {
                                     placeholder="Username"
                                     value={username}
                                     onChange={e => onChange(e)}
-                                    required
+
                                 />
                                 <br />
                                 <input
@@ -55,7 +60,7 @@ const Registration = () => {
                                     placeholder="Email"
                                     value={email}
                                     onChange={e => onChange(e)}
-                                    required
+
                                 />
                                 <br />
                                 <input
@@ -64,7 +69,7 @@ const Registration = () => {
                                     placeholder="Password"
                                     value={password}
                                     onChange={e => onChange(e)}
-                                    required
+
                                 />
                                 <br />
                                 <input
@@ -73,7 +78,7 @@ const Registration = () => {
                                     placeholder="Repeat Password"
                                     value={password2}
                                     onChange={e => onChange(e)}
-                                    required
+
                                 />
                             </label>
                             <div className="accept--terms--container">
@@ -99,4 +104,8 @@ const Registration = () => {
     );
 };
 
-export default connect()(Registration);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps,  { register })(Registration);

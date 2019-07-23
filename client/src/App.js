@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Home from "./Components/Home";
 import Login from "./Components/Login";
@@ -9,11 +9,20 @@ import AddAssetPage from "./Components/AddAssetPage";
 import LandingPage from "./Components/LandingPage";
 import { Provider } from "react-redux";
 import store from "./store";
+import setAuthToken from "./Utils/setAuthToken";
+import { loadUser } from "./actions/auth";
+
+if(localStorage.token){
+    setAuthToken(localStorage.token)
+}
 
 
-class App extends Component {
-  render() {
-    return (
+const App = () => {
+    useEffect(() => {
+       store.dispatch(loadUser());
+    }, []);
+
+    return(
         <Provider store={ store }>
           <Router>
               <div className="App">
@@ -28,8 +37,6 @@ class App extends Component {
               </div>
           </Router>
         </Provider>
-    );
-  }
-}
+    )};
 
 export default App;

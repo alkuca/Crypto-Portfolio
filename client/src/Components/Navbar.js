@@ -1,29 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import logo from "../Images/logo.svg";
 import menuArrow from "../Images/menu-arrow.svg";
 import DarkenScreen from "./DarkenScreen";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
+import {connect} from "react-redux";
+import {logout} from "../actions/auth";
 
-class Navbar extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            menuIsOpen: false,
-        };
+const Navbar = ({ logout }) => {
 
-        this.toggleMenu = this.toggleMenu.bind(this);
+    const [menu, setMenu] = useState(false);
+
+    function toggleMenu() {
+        setMenu(!menu);
     }
 
-    toggleMenu() {
-        this.setState({ menuIsOpen: !this.state.menuIsOpen });
-    }
-
-    render() {
         return (
             <div>
-                {this.state.menuIsOpen ? <DarkenScreen toggleMenu={this.toggleMenu}/> : null}
+                {menu ? <DarkenScreen toggleMenu={toggleMenu}/> : null}
                 <div className="navbar">
                     <div className="navbar--wrapper">
                         <div className="navbar--content">
@@ -36,20 +31,20 @@ class Navbar extends Component {
                                 <Link to="/addasset">
                                     <button className="navbar--link--button">ADD ASSET</button>
                                 </Link>
-                                <div className="navbar--user--menu" onClick={this.toggleMenu}>
+                                <div className="navbar--user--menu" onClick={toggleMenu}>
                                     <p className="navbar--link">USER</p>
                                     <img src={menuArrow} className={classnames("menu--arrow",{
-                                        "rotate-arrow" : this.state.menuIsOpen})}
+                                        "rotate-arrow" : menu})}
                                          alt="drop-down-arrow"/>
                                 </div>
                             </div>
                         </div>
-                        { this.state.menuIsOpen ?
+                        { menu ?
                             <div className={classnames("navbar--dropdown--container", {
-                                "menu-collapsed": this.state.menuIsOpen
+                                "menu-collapsed": menu
                             })}>
                                 <div className={classnames("navbar--dropdown--content", {
-                                    "fadeIn": this.state.menuIsOpen
+                                    "fadeIn": menu
                                 })}>
                                     <Link to="/account">
                                         <p className="dropdown--menu--link">MY ACCOUNT</p>
@@ -58,7 +53,7 @@ class Navbar extends Component {
                                         <p className="dropdown--menu--link">PORTFOLIO</p>
                                     </Link>
                                     <Link to="/login">
-                                        <p className="dropdown--menu--link">SIGN OUT</p>
+                                        <p className="dropdown--menu--link" onClick={logout}>LOGOUT</p>
                                     </Link>
                                 </div>
                             </div>
@@ -68,7 +63,11 @@ class Navbar extends Component {
                 </div>
             </div>
         );
-    }
-}
+    };
 
-export default Navbar;
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);
+
