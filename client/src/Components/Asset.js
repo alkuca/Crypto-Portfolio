@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import asset from "../Images/btc.svg";
+import liskImg from "../Images/liskImg.png";
 import {Link} from "react-router-dom";
 
 class Asset extends Component {
@@ -16,12 +16,12 @@ class Asset extends Component {
                     <div className="asset--blue--line"/>
                     <div className="asset--content">
                         <div className="asset--image--name--container">
-                            <img alt="asset" className="asset--image" src={asset} />
-                            <p className="asset--name">Bitcoin</p>
+                            <img alt="asset" className="asset--image" src={liskImg} />
+                            <p className="asset--name">{this.props.name}</p>
                         </div>
-                        <p className="asset--amount">3.424532345</p>
-                        <p className="asset--value">12 234.32 $</p>
-                        <p className="asset--change">7.51 %</p>
+                        <p className="asset--amount">{this.props.amount}</p>
+                        <p className="asset--value">{this.props.value}</p>
+                        <p className="asset--change">{this.props.change}</p>
                     </div>
                 </div>
             </Link>

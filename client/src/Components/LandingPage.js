@@ -1,8 +1,10 @@
 import React from 'react';
 import '../App.css';
 import logo from "../Images/landingPageLogo.svg";
+import logoSecond from "../Images/landingPageSecondLogo.svg";
 import laptop from "../Images/laptop.png";
-
+import RegistrationForm from "./RegistrationForm";
+import { Link } from 'react-router-dom';
 
 
 const LandingPage = () => {
@@ -19,12 +21,14 @@ const LandingPage = () => {
                             <p className="landing--page--navbar--link">About</p>
                             <p className="landing--page--navbar--link">Solutions</p>
                             <p className="landing--page--navbar--link">Contact</p>
-                            <button className="landing--page--navbar--sign--in--button">Sign In</button>
+                            <Link to="/login">
+                                <button className="landing--page--navbar--sign--in--button">Sign In</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="landing--page--first--section--content">
                         <div className="landing--page--first--section--container--left">
-                            <h1 className="landing--page--first--section--container--left--title">Lorem Ipsum</h1>
+                            <h1 className="landing--page--first--section--container--left--title">Track your assets</h1>
                             <p className="landing--page--first--section--container--left--text">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Duis molestie elit id semper bibendum. Quisque luctus rhoncus
@@ -40,11 +44,21 @@ const LandingPage = () => {
             </div>
             <div className="landing--page--second--section">
                 <div className="landing--page--second--section--container">
-                    <div className="landing--page--second--section--container--left">
-                        <h1>section two</h1>
-                    </div>
-                    <div className="landing--page--second--section--container--right">
+                    <div className="landing--page--second--section--content">
+                        <div className="landing--page--second--section--container--left">
+                            <RegistrationForm/>
+                        </div>
+                        <div className="landing--page--second--section--container--right">
+                            <img alt="logoSecond" className="landing--page--second--logo" src={logoSecond} />
+                            <p className="landing--page--second--section--container--right--subtitle">THE PERSONAL CRYPTO PORTFOLIO</p>
+                            <p className="landing--page--second--section--container--right--text">
+                                Sign up for your account in AltPosit.
+                                <br/>
+                                Access all your favorite data soruces in
+                                one place.
+                            </p>
 
+                        </div>
                     </div>
                 </div>
             </div>

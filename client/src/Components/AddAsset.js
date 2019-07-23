@@ -4,12 +4,14 @@ import liskImg from "../Images/liskImg.png";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
+import axios from 'axios';
 
 class AddAsset extends Component {
     constructor(props){
         super(props);
         this.state = {
-            assetSuccess: false
+            assetSuccess: false,
+            allAssets:[]
         };
 
         this.addAsset = this.addAsset.bind(this);
@@ -19,7 +21,16 @@ class AddAsset extends Component {
         this.setState({ assetSuccess: true });
     }
 
+    componentDidMount() {
+        axios.get(`https://api.coingecko.com/api/v3/coins/list`)
+            .then(res => {
+                const assets = res.data;
+                this.setState({ allAssets:assets });
+            })
+    }
+
     render() {
+        console.log(this.state)
         return (
                 <div className="add--asset--content">
                     <div className={classnames("add--asset--blue--line", {
@@ -35,13 +46,9 @@ class AddAsset extends Component {
                                 <input list="browsers" placeholder="Search Asset..." type="search"/>
                                     {/*COINGECKO API*/}
                                     <datalist id="browsers">
-                                        <option value="Internet Explorer"/>
-                                        <option value="Edge"/>
-                                        <option value="Chrome"/>
-                                        <option value="Chromium"/>
-                                        <option value="Firefox"/>
-                                        <option value="Brave"/>
-                                        <option value="Opera"/>
+                                        {this.state.allAssets.map(function(asset) {
+                                           return <option value={asset.name}></option>
+                                        })}
                                     </datalist>
                                 </form>
                             </div>
