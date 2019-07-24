@@ -3,6 +3,7 @@ import '../App.css';
 import logo from "../Images/landingPageLogo.svg";
 import logoSecond from "../Images/landingPageSecondLogo.svg";
 import laptop from "../Images/laptop.png";
+import arrowRight from "../Images/arrowRight.svg";
 import RegistrationForm from "./RegistrationForm";
 import { Link } from 'react-router-dom';
 
@@ -22,7 +23,7 @@ const LandingPage = () => {
                             <p className="landing--page--navbar--link">Solutions</p>
                             <p className="landing--page--navbar--link">Contact</p>
                             <Link to="/login">
-                                <button className="landing--page--navbar--sign--in--button">Sign In</button>
+                                <button className="landing--page--navbar--sign--in--button">Sign In<img className="button--arrow" src={arrowRight} /></button>
                             </Link>
                         </div>
                     </div>
@@ -34,7 +35,9 @@ const LandingPage = () => {
                                 Duis molestie elit id semper bibendum. Quisque luctus rhoncus
                                 elit vel pharetra. Sed orci sapien.
                             </p>
-                            <button className="landing--page--first--section--container--left--button">Get Started</button>
+                            <button className="landing--page--first--section--container--left--button">Get Started
+
+                            </button>
                         </div>
                         <div className="landing--page--first--section--container--right">
                             <img alt="laptop" className="landing--page--first--section--container--right--image" src={laptop} />

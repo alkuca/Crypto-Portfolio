@@ -31,7 +31,9 @@ const Login = ({ login, isAuthenticated }) => {
     return (
         <div className="login--page">
             <div className="login--page--logo--container">
-                <img src={logo} alt="logo"/>
+                <Link to="/landing">
+                    <img src={logo} alt="logo"/>
+                </Link>
             </div>
             <div className="login--container">
                 <div className="login--content">

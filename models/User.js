@@ -19,8 +19,11 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     },
     assets: [{
-        asset: {
-            type: Object
+        name: {
+            type: String
+        },
+        amount: {
+            type: String
         }
     }]
 });

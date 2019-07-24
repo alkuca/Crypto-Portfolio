@@ -1152,6 +1152,7 @@ button:focus{
     width:50%;
     height:100%;
     position: relative;
+    overflow: hidden;
 }
 
 .add--asset--content--right{
@@ -1160,6 +1161,10 @@ button:focus{
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+.add--asset--content--right form{
+    height:100%;
 }
 
 .add-asset--content--left--title{
@@ -1172,18 +1177,27 @@ button:focus{
 
 
 .add--asset--select--filter{
-    margin-left:10%;
-    margin-top:50px;
-    margin-right:10%;
+    margin-left: 10%;
+    margin-top: 50px;
+    margin-right: 10%;
+    overflow-y: scroll;
+    height: 75%;
+}
+
+.add--asset--select--filter form{
+
 }
 
 .add--asset--select--filter input{
-    width:100%;
-    height:30px;
+    width: 80%;
+    height: 30px;
     color: #725EF2;
-    border:0;
-    outline:0;
+    border: 0;
+    outline: 0;
+    top: 95px;
+    position: absolute;
     border-bottom: 1px solid black;
+
 }
 
 .add--asset--select--image--container{
@@ -1459,6 +1473,25 @@ button:focus{
     font-size:17px;
     color:white;
     cursor:pointer;
+    transition: 0.2s;
+    padding-left:15px;
+}
+
+.landing--page--navbar--sign--in--button:hover{
+    background:#AA16FF;
+    transition: 0.2s;
+    padding-right:10px;
+}
+
+.landing--page--navbar--sign--in--button:hover .button--arrow{
+    transition: 0.2s;
+    padding-left:10px;
+    opacity:1;
+}
+
+.button--arrow{
+    opacity:0;
+    transition: 0.2s;
 }
 
 .landing--page--first--section{
@@ -1501,17 +1534,24 @@ button:focus{
 }
 
 .landing--page--first--section--container--left--button{
-    width:230px;
-    height:55px;
+    width:200px;
+    height:50px;
     background:#AA16FF;
     border:0;
-    border-radius:10px;
+    border-radius:8px;
     margin-top:50px;
     color:white;
-    font-size:22px;
+    font-size:21px;
     font-weight: bold;
     letter-spacing: 1px;
     box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.13);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.landing--page--first--section--container--left--button:hover{
+    background: #8f1cff;
+    transition: 0.2s;
 }
 
 .landing--page--first--section--container--right{
