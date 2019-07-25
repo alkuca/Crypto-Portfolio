@@ -18,7 +18,7 @@ class AssetAddedSuccess extends Component {
                         <img className="add--asset--image--success" alt="lisk image" src={this.props.image}/>
                     </div>
                     <h2>Successfully added to your Portfolio</h2>
-                    <Link to="/">
+                    <Link to="/home">
                         <button>Continue</button>
                     </Link>
                 </div>

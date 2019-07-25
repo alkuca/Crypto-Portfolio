@@ -140,7 +140,7 @@ const AddAsset = ({
                             </label>
                         </div>
                         <div className="add--asset--buttons--container">
-                            <Link to="/">
+                            <Link to="/home">
                                 <button className="add--asset--cancel--button">Cancel</button>
                             </Link>
                             <button className="add--asset--accept--button">Add</button>

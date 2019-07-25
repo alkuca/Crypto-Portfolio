@@ -30,7 +30,7 @@ const Login = ({ login, isAuthenticated }) => {
     return (
         <div className="login--page">
             <div className="login--page--logo--container">
-                <Link to="/landing">
+                <Link to="/">
                     <img src={logo} alt="logo"/>
                 </Link>
             </div>
@@ -75,7 +75,7 @@ const Login = ({ login, isAuthenticated }) => {
                     </div>
                     <div className="sign--up--here--container">
                         <p className="sign--up--here">Don't Have an Account?</p>
-                        <Link to="register">
+                        <Link to="/register">
                             <p className="sign--up--here--link">Sign Up Here!</p>
                         </Link>
                     </div>

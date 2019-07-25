@@ -10,7 +10,7 @@ const Registration = () => {
     return (
         <div className="register--page">
             <div className="login--page--logo--container">
-                <Link to="/landing">
+                <Link to="/">
                     <img src={logo} alt="logo"/>
                 </Link>
             </div>

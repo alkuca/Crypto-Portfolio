@@ -24,7 +24,7 @@ const Navbar = ({ logout,auth }) => {
                     <div className="navbar--wrapper">
                         <div className="navbar--content">
                             <div className="navbar--content--left">
-                                <Link to="/">
+                                <Link to="/home">
                                     <img alt="logo" className="navbar--logo" src={logo} />
                                 </Link>
                             </div>
@@ -52,7 +52,7 @@ const Navbar = ({ logout,auth }) => {
                                     <Link to="/account">
                                         <p className="dropdown--menu--link">MY ACCOUNT</p>
                                     </Link>
-                                    <Link to="/">
+                                    <Link to="/home">
                                         <p className="dropdown--menu--link">PORTFOLIO</p>
                                     </Link>
                                     <Link to="/login">

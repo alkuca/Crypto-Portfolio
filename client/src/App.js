@@ -28,8 +28,8 @@ const App = () => {
           <Router>
               <div className="App">
                   <Switch>
-                      <PrivateRoute exact path="/" component={Home} />
-                      <Route exact path="/landing" component={LandingPage} />
+                      <PrivateRoute exact path="/home" component={Home} />
+                      <Route exact path="/" component={LandingPage} />
                       <Route exact path="/login" component={Login} />
                       <Route exact path="/register" component={Registration} />
                       <PrivateRoute exact path="/asset" component={AssetPage} />
