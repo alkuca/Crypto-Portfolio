@@ -21,15 +21,12 @@ const Login = ({ login, isAuthenticated }) => {
     const onSubmit = async e => {
         e.preventDefault();
        await login(email, password);
-        if(isAuthenticated){
-            return <Redirect to = "/home"/>
-        }
+
     };
 
-    useEffect(() => {
-
-    }, []);
-
+    if(isAuthenticated){
+        return <Redirect to = "/home"/>
+    }
 
     return (
         <div className="login--page">
