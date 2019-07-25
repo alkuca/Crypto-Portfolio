@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../App.css';
 import { Link, Redirect } from 'react-router-dom';
 import logo from "../Images/logo.svg";
@@ -21,11 +21,15 @@ const Login = ({ login, isAuthenticated }) => {
     const onSubmit = async e => {
         e.preventDefault();
        await login(email, password);
+        if(isAuthenticated){
+            return <Redirect to = "/home"/>
+        }
     };
 
-    if(isAuthenticated){
-        return <Redirect to = "/home"/>
-    }
+    useEffect(() => {
+
+    }, []);
+
 
     return (
         <div className="login--page">

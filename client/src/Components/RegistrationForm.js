@@ -4,7 +4,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
 
-const RegistrationForm = ({ register, registerSuccessful }) => {
+const RegistrationForm = ({ register, registerSuccessful, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
         username: "",
@@ -15,6 +15,8 @@ const RegistrationForm = ({ register, registerSuccessful }) => {
 
     const { username, email, password, password2 } = formData;
 
+    const [submit, setSubmit] = useState(false);
+
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
     const onSubmit = e => {
@@ -23,11 +25,12 @@ const RegistrationForm = ({ register, registerSuccessful }) => {
             console.log("passwords do not match");
         } else{
             register({ username, email, password });
+            setSubmit(true);
         }
     };
 
-    //redirect to login page if register success
-    if(registerSuccessful){
+
+    if(submit && registerSuccessful){
         return <Redirect to = "/login"/>
     }
 
@@ -99,7 +102,8 @@ const RegistrationForm = ({ register, registerSuccessful }) => {
 };
 
 const mapStateToProps = state => ({
-    registerSuccessful: state.auth.registerSuccessful
+    registerSuccessful: state.auth.registerSuccessful,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default withRouter(connect(mapStateToProps,  { register })(RegistrationForm));
