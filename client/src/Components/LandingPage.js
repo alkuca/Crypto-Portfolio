@@ -35,9 +35,9 @@ const LandingPage = () => {
                                 Duis molestie elit id semper bibendum. Quisque luctus rhoncus
                                 elit vel pharetra. Sed orci sapien.
                             </p>
-                            <button className="landing--page--first--section--container--left--button">Get Started
-
-                            </button>
+                            <Link to="/register">
+                                <button className="landing--page--first--section--container--left--button">Get Started</button>
+                            </Link>
                         </div>
                         <div className="landing--page--first--section--container--right">
                             <img alt="laptop" className="landing--page--first--section--container--right--image" src={laptop} />
