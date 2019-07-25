@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import '../App.css';
 import logo from "../Images/logo.svg";
 import menuArrow from "../Images/menu-arrow.svg";
@@ -8,13 +8,14 @@ import { Link } from 'react-router-dom';
 import {connect} from "react-redux";
 import {logout} from "../actions/auth";
 
-const Navbar = ({ logout }) => {
+const Navbar = ({ logout,auth }) => {
 
     const [menu, setMenu] = useState(false);
 
     function toggleMenu() {
         setMenu(!menu);
     }
+
 
         return (
             <div>
@@ -32,7 +33,9 @@ const Navbar = ({ logout }) => {
                                     <button className="navbar--link--button">ADD ASSET</button>
                                 </Link>
                                 <div className="navbar--user--menu" onClick={toggleMenu}>
-                                    <p className="navbar--link">USER</p>
+                                    { auth.user !== null ?
+                                        <p className="navbar--link">{auth.user.username}</p>
+                                    :null}
                                     <img src={menuArrow} className={classnames("menu--arrow",{
                                         "rotate-arrow" : menu})}
                                          alt="drop-down-arrow"/>

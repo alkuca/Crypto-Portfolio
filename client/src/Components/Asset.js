@@ -16,7 +16,7 @@ class Asset extends Component {
                     <div className="asset--blue--line"/>
                     <div className="asset--content">
                         <div className="asset--image--name--container">
-                            <img alt="asset" className="asset--image" src={liskImg} />
+                            <img alt="asset" className="asset--image" src={this.props.image} />
                             <p className="asset--name">{this.props.name}</p>
                         </div>
                         <p className="asset--amount">{this.props.amount}</p>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../App.css';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
 
-const RegistrationForm = ({ register, isAuthenticated }) => {
+const RegistrationForm = ({ register, registerSuccessful }) => {
 
     const [formData, setFormData] = useState({
         username: "",
@@ -27,7 +27,7 @@ const RegistrationForm = ({ register, isAuthenticated }) => {
     };
 
     //redirect to login page if register success
-    if(isAuthenticated){
+    if(registerSuccessful){
         return <Redirect to = "/login"/>
     }
 
@@ -99,7 +99,7 @@ const RegistrationForm = ({ register, isAuthenticated }) => {
 };
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    registerSuccessful: state.auth.registerSuccessful
 });
 
-export default connect(mapStateToProps,  { register })(RegistrationForm);
+export default withRouter(connect(mapStateToProps,  { register })(RegistrationForm));

@@ -8,12 +8,15 @@ const User = require("../../models/User");
 router.post("/", auth, async (req, res) => {
 
     try{
-
         const user = await User.findById(req.user.id).select('-password');
 
         const newAsset = {
             name:req.body.name,
-            amount:req.body.amount
+            symbol:req.body.symbol,
+            purchasedAmount:req.body.purchasedAmount,
+            purchasedPrice:req.body.purchasedPrice,
+            image:req.body.image,
+
         };
 
         await user.assets.unshift(newAsset);

@@ -20,10 +20,9 @@ const Login = ({ login, isAuthenticated }) => {
 
     const onSubmit = async e => {
         e.preventDefault();
-        login(email, password);
+       await login(email, password);
     };
 
-    //redirect to home page if loged in
     if(isAuthenticated){
         return <Redirect to = "/"/>
     }

@@ -1,4 +1,4 @@
-import {GET_ALL_ASSETS, ALL_ASSETS_ERROR,SINGLE_ASSET_ERROR,GET_SINGLE_ASSET_DATA} from "../actions/types";
+import {GET_ALL_ASSETS, ALL_ASSETS_ERROR,SINGLE_ASSET_ERROR,GET_SINGLE_ASSET_DATA,ADD_ASSET_TO_USER,ADD_ASSET_TO_USER_ERROR} from "../actions/types";
 
 
 const initialState = {
@@ -34,6 +34,16 @@ export default function(state = initialState, action) {
                 ...state,
                 singleAssetData:null,
                 singleAssetLoading:false
+            };
+        case ADD_ASSET_TO_USER:
+            return{
+                ...state,
+                loading:false
+            };
+        case ADD_ASSET_TO_USER_ERROR:
+            return{
+                ...state,
+                loading:false
             };
         default:
             return state

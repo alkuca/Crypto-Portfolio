@@ -13,9 +13,9 @@ class AssetAddedSuccess extends Component {
         return (
             <div className="asset--added--success--container">
                 <div className="asset--added--success--content">
-                    <h1>753.32 LISK</h1>
+                    <h1>{this.props.purchasedAmount + " " + this.props.symbol}</h1>
                     <div className="asset--added--success--image--content">
-                        <img className="add--asset--image--success" alt="lisk image" src={liskImg}/>
+                        <img className="add--asset--image--success" alt="lisk image" src={this.props.image}/>
                     </div>
                     <h2>Successfully added to your Portfolio</h2>
                     <Link to="/">

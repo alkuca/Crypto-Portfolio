@@ -373,6 +373,7 @@ html,body{
 .asset--image--name--container{
   display:flex;
   align-items: center;
+  width:15%;
 }
 
 .asset--name{
@@ -397,7 +398,7 @@ html,body{
 }
 
 .asset--image{
-  height:50px;
+  height:43px;
 }
 
 /* #####################################  END OF ASSETS  ###################################### */
@@ -1222,6 +1223,30 @@ button:focus{
     width: 100%;
 }
 
+.add--asset--current--price{
+    cursor:pointer;
+}
+
+.add--asset--current--price:hover{
+    opacity:0.8;
+}
+
+.all--assets--list{
+    list-style: none;
+    padding-left:0;
+}
+
+.all--assets--list li{
+    width:90%;
+    padding-left:10px;
+}
+
+.all--assets--list li:hover{
+    cursor: pointer;
+    color:white;
+    background:#725EF2;
+}
+
 
 .add--asset--input--form {
     height: 80%;
@@ -1231,6 +1256,16 @@ button:focus{
     margin-right: 10%;
 }
 
+.add--asset--input--form div{
+    font-size: 20px;
+    display: flex;
+    margin-top: 60px;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.add--asset--input--form p{
+    margin:0;
+}
 
 .add--asset--input--form form {
     display: flex;
@@ -1273,11 +1308,19 @@ button:focus{
     border-radius:3px;
     font-size:16px;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.add--asset--cancel--button:hover{
+    transition: 0.2s;
+    background: #f21b3e;
+    border: 4px solid #f21b3e;
+    color:white;
 }
 
 .add--asset--accept--button{
     margin-left:20px;
-    padding:8px 40px;
+    padding:8px 55px;
     margin-right: 10%;
     font-family:"Nunito ExtraBold",sans-serif;
     color:white;
@@ -1286,6 +1329,12 @@ button:focus{
     border-radius:3px;
     font-size:16px;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.add--asset--accept--button:hover{
+    transition: 0.2s;
+    background: #4547f2;
 }
 
 .vertical--line--add--asset{
