@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import liskImg from "../Images/liskImg.png";
+import loader from "../Images/loader.gif";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
-import {getAllAssets, getSingleAssetData, addAssetToUser} from "../actions/assets";
+import {getAllAssets, getSingleAssetData, addAssetToUser,assetFetching} from "../actions/assets";
 import {connect} from "react-redux";
 
 
@@ -16,7 +17,9 @@ const AddAsset = ({
                       getSingleAssetData,
                       singleAssetData,
                       singleAssetLoading,
-                      addAssetToUser
+                      addAssetToUser,
+                      assetFetching,
+                      assetFetchingState
                   }) => {
 
     const [assetSuccess, setAssetState] = useState(false);
@@ -57,7 +60,11 @@ const AddAsset = ({
 
 
     const handleClick = (e,id) => {
+        assetFetching();
         getSingleAssetData(id);
+        setFormData({...formData,
+            purchasedPrice:"0.00000000"
+        })
     };
 
     const setQuery = e => {setQueryFilter(e)};
@@ -95,7 +102,7 @@ const AddAsset = ({
                                     allAssets.filter(a => a.symbol.toLowerCase().includes(queryFilter.toLowerCase())).map(function(asset) {
                                         return <li key={asset.id}  onClick={e => handleClick(e,asset.id)}>{asset.symbol}</li>
                                     })
-                                    : null}
+                                    : <img className="add--asset--list--loader" src={loader} alt="loader"/>}
                             </ul>
                         </form>
                     </div>
@@ -107,6 +114,11 @@ const AddAsset = ({
                 </div>
                 <div className="vertical--line--add--asset"/>
                 <div className="add--asset--content--right">
+                    {assetFetchingState ?
+                    <div className="add--asset--content--right--loader--background">
+                        <img className="add--asset--form--loader" src={loader} alt="loader" />
+                    </div>
+                    :null}
                     <form onSubmit={addAsset}>
                         <div className="add--asset--input--form">
                             <div>
@@ -157,8 +169,9 @@ const mapStateToProps = state => ({
     allAssets: state.assets.allAssets,
     allAssetsLoading: state.assets.loading,
     singleAssetData: state.assets.singleAssetData,
-    singleAssetLoading: state.assets.singleAssetLoading
+    singleAssetLoading: state.assets.singleAssetLoading,
+    assetFetchingState: state.assets.assetFetching
 });
 
-export default connect(mapStateToProps, { getAllAssets,getSingleAssetData,addAssetToUser})(AddAsset);
+export default connect(mapStateToProps, { getAllAssets,getSingleAssetData,addAssetToUser,assetFetching})(AddAsset);
 

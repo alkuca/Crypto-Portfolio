@@ -1,5 +1,6 @@
 import {
-    GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR,ADD_ASSET_TO_USER,ADD_ASSET_TO_USER_ERROR
+    GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR, ADD_ASSET_TO_USER,
+    ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING
 } from "./types";
 import axios from 'axios';
 
@@ -64,4 +65,8 @@ export const addAssetToUser = ({ name,symbol,purchasedPrice,purchasedAmount,imag
             type: ADD_ASSET_TO_USER_ERROR
         });
     }
+};
+
+export const assetFetching = () => dispatch => {
+    dispatch({ type: ASSET_FETCHING })
 };
