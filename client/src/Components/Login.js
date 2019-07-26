@@ -4,11 +4,11 @@ import { Link, Redirect } from 'react-router-dom';
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import logo from "../Images/logo.svg";
 import {connect} from "react-redux";
-import {login} from "../actions/auth";
+import {login,subLoading} from "../actions/auth";
 
 
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, submitLoading,subLoading}) => {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -24,6 +24,7 @@ const Login = ({ login, isAuthenticated }) => {
     const onSubmit = async e => {
         e.preventDefault();
         setSubmit(true);
+        subLoading();
         await login(email, password);
     };
 
@@ -74,7 +75,7 @@ const Login = ({ login, isAuthenticated }) => {
                             </div>
                             <div className="sign--in--button--container">
                                 <button type="submit" className="sign--in--button">
-                                    {submit ?
+                                    {submit && submitLoading ?
                                         < img className="button--loader--white" src={logoLoaderWhite} alt="loader"/>
                                         : "Sign In"}
                                 </button>
@@ -94,7 +95,8 @@ const Login = ({ login, isAuthenticated }) => {
 };
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    submitLoading:state.auth.submitLoading
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login,subLoading })(Login);

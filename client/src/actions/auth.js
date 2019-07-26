@@ -1,4 +1,4 @@
-import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT} from "./types";
+import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING} from "./types";
 import axios from 'axios';
 import setAuthToken from "../Utils/setAuthToken";
 
@@ -90,4 +90,8 @@ export const login = ( email, password ) => async dispatch => {
 // LOGOUT USER
 export const logout = () => dispatch => {
     dispatch({ type: LOGOUT })
+};
+
+export const subLoading = () => dispatch => {
+    dispatch({ type: SUBMIT_LOADING })
 };

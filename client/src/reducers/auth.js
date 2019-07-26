@@ -5,7 +5,8 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    LOGOUT
+    LOGOUT,
+    SUBMIT_LOADING
 } from "../actions/types";
 
 
@@ -13,6 +14,7 @@ const initialState = {
     token: localStorage.getItem("token"),
     isAuthenticated: null,
     loading: true,
+    submitLoading:false,
     registerSuccessful:false,
     user:null
 };
@@ -49,7 +51,8 @@ export default function(state = initialState, action) {
                 ...state,
                 token:null,
                 isAuthenticated: false,
-                loading:false
+                loading:false,
+                submitLoading: false
             };
         case LOGIN_FAIL:
             localStorage.removeItem("token");
@@ -57,7 +60,8 @@ export default function(state = initialState, action) {
                 ...state,
                 token:null,
                 isAuthenticated: false,
-                loading:false
+                loading:false,
+                submitLoading: false
             };
         case AUTH_ERROR:
             localStorage.removeItem("token");
@@ -65,7 +69,8 @@ export default function(state = initialState, action) {
                 ...state,
                 token:null,
                 isAuthenticated: false,
-                loading:false
+                loading:false,
+                submitLoading: false
             };
         case LOGOUT:
             localStorage.removeItem("token");
@@ -75,6 +80,12 @@ export default function(state = initialState, action) {
                 isAuthenticated: false,
                 loading:false,
                 user:null
+            };
+        case SUBMIT_LOADING:
+            localStorage.removeItem("token");
+            return{
+                ...state,
+                submitLoading: true
             };
         default:
             return state

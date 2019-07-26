@@ -3,9 +3,9 @@ import '../App.css';
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { register } from "../actions/auth";
+import {register, subLoading} from "../actions/auth";
 
-const RegistrationForm = ({ register, registerSuccessful, isAuthenticated }) => {
+const RegistrationForm = ({ register, registerSuccessful, isAuthenticated,subLoading,submitLoading }) => {
 
     const [formData, setFormData] = useState({
         username: "",
@@ -22,6 +22,7 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated }) => 
 
     const onSubmit = e => {
         e.preventDefault();
+        subLoading();
         if(password !== password2){
             console.log("passwords do not match");
         } else{
@@ -88,7 +89,7 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated }) => 
                             </div>
                             <div className="sign--up--button--container">
                                 <button type="submit" className="sign--in--button">
-                                    {submit ?
+                                    {submit && submitLoading ?
                                         < img className="button--loader--white" src={logoLoaderWhite} alt="loader"/>
                                     : "Sign Up"}
                                 </button>
@@ -108,7 +109,8 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated }) => 
 
 const mapStateToProps = state => ({
     registerSuccessful: state.auth.registerSuccessful,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    submitLoading: state.auth.submitLoading
 });
 
-export default withRouter(connect(mapStateToProps,  { register })(RegistrationForm));
+export default withRouter(connect(mapStateToProps,  { register,subLoading })(RegistrationForm));
