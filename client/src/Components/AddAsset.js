@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import liskImg from "../Images/liskImg.png";
-import loader from "../Images/loader.gif";
+import logoLoader from "../Images/logoLoaderGif.gif";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
@@ -102,7 +102,7 @@ const AddAsset = ({
                                     allAssets.filter(a => a.symbol.toLowerCase().includes(queryFilter.toLowerCase())).map(function(asset) {
                                         return <li key={asset.id}  onClick={e => handleClick(e,asset.id)}>{asset.symbol}</li>
                                     })
-                                    : <img className="add--asset--list--loader" src={loader} alt="loader"/>}
+                                    : <img className="add--asset--list--loader" src={logoLoader} alt="loader"/>}
                             </ul>
                         </form>
                     </div>
@@ -116,7 +116,7 @@ const AddAsset = ({
                 <div className="add--asset--content--right">
                     {assetFetchingState ?
                     <div className="add--asset--content--right--loader--background">
-                        <img className="add--asset--form--loader" src={loader} alt="loader" />
+                        <img className="add--asset--form--loader" src={logoLoader} alt="loader" />
                     </div>
                     :null}
                     <form onSubmit={addAsset}>

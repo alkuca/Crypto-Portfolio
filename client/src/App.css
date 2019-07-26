@@ -515,13 +515,15 @@ button:focus{
 
 .sign--in--button{
     border:none;
-    padding:12px 43px;
+    width: 150px;
+    height: 45px;
     color:white;
     font-weight:700;
     font-size:17px;
     border-radius:4px;
     background:#772CF8;
     cursor:pointer;
+    position: relative;
 }
 
 
@@ -1222,7 +1224,7 @@ button:focus{
 }
 
 .add--asset--list--loader{
-    width: 70px;
+    width: 120px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1233,13 +1235,22 @@ button:focus{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: #ffffffeb;
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .add--asset--form--loader{
-    width: 50px;
+    width: 120px;
     position: absolute;
     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button--loader--white{
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

@@ -1,5 +1,6 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
+import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
@@ -24,8 +25,8 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated }) => 
         if(password !== password2){
             console.log("passwords do not match");
         } else{
-            register({ username, email, password });
             setSubmit(true);
+            register({ username, email, password });
         }
     };
 
@@ -86,7 +87,11 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated }) => 
                                 </label>
                             </div>
                             <div className="sign--up--button--container">
-                                <button type="submit" className="sign--in--button">Sign Up</button>
+                                <button type="submit" className="sign--in--button">
+                                    {submit ?
+                                        < img className="button--loader--white" src={logoLoaderWhite} alt="loader"/>
+                                    : "Sign Up"}
+                                </button>
                             </div>
                         </form>
                     </div>

@@ -1,6 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import { Link, Redirect } from 'react-router-dom';
+import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import logo from "../Images/logo.svg";
 import {connect} from "react-redux";
 import {login} from "../actions/auth";
@@ -16,12 +17,14 @@ const Login = ({ login, isAuthenticated }) => {
 
     const {  email, password } = formData;
 
+    const [submit, setSubmit] = useState(false);
+
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
     const onSubmit = async e => {
         e.preventDefault();
-       await login(email, password);
-
+        setSubmit(true);
+        await login(email, password);
     };
 
     if(isAuthenticated){
@@ -70,7 +73,11 @@ const Login = ({ login, isAuthenticated }) => {
                                 <label className="forgot--password--label">Forgot Password?</label>
                             </div>
                             <div className="sign--in--button--container">
-                                <button type="submit" className="sign--in--button">Sign In</button>
+                                <button type="submit" className="sign--in--button">
+                                    {submit ?
+                                        < img className="button--loader--white" src={logoLoaderWhite} alt="loader"/>
+                                        : "Sign In"}
+                                </button>
                             </div>
                         </form>
                     </div>
