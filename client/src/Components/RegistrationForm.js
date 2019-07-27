@@ -5,7 +5,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import {register, subLoading} from "../actions/auth";
 
-const RegistrationForm = ({ register, registerSuccessful, isAuthenticated,subLoading,submitLoading }) => {
+const RegistrationForm = ({ register, registerSuccessful,subLoading,submitLoading }) => {
 
     const [formData, setFormData] = useState({
         username: "",
@@ -51,7 +51,7 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated,subLoa
                                     placeholder="Username"
                                     value={username}
                                     onChange={e => onChange(e)}
-
+                                    required
                                 />
                                 <br />
                                 <input
@@ -60,16 +60,16 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated,subLoa
                                     placeholder="Email"
                                     value={email}
                                     onChange={e => onChange(e)}
-
+                                    required
                                 />
                                 <br />
                                 <input
                                     type="password"
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder="Password (min 6 characters)"
                                     value={password}
                                     onChange={e => onChange(e)}
-
+                                    required
                                 />
                                 <br />
                                 <input
@@ -78,11 +78,11 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated,subLoa
                                     placeholder="Repeat Password"
                                     value={password2}
                                     onChange={e => onChange(e)}
-
+                                    required
                                 />
                             </label>
                             <div className="accept--terms--container">
-                                <input className="accept--terms--checkbox" type="checkbox" name="test" value="test" required/>
+                                <input className="accept--terms--checkbox" type="checkbox" name="test" value="test"/>
                                 <label className="accept--terms--label">
                                     I Accept <span className="make--blue">Terms and Conditions</span>
                                 </label>
@@ -109,7 +109,6 @@ const RegistrationForm = ({ register, registerSuccessful, isAuthenticated,subLoa
 
 const mapStateToProps = state => ({
     registerSuccessful: state.auth.registerSuccessful,
-    isAuthenticated: state.auth.isAuthenticated,
     submitLoading: state.auth.submitLoading
 });
 

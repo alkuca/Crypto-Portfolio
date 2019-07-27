@@ -1,6 +1,6 @@
 import {
     GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR, ADD_ASSET_TO_USER,
-    ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING
+    ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_DATA
 } from "./types";
 import axios from 'axios';
 
@@ -39,14 +39,14 @@ export const getSingleAssetData = (id) => async dispatch => {
 
 
 // add asset to user
-export const addAssetToUser = ({ name,symbol,purchasedPrice,purchasedAmount,image }) => async dispatch => {
+export const addAssetToUser = ({ id,name,symbol,purchasedPrice,purchasedAmount,image,purchasedPriceUsd }) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
 
-    const body = JSON.stringify({ name,symbol,purchasedPrice,purchasedAmount,image });
+    const body = JSON.stringify({ id,name,symbol,purchasedPrice,purchasedAmount,image,purchasedPriceUsd });
 
     try{
         const res = await axios.post('/api/asset', body, config);
@@ -69,4 +69,18 @@ export const addAssetToUser = ({ name,symbol,purchasedPrice,purchasedAmount,imag
 
 export const assetFetching = () => dispatch => {
     dispatch({ type: ASSET_FETCHING })
+};
+
+
+export const fetchLiveAssetData = (id) => async dispatch => {
+    try {
+        const res = await axios.get(`https://api.coingecko.com/api/v3/coins/${id}`);
+
+        dispatch({
+            type: ASSET_LIVE_DATA,
+            payload: res.data
+        });
+    } catch (err) {
+
+    }
 };

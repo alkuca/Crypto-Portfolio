@@ -373,7 +373,7 @@ html,body{
 .asset--image--name--container{
   display:flex;
   align-items: center;
-  width:15%;
+  width: 40%;
 }
 
 .asset--name{
@@ -385,11 +385,13 @@ html,body{
 .asset--value{
   font-weight: 700;
   color: #525252;
+    width:20%;
 }
 
 .asset--amount{
   font-weight: 700;
   color: #525252;
+    width:20%
 }
 
 .asset--change{
@@ -1188,17 +1190,16 @@ button:focus{
 }
 
 .add--asset--select--filter form{
-
+    padding-left: 10px;
 }
 
 .add--asset--select--filter input{
-    width: 80%;
     height: 30px;
     color: #725EF2;
     border: 0;
     outline: 0;
     border-bottom: 1px solid black;
-
+    width: 90%;
 }
 
 .add--asset--select--image--container{
@@ -1270,7 +1271,6 @@ button:focus{
 
 .all--assets--list li{
     width:90%;
-    padding-left:10px;
 }
 
 .all--assets--list li:hover{
@@ -1279,6 +1279,14 @@ button:focus{
     background:#725EF2;
 }
 
+.home--page--asset--loader{
+    width: 31px;
+    padding-top: 7px;
+}
+
+.makeRed{
+    color:red !important;
+}
 
 .add--asset--input--form {
     height: 80%;

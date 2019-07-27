@@ -1,4 +1,4 @@
-import {GET_ALL_ASSETS, ALL_ASSETS_ERROR,SINGLE_ASSET_ERROR,GET_SINGLE_ASSET_DATA,ADD_ASSET_TO_USER,ADD_ASSET_TO_USER_ERROR,ASSET_FETCHING} from "../actions/types";
+import {GET_ALL_ASSETS, ALL_ASSETS_ERROR,SINGLE_ASSET_ERROR,GET_SINGLE_ASSET_DATA,ADD_ASSET_TO_USER,ADD_ASSET_TO_USER_ERROR,ASSET_FETCHING,ASSET_LIVE_DATA} from "../actions/types";
 
 
 const initialState = {
@@ -6,7 +6,9 @@ const initialState = {
     loading:true,
     singleAssetData:null,
     singleAssetLoading:true,
-    assetFetching:false
+    assetFetching:false,
+
+    assetLiveData:null
 };
 
 
@@ -51,6 +53,11 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 assetFetching:true
+            };
+        case ASSET_LIVE_DATA:
+            return{
+                ...state,
+                assetLiveData:action.payload
             };
         default:
             return state

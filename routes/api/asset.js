@@ -11,12 +11,13 @@ router.post("/", auth, async (req, res) => {
         const user = await User.findById(req.user.id).select('-password');
 
         const newAsset = {
+            id:req.body.id,
             name:req.body.name,
             symbol:req.body.symbol,
             purchasedAmount:req.body.purchasedAmount,
             purchasedPrice:req.body.purchasedPrice,
             image:req.body.image,
-
+            purchasedPriceUsd:req.body.purchasedPriceUsd
         };
 
         await user.assets.unshift(newAsset);

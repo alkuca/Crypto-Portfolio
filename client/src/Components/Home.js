@@ -7,13 +7,13 @@ import {connect} from "react-redux";
 import {loadUser} from "../actions/auth";
 
 
+const Home = ({ auth,loadUser }) => {
 
-
-const Home = ({ loading,auth,loadUser }) => {
 
     useEffect(() => {
         loadUser();
     }, []);
+
 
     return (
         <div>
@@ -54,7 +54,7 @@ const Home = ({ loading,auth,loadUser }) => {
                     <div className="asset--container">
                         { auth.user !== null ?
                             auth.user.assets.map(function(asset) {
-                                return <Asset key={asset._id} name={asset.name} value="0.00 $" amount={asset.purchasedAmount} image={asset.image} change="0.00 %"/>
+                                return <Asset key={asset._id} name={asset.name} value="0.00 $" amount={asset.purchasedAmount} image={asset.image} id={asset.id}/>
                             })
                             : null}
                     </div>
@@ -65,6 +65,7 @@ const Home = ({ loading,auth,loadUser }) => {
 };
 
 const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
     loading: state.auth.loading,
     auth: state.auth
 });

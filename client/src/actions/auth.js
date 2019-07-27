@@ -92,6 +92,7 @@ export const logout = () => dispatch => {
     dispatch({ type: LOGOUT })
 };
 
+// SUBMIT LOADING
 export const subLoading = () => dispatch => {
     dispatch({ type: SUBMIT_LOADING })
 };

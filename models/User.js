@@ -19,6 +19,9 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     },
     assets: [{
+        id: {
+          type: String
+        },
         name: {
             type: String
         },
@@ -28,14 +31,17 @@ const UserSchema = new mongoose.Schema({
         symbol:{
             type:String
         },
-        purchasedPrice:{
+        purchasedPrice: {
             type: String
         },
-        purchasedDate:{
+        purchasedDate: {
             type:Date,
             default:Date.now
         },
-        image:{
+        image: {
+            type:String
+        },
+        purchasedPriceUsd: {
             type:String
         }
     }]

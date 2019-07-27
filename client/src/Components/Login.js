@@ -70,7 +70,7 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading}) => {
                             </div>
 
                             <div className="remember--me--container">
-                                <input className="remember--me--checkbox" type="checkbox" name="test" value="test" /><label className="remember--me--label">Remember Me</label>
+                                <input disabled className="remember--me--checkbox" type="checkbox" name="test" value="test" /><label className="remember--me--label">Remember Me</label>
                                 <label className="forgot--password--label">Forgot Password?</label>
                             </div>
                             <div className="sign--in--button--container">

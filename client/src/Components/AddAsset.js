@@ -45,11 +45,13 @@ const AddAsset = ({
         e.preventDefault();
 
         const data = {
+            id: singleAssetData.id,
             name:singleAssetData.name,
             symbol:singleAssetData.symbol,
             purchasedAmount:purchasedAmount,
             purchasedPrice:purchasedPrice,
-            image:singleAssetData.image.large
+            image:singleAssetData.image.large,
+            purchasedPriceUsd: singleAssetData.market_data.current_price.usd
         };
 
         await addAssetToUser(data);
