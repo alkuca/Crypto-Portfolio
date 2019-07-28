@@ -40,14 +40,14 @@ class AssetPage extends Component {
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
-                            <ValueBlock type="USD" value="$ 12 342,21"/>
-                            <ValueBlock type="Bitcoin (BTC)" value="3.41421456"/>
+                            <ValueBlock type="USD" value="0.00 $"/>
+                            <ValueBlock type="Bitcoin (BTC)" value="0.00000000"/>
                             {/* replace next div block with ValeBlock Component */}
                             <div className="value--block">
                                 <div className="blue--line"/>
                                 <div className="value--block-content">
                                     <p className="value--block--value--type">Total Change (BTC)</p>
-                                    <p className="value--block--value makeGreen">68.34 %</p>
+                                    <p className="value--block--value makeGreen">0.00  %</p>
                                 </div>
                             </div>
                             {/* end here */}

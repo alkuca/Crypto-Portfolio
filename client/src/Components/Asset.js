@@ -1,17 +1,20 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useMemo } from 'react';
 import '../App.css';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import axios from 'axios';
 import logoLoader from "../Images/logoLoaderGif.gif";
 import classnames from "classnames";
+import {setLiveUsdData,setLiveBtcData,setLivePercentData} from "../actions/assets";
 
 
-const Asset = ({ auth,image,name,amount,value,id}) => {
+const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLivePercentData}) => {
 
     const [assets, setAssets] = useState();
 
 
+
+    {/* replace with redux action */}
    const getLiveAssetData = (id) => {
         axios.get(`https://api.coingecko.com/api/v3/coins/${id}`)
             .then(res => {
@@ -45,6 +48,35 @@ const Asset = ({ auth,image,name,amount,value,id}) => {
         return res;
     };
 
+
+    const getUsdValues  = () => {
+        if(assets) {
+            let res = amount * assets.market_data.current_price.usd
+            setLiveUsdData(res)
+        }
+    };
+
+    const getBtcValues  = () => {
+        if(assets) {
+            let res = amount * assets.market_data.current_price.btc
+            setLiveBtcData(res)
+        }
+    };
+
+    const getPercentageValues  = () => {
+        if(assets) {
+            let res = assets.market_data.price_change_percentage_24h
+            setLivePercentData(res)
+        }
+    };
+
+
+
+    useMemo(()=>{
+        getUsdValues();
+        getBtcValues();
+        getPercentageValues();
+    },[assets]);
 
 
     return (
@@ -80,4 +112,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, {})(Asset);
+export default connect(mapStateToProps, {setLiveUsdData,setLiveBtcData,setLivePercentData})(Asset);

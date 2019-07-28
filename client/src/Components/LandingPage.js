@@ -23,7 +23,7 @@ const LandingPage = () => {
                             <p className="landing--page--navbar--link">Solutions</p>
                             <p className="landing--page--navbar--link">Contact</p>
                             <Link to="/login">
-                                <button className="landing--page--navbar--sign--in--button">Sign In<img className="button--arrow" src={arrowRight} /></button>
+                                <button className="landing--page--navbar--sign--in--button">Sign In<img alt="button-arrow" className="button--arrow" src={arrowRight} /></button>
                             </Link>
                         </div>
                     </div>

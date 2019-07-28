@@ -14,7 +14,7 @@ class AssetDetails extends Component {
                 <div className="asset--details--inner--container">
                     <div className="asset--blue--line"/>
                     <div className="asset--details--content">
-                        <div className="asset--image--name--container">
+                        <div className="asset--details--image--name--container">
                             <img alt="asset" className="asset--details--image" src={asset} />
                             <p className="asset--name">Bitcoin</p>
                         </div>

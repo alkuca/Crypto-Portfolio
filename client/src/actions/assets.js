@@ -1,6 +1,6 @@
 import {
     GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR, ADD_ASSET_TO_USER,
-    ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_DATA
+    ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA
 } from "./types";
 import axios from 'axios';
 
@@ -72,15 +72,21 @@ export const assetFetching = () => dispatch => {
 };
 
 
-export const fetchLiveAssetData = (id) => async dispatch => {
-    try {
-        const res = await axios.get(`https://api.coingecko.com/api/v3/coins/${id}`);
 
-        dispatch({
-            type: ASSET_LIVE_DATA,
-            payload: res.data
-        });
-    } catch (err) {
 
-    }
+export const setLiveUsdData = (res) => dispatch => {
+    dispatch({ type: ASSET_LIVE_USD_DATA, payload:res })
 };
+
+export const setLiveBtcData = (res) => dispatch => {
+    dispatch({ type: ASSET_LIVE_BTC_DATA, payload:res })
+};
+
+export const setLivePercentData = (res) => dispatch => {
+    dispatch({ type: ASSET_LIVE_PERCENT_DATA, payload:res })
+};
+
+export const resetLiveData = () => dispatch => {
+    dispatch({ type: RESET_LIVE_DATA })
+};
+

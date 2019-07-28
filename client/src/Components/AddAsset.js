@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-import liskImg from "../Images/liskImg.png";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
@@ -36,7 +35,7 @@ const AddAsset = ({
 
 
 
-    const { purchasedAmount,purchasedPrice,name,id } = formData;
+    const { purchasedAmount,purchasedPrice } = formData;
 
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
@@ -95,23 +94,20 @@ const AddAsset = ({
             })}>
                 <div className="add--asset--content--left">
                     <p className="add-asset--content--left--title">Add Asset to my portfolio</p>
+                    <div className="add--asset--input--container">
+                        <input list="assets" className="add--asset--select--filter--input" placeholder="Search asset by symbol..." type="search"
+                               onChange={e => setQuery(e.target.value)}/>
+                    </div>
                     <div className="add--asset--select--filter">
                         <form>
-                            <input list="browsers" placeholder="Search asset by symbol..." type="search"  onChange={e => setQuery(e.target.value)
-                            }/>
                             <ul className="all--assets--list">
                                 { !allAssetsLoading ?
                                     allAssets.filter(a => a.symbol.toLowerCase().includes(queryFilter.toLowerCase())).map(function(asset) {
-                                        return <li key={asset.id}  onClick={e => handleClick(e,asset.id)}>{asset.symbol}</li>
+                                        return <li key={asset.id} onClick={e => handleClick(e,asset.id)}>{asset.symbol}</li>
                                     })
                                     : <img className="add--asset--list--loader" src={logoLoader} alt="loader"/>}
                             </ul>
                         </form>
-                    </div>
-                    <div className="add--asset--select--image--container">
-                        <div className="add--asset--select--image--content">
-                            <img className="add--asset--image" alt="lisk image" src={liskImg}/>
-                        </div>
                     </div>
                 </div>
                 <div className="vertical--line--add--asset"/>
@@ -131,7 +127,7 @@ const AddAsset = ({
                                 <p>Current price:</p>
                                 <p
                                     className="add--asset--current--price" onClick={ e => fillPriceFormWithCurrentPrice(e)}>
-                                    {!singleAssetLoading ? singleAssetData.market_data.current_price.btc : null}
+                                    {!singleAssetLoading ? singleAssetData.market_data.current_price.btc.toFixed(8) : null}
                                 </p>
                             </div>
                             <label>

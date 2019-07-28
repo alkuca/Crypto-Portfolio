@@ -252,7 +252,7 @@ html,body{
 }
 
 .makeGreen{
-  color:#21AC00;
+  color:#21AC00 ;
 }
 
 
@@ -272,7 +272,9 @@ html,body{
   padding-bottom: 1px;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
   border-radius:5px;
-  min-height:72vh;
+  min-height:71vh;
+  position:relative;
+  padding-top:20px;
 }
 
 .assets--search--filter-container{
@@ -374,6 +376,11 @@ html,body{
   display:flex;
   align-items: center;
   width: 40%;
+}
+
+.asset--details--image--name--container{
+    display:flex;
+    align-items: center;
 }
 
 .asset--name{
@@ -1134,6 +1141,7 @@ button:focus{
     align-items: center;
 }
 
+
 .fade--out{
     animation:fade-out 0.3s forwards;
 }
@@ -1183,23 +1191,28 @@ button:focus{
 
 .add--asset--select--filter{
     margin-left: 10%;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-right: 10%;
     overflow-y: scroll;
-    height: 75%;
+    height: 72%;
+}
+
+.add--asset--input--container{
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .add--asset--select--filter form{
     padding-left: 10px;
 }
 
-.add--asset--select--filter input{
+.add--asset--select--filter--input{
     height: 30px;
     color: #725EF2;
     border: 0;
     outline: 0;
     border-bottom: 1px solid black;
-    width: 90%;
+    width: 100%;
 }
 
 .add--asset--select--image--container{
@@ -1247,6 +1260,14 @@ button:focus{
     transform: translate(-50%, -50%);
 }
 
+.home--page--asset--container--loader{
+    width: 85px;
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .button--loader--white{
     height: 40px;
     width: 40px;
@@ -1267,6 +1288,7 @@ button:focus{
 .all--assets--list{
     list-style: none;
     padding-left:0;
+    margin-top:0;
 }
 
 .all--assets--list li{
