@@ -7,6 +7,7 @@ import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import {connect} from "react-redux";
 import {logout} from "../actions/auth";
+import Headroom from "react-headroom";
 
 const Navbar = ({ logout,auth }) => {
 
@@ -20,6 +21,7 @@ const Navbar = ({ logout,auth }) => {
         return (
             <div>
                 {menu ? <DarkenScreen toggleMenu={toggleMenu}/> : null}
+                <Headroom>
                 <div className="navbar">
                     <div className="navbar--wrapper">
                         <div className="navbar--content">
@@ -64,6 +66,7 @@ const Navbar = ({ logout,auth }) => {
                         }
                     </div>
                 </div>
+                </Headroom>
             </div>
         );
     };
