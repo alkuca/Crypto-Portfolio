@@ -52,13 +52,13 @@ const Navbar = ({ logout,auth }) => {
                                     "fadeIn": menu
                                 })}>
                                     <Link to="/account">
-                                        <p className="dropdown--menu--link">MY ACCOUNT</p>
+                                        <p className="dropdown--menu--link">My Account</p>
                                     </Link>
                                     <Link to="/home">
-                                        <p className="dropdown--menu--link">PORTFOLIO</p>
+                                        <p className="dropdown--menu--link">Portfolio</p>
                                     </Link>
                                     <Link to="/login">
-                                        <p className="dropdown--menu--link" onClick={logout}>LOGOUT</p>
+                                        <p className="dropdown--menu--link" onClick={logout}>Logout</p>
                                     </Link>
                                 </div>
                             </div>

@@ -17,7 +17,7 @@ html,body{
   position:fixed;
   top: 0;
   background: rgba(0, 0, 0, 0.45);
-  z-index: 2;
+  z-index: 1;
     animation-name:fadeInAnim;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
@@ -124,13 +124,13 @@ html,body{
     text-align: center;
     text-decoration: none;
     color: #282828;
-    transition: 0.2s;
     padding: 3px 0;
+    font-weight: bold;
 }
 
 .navbar--dropdown--content a:hover{
-    color: #4f36f2;
-    transition: 0.2s;
+    color: white;
+    background:#4e35f2;
 }
 
 
@@ -161,8 +161,8 @@ html,body{
         opacity:0;
     }
     to{
-        width: 280px;
-        height: 180px;
+        width: 190px;
+        height: 150px;
         opacity:1;
     }
 }
