@@ -3,6 +3,7 @@ import '../App.css';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import axios from 'axios';
+import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import classnames from "classnames";
 import {setLiveUsdData,setLiveBtcData,setLivePercentData} from "../actions/assets";
@@ -80,7 +81,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
 
 
     return (
-        <Link to="/asset">
+        <Link to={`/asset/`+id}>
             <div className="asset">
                 <div className="asset--blue--line"/>
                 <div className="asset--content">
@@ -112,4 +113,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, {setLiveUsdData,setLiveBtcData,setLivePercentData})(Asset);
+export default withRouter(connect(mapStateToProps, {setLiveUsdData,setLiveBtcData,setLivePercentData})(Asset));

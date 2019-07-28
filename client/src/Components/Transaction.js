@@ -11,9 +11,9 @@ class Transaction extends Component {
         return (
             <div className="transaction">
                 <div className="transaction--content">
-                    <p className="transaction--amount">05.10.2018 18:39</p>
-                    <p className="transaction--value">Price: 4859.82 USD</p>
-                    <p className="transaction--change">Amount: 2.5790567467 BTC</p>
+                    <p className="transaction--amount">05.10.2019 18:39</p>
+                    <p className="transaction--value">Price: 0.00000278</p>
+                    <p className="transaction--change">Amount: 1458</p>
                 </div>
             </div>
         );

@@ -786,6 +786,18 @@ button:focus{
     height:80px;
 }
 
+.asset--details--top--loader{
+    width:50px;
+}
+
+.asset--detials--loader--container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:130px;
+}
+
 
 .transactions--and--notes--container{
     width:100%;

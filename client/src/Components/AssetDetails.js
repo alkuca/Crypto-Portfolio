@@ -1,46 +1,64 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import '../App.css';
-import asset from "../Images/btc.svg";
+import {withRouter} from "react-router-dom";
+import logoLoader from "../Images/logoLoaderGif.gif";
+import {connect} from "react-redux";
+import {getSingleAssetData} from "../actions/assets";
 
-class AssetDetails extends Component {
-    constructor(props){
-        super(props);
 
-    }
+const AssetDetails = ({auth, match, getSingleAssetData, singleAssetData }) => {
 
-    render() {
-        return (
-            <div className="asset--details--container">
-                <div className="asset--details--inner--container">
-                    <div className="asset--blue--line"/>
+    useEffect(() => {
+        getSingleAssetData(match.params.asset_id)
+    }, []);
+
+    return (
+        <div className="asset--details--container">
+            <div className="asset--details--inner--container">
+                <div className="asset--blue--line"/>
+                { singleAssetData ?
                     <div className="asset--details--content">
                         <div className="asset--details--image--name--container">
-                            <img alt="asset" className="asset--details--image" src={asset} />
-                            <p className="asset--name">Bitcoin</p>
+                            <img alt="asset" className="asset--details--image"
+                                 src={singleAssetData.image.large}/>
+                            <p className="asset--name">{singleAssetData.name}</p>
                         </div>
                         <div>
                             <p className="asset--detail--header">Market Cap</p>
-                            <p>$136,981,982,734 USD</p>
-                            <p>17,744,187 BTC </p>
+                            <p>{singleAssetData.market_data.market_cap.usd + " USD"}</p>
+                            <p>{singleAssetData.market_data.market_cap.btc + " BTC"}</p>
                         </div>
                         <div>
-                            <p className="asset--detail--header">Volume (24h)</p>
-                            <p>$19,062,833,481 USD </p>
-                            <p>2,477,969 BTC</p>
+                            <p className="asset--detail--header">Total Volume</p>
+                            <p>{singleAssetData.market_data.total_volume.usd + " USD"}</p>
+                            <p>{singleAssetData.market_data.total_volume.btc + " BTC"}</p>
                         </div>
                         <div>
                             <p className="asset--detail--header">Circulating Supply</p>
-                            <p>106,379,476 ETH</p>
+                            <p>{singleAssetData.market_data.circulating_supply}</p>
                         </div>
                         <div>
                             <p className="asset--detail--header">Rank</p>
-                            <p>31 / 2221</p>
+                            <p>{singleAssetData.market_data.market_cap_rank}</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
 
-export default AssetDetails;
+                    </div>
+                    :
+                    <div className="asset--detials--loader--container">
+                        <img className="asset--details--top--loader" src={logoLoader} alt="loader"/>
+                    </div>}
+            </div>
+        </div>
+    )
+};
+
+
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    singleAssetData: state.assets.singleAssetData
+});
+
+export default withRouter(connect(mapStateToProps, { getSingleAssetData })(AssetDetails));
+
+
