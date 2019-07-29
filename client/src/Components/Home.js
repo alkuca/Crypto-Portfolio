@@ -75,10 +75,10 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                 <div className="block--container--content">
                     <ValueBlock type="USD" value={totalUsdValue ? totalUsdValue.toFixed(2) + " $"
                         :
-                        <img className="home--page--asset--loader" src={logoLoader} alt="loader"/>}/>
+                        "0.00 $"}/>
                     <ValueBlock type="Bitcoin (BTC)" value={totalBtcValue ? totalBtcValue.toFixed(8)
                         :
-                        <img className="home--page--asset--loader" src={logoLoader} alt="loader"/>}/>
+                        "0.00000000"}/>
                     <div className="value--block">
                         <div className="blue--line"/>
                         <div className="value--block-content">
@@ -87,7 +87,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                                 "makeRed": checkIfNegative()
                             })}>{totalPercentValue ? totalPercentValue.toFixed(2)+ " %"
                                 :
-                                <img className="home--page--asset--loader" src={logoLoader} alt="loader"/>}</p>
+                                "0.00 %"}</p>
                         </div>
                     </div>
                 </div>
