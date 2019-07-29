@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import '../App.css';
 import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import {connect} from "react-redux";
-import {getSingleAssetData} from "../actions/assets";
 
 
-const AssetDetails = ({auth, match, getSingleAssetData, singleAssetData }) => {
+const AssetDetails = ({ singleAssetData }) => {
 
-    useEffect(() => {
-        getSingleAssetData(match.params.asset_id)
-    }, []);
+
+
+
 
     return (
         <div className="asset--details--container">
@@ -59,6 +58,6 @@ const mapStateToProps = state => ({
     singleAssetData: state.assets.singleAssetData
 });
 
-export default withRouter(connect(mapStateToProps, { getSingleAssetData })(AssetDetails));
+export default withRouter(connect(mapStateToProps, {  })(AssetDetails));
 
 

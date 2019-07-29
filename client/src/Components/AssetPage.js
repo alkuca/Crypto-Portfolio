@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect,useMemo } from 'react';
 import '../App.css';
 import ValueBlock from "./ValueBlock";
 import Navbar from "./Navbar";
@@ -10,11 +10,17 @@ import AddTransactionModal from "./AddTransactionModal";
 import AddNoteModal from "./AddNoteModal";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {getSingleAssetData} from "../actions/assets";
+import classnames from "classnames";
 
-const AssetPage = ({ singleAssetData }) => {
+const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
 
     const [transactionModal, toggleTransactionModal] = useState(false);
     const [noteModal, toggleNoteModal] = useState(false);
+    const [userAssetData, setUserAssetData] = useState();
+    const [usdValue, setUsdValue] = useState("");
+    const [btcValue, setBtcValue] = useState("");
+    const [percentValueNow, setPercentValueNow] = useState("");
 
 
     const toggleAddTransactionModal = () => {
@@ -25,6 +31,59 @@ const AssetPage = ({ singleAssetData }) => {
         toggleNoteModal(!noteModal)
     };
 
+    const checkIfNegative = () => {
+        if(percentValueNow < 0){
+            return true
+        }
+    };
+
+    const findCurrentAssetUserData = () => {
+        if(auth.user) {
+            let res = auth.user.assets.filter(x => x.id === match.params.asset_id);
+            setUserAssetData(res)
+        }
+    };
+
+    const calculateTotalUsdValue = () => {
+        if(userAssetData && singleAssetData && auth.user) {
+            let res = userAssetData[0].purchasedAmount * singleAssetData.market_data.current_price.usd;
+            setUsdValue(res.toFixed(2))
+        }
+    };
+
+    const calculateTotalBtcValue = () => {
+        if(userAssetData && auth.user && singleAssetData) {
+            let res =  userAssetData[0].purchasedAmount * singleAssetData.market_data.current_price.btc;
+            setBtcValue(res.toFixed(8))
+        }
+    };
+
+    const calculateTotalPercentChange = () => {
+        if(userAssetData && auth.user && singleAssetData) {
+            let valueOnPurchasedDay = userAssetData[0].purchasedAmount * userAssetData[0].purchasedPrice;
+            let valueNow = userAssetData[0].purchasedAmount * singleAssetData.market_data.current_price.btc
+            let difference = valueOnPurchasedDay - valueNow;
+            let res = (difference / valueOnPurchasedDay ) * 100;
+            setPercentValueNow(res.toFixed(2))
+        }
+    };
+
+
+    useEffect(() => {
+        findCurrentAssetUserData();
+    }, [auth.user]);
+
+    useEffect(() => {
+        getSingleAssetData(match.params.asset_id);
+    }, []);
+
+
+    useMemo(() => {
+        calculateTotalBtcValue();
+        calculateTotalUsdValue();
+        calculateTotalPercentChange();
+    }, [singleAssetData,userAssetData]);
+
         return (
             <div>
                 <Navbar/>
@@ -34,17 +93,19 @@ const AssetPage = ({ singleAssetData }) => {
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
-                            <ValueBlock type="USD" value="0.00 $"/>
-                            <ValueBlock type="Bitcoin (BTC)" value="0.00000000"/>
-                            {/* replace next div block with ValeBlock Component */}
+                            <ValueBlock type="USD Value" value={ usdValue && userAssetData ? usdValue + " $" : "0.00 $"}/>
+                            <ValueBlock type="Bitcoin Value (btc)" value={ btcValue ? btcValue : "0.00000000"}/>
                             <div className="value--block">
                                 <div className="blue--line"/>
                                 <div className="value--block-content">
                                     <p className="value--block--value--type">Total Change (BTC)</p>
-                                    <p className="value--block--value makeGreen">0.00 %</p>
+                                    <p className={classnames("value--block--value makeGreen", {
+                                        "makeRed": checkIfNegative()
+                                    })}>{percentValueNow ? percentValueNow + " %"
+                                        :
+                                        "0.00 %"}</p>
                                 </div>
                             </div>
-                            {/* end here */}
                         </div>
                     </div>
                     <div className="graph--container">
@@ -71,9 +132,10 @@ const AssetPage = ({ singleAssetData }) => {
 
 
 const mapStateToProps = state => ({
+    auth: state.auth,
     singleAssetData: state.assets.singleAssetData
 });
 
-export default withRouter(connect(mapStateToProps, {  })(AssetPage));
+export default withRouter(connect(mapStateToProps, { getSingleAssetData })(AssetPage));
 
 

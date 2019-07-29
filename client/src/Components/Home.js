@@ -13,15 +13,12 @@ import classnames from "classnames";
 
 const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercentData,resetLiveData}) => {
 
-    const [totalUsdValue, setTotalUsdValue] = useState();
-    const [totalBtcValue, setTotalBtcValue] = useState();
-    const [totalPercentValue, setTotalPercentValue] = useState();
+    const [totalUsdValue, setTotalUsdValue] = useState("");
+    const [totalBtcValue, setTotalBtcValue] = useState("");
+    const [totalPercentValue, setTotalPercentValue] = useState("");
 
 
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
-
-
-
 
     const calculateTotalUsdValue = () => {
         if(assetLiveUsdData){
@@ -53,7 +50,6 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     };
 
 
-
     useEffect(() => {
         loadUser();
         resetLiveData();
@@ -65,7 +61,6 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
         calculateTotalPercentValue();
         calculateTotalBtcValue();
     },[assetLiveUsdData]);
-
 
 
     return (
@@ -92,7 +87,6 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                     </div>
                 </div>
             </div>
-
             <div className="assets--container">
                 <div className="assets--inner--container">
                     {auth.user !== null ? null :<img className="home--page--asset--container--loader" src={logoLoader} alt="loader"/>}

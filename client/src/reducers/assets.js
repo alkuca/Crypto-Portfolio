@@ -76,7 +76,9 @@ export default function(state = initialState, action) {
                 ...state,
                 assetLivePercentData:[],
                 assetLiveBtcData:[],
-                assetLiveUsdData:[]
+                assetLiveUsdData:[],
+                singleAssetData:null,
+                singleAssetLoading:true
             };
         default:
             return state
