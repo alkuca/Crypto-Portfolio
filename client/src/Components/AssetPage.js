@@ -3,7 +3,7 @@ import '../App.css';
 import ValueBlock from "./ValueBlock";
 import Navbar from "./Navbar";
 import AssetDetails from "./AssetDetails";
-import TradingViewWidget from 'react-tradingview-widget';
+import TradingViewWidget, { Themes } from 'react-tradingview-widget';
 import Transactions from "./Transactions";
 import Notes from "./Notes";
 import AddTransactionModal from "./AddTransactionModal";
@@ -112,7 +112,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
                         <div className="graph--inner--container">
                             <div className="graph--content">
                                 { singleAssetData ?
-                                    <TradingViewWidget interval="240" symbol={singleAssetData.symbol + "BTC"}/>
+                                    <TradingViewWidget interval="240" theme={auth.theme === "DARK" ? Themes.DARK : Themes.LIGHT} symbol={singleAssetData.symbol + "BTC"}/>
                                 :null}
                             </div>
                         </div>

@@ -27,7 +27,7 @@ html,body{
 
 .navbar{
   height:55px;
-  background: linear-gradient( to right, #4E35F2, #5A35F2);
+  background: var(--navbarBackground);
   width:100%;
   position:relative;
   z-index: 3;
@@ -83,7 +83,7 @@ html,body{
     height: 35px;
     width: 119px;
     border-radius: 3px;
-    background: #07ab33;
+    background: var(--navbarButtonBackground);
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
     cursor:pointer;
     transition:0.2s;
@@ -91,7 +91,7 @@ html,body{
 
 .navbar--link--button:hover{
     transition:0.2s;
-    background: #0db440;
+    opacity:0.9;
 }
 
 .navbar--user--menu{
@@ -104,7 +104,7 @@ html,body{
   right: 10%;
   top: 55px;
   z-index: 5;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.24);
   border-radius:0 0 5px 5px;
   background:white;
   opacity:0;
@@ -123,14 +123,14 @@ html,body{
     width:100%;
     text-align: center;
     text-decoration: none;
-    color: #282828;
+    color: white;
     padding: 3px 0;
     font-weight: bold;
 }
 
 .navbar--dropdown--content a:hover{
     color: white;
-    background:#4e35f2;
+    background:var(--linksHover);
 }
 
 
@@ -147,11 +147,15 @@ html,body{
     transform:rotate(90deg);
     transition:0.2s;
 }
+.toggle--theme{
+    cursor: pointer;
+}
 
 .menu-collapsed{
     animation-name:collapseMenu;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
+    background: var(--navbarBackground);
 }
 
 @keyframes collapseMenu {
@@ -161,8 +165,8 @@ html,body{
         opacity:0;
     }
     to{
-        width: 190px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         opacity:1;
     }
 }
@@ -208,6 +212,8 @@ html,body{
   position: relative;
   transition:0.2s;
   cursor:pointer;
+  background-color: var(--primaryBackground);
+    color:var(--secondaryTextColor);
 }
 
 .value--block:hover{
@@ -226,7 +232,7 @@ html,body{
   width:100%;
   top:0;
   height:7px;
-  background:#4E35F2;
+  background: var(--linesBackground);
   border-radius: 5px 5px 0 0;
   transition:0.2s;
 }
@@ -242,7 +248,7 @@ html,body{
 .value--block--value--type{
   margin:0;
   font-family: "Nunito ExtraBold",sans-serif;
-  color:#818181;
+    color:var(--secondaryTextColor);
 }
 
 .value--block--value{
@@ -275,6 +281,7 @@ html,body{
   min-height:71vh;
   position:relative;
   padding-top:20px;
+  background-color: var(--primaryBackground);
 }
 
 .assets--search--filter-container{
@@ -352,7 +359,7 @@ html,body{
 .asset--blue--line{
   width:10px;
   transition:0.2s;
-  background: #4E35F2;
+    background: var(--linesBackground);
   left:0;
   top:0;
   height:100%;
@@ -386,18 +393,18 @@ html,body{
 .asset--name{
   margin-left:30px;
   font-weight: 700;
-  color: #525252;
+    color:var(--secondaryTextColor);
 }
 
 .asset--value{
   font-weight: 700;
-  color: #525252;
+    color:var(--secondaryTextColor);
     width:20%;
 }
 
 .asset--amount{
   font-weight: 700;
-  color: #525252;
+  color:var(--secondaryTextColor);
     width:20%
 }
 
@@ -763,6 +770,7 @@ button:focus{
 .asset--details--container{
     width:100%;
     margin-top:15px;
+    color:var(--secondaryTextColor)
 }
 
 .asset--details--inner--container{
@@ -770,6 +778,7 @@ button:focus{
     border-radius:5px;
     margin:0 10% 0 10%;
     position:relative;
+    background:var(--primaryBackground);
 }
 
 .asset--details--content{
@@ -814,6 +823,7 @@ button:focus{
 .transactions--and--notes--content{
     display:flex;
     justify-content: space-between;
+    color:var(--secondaryTextColor)
 }
 
 .transactions--container{
@@ -821,6 +831,7 @@ button:focus{
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
     border-radius: 5px;
     position:relative;
+    background: var(--primaryBackground)
 }
 
 .transactions--content{
@@ -837,7 +848,7 @@ button:focus{
     font-family:"Nunito ExtraBold",sans-serif;
     color:white;
     border:0;
-    background: #4E35F2;
+    background: var(--buttonBackground);
     border-radius:3px;
     font-size:15px;
     cursor:pointer;
@@ -848,9 +859,9 @@ button:focus{
 }
 
 .add--transaction--button:hover{
-
-    background:#725EF2;
+    opacity:0.9;
     transition: 0.2s;
+    background: var(--buttonBackgroundHover);
 }
 
 .transactions--container--title{
@@ -868,6 +879,7 @@ button:focus{
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
     border-radius: 5px;
     position:relative;
+    background: var(--primaryBackground)
 }
 
 .notes--content{
@@ -887,6 +899,7 @@ button:focus{
     transition:0.2s;
     cursor:pointer;
     margin-top:20px;
+    background: var(--lightestBackground)
 }
 
 .transaction:hover{
@@ -905,20 +918,20 @@ button:focus{
 
 .transaction--value{
     font-weight: 700;
-    color: #525252;
     font-size:15px;
+    color:var(--secondaryTextColor);
 }
 
 .transaction--amount{
     font-weight: 700;
-    color: #525252;
+    color:var(--secondaryTextColor);
     font-size:15px;
 }
 
 .transaction--change{
     font-weight: 700;
-    color: #525252;
     font-size:15px;
+    color:var(--secondaryTextColor);
 }
 
 .note{
@@ -936,6 +949,7 @@ button:focus{
     margin-top:20px;
     white-space: nowrap;
     overflow: hidden;
+    background: var(--lightestBackground);
 }
 
 .note--content{
@@ -960,7 +974,7 @@ button:focus{
     font-family: "Nunito ExtraBold",sans-serif;
     color: white;
     border: 0;
-    background: #4E35F2;
+    background: var(--buttonBackground);
     border-radius: 3px;
     font-size: 15px;
     cursor: pointer;
@@ -971,8 +985,9 @@ button:focus{
 }
 
 .add--note--button:hover{
-    background:#725EF2;
+    opacity: 0.9;
     transition: 0.2s;
+    background: var(--buttonBackgroundHover);
 }
 
 .notes--title--container{
@@ -999,6 +1014,7 @@ button:focus{
     margin-top: -55px;
     z-index:3;
     border-radius: 6px;
+    background: var(--lightestBackground);
 }
 
 .add--transaction--buttons--container{
@@ -1031,17 +1047,22 @@ button:focus{
     display: flex;
     justify-content: space-between;
     margin:5px 0;
+    color:var(--primaryTextColor)
 }
 .add--transaction--form input{
     font-size:18px;
     width: 76%;
     border: 0;
     outline: 0;
-    border-bottom: 1px solid #242424;
+    border-bottom: 1px solid var(--primaryTextColor);
     text-align: right;
+    background: none;
+    color:var(--primaryTextColor)
 }
 
-
+.add--transaction--title{
+    color: var(--titleColor)
+}
 
 .add--note--form{
     height: 70%;
@@ -1057,15 +1078,18 @@ button:focus{
     font-size:22px;
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
+    margin-top: 45px;
+    color:var(--primaryTextColor)
 }
-.add--note--form input{
+.add--note--form textarea{
+    margin-top:10px;
     font-size:18px;
-    width: 76%;
-    border: 0;
+    width: 95%;
+    background: none;
     outline: 0;
-    border-bottom: 1px solid #242424;
-    text-align: right;
+    border: 1px solid var(--primaryTextColor);
+    color:var(--primaryTextColor);
+    padding:10px;
 }
 
 
@@ -1073,12 +1097,20 @@ button:focus{
     margin-right:20px;
     padding:4px 40px;
     font-family:"Nunito ExtraBold",sans-serif;
-    color:#725EF2;
-    border:4px solid #725EF2;
+    color:var(--titleColor);
+    border:4px solid var(--buttonBackground);
     background:transparent;
     border-radius:3px;
     font-size:16px;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.add--transaction--cancel--button:hover{
+    transition: 0.2s;
+    background: #f21b3e;
+    border: 4px solid #f21b3e;
+    color:white;
 }
 
 .add--transaction--accept--button{
@@ -1087,10 +1119,16 @@ button:focus{
     font-family:"Nunito ExtraBold",sans-serif;
     color:white;
     border:0;
-    background:#725EF2;
+    background: var(--buttonBackground);
     border-radius:3px;
     font-size:16px;
     cursor:pointer;
+    transition: 0.2s;
+}
+
+.add--transaction--accept--button:hover{
+    transition: 0.2s;
+    background: var(--buttonBackgroundHover);
 }
 
 
@@ -1133,6 +1171,7 @@ button:focus{
     border-radius: 5px;
     position: absolute;
     top: 55px;
+    background:var(--primaryBackground)
 }
 
 .add--asset--content{
@@ -1193,7 +1232,7 @@ button:focus{
 }
 
 .add-asset--content--left--title{
-    color:#725EF2;
+    color: var(--titleColor);
     margin-left:10%;
     margin-top:50px;
     font-family: "Nunito ExtraBold",sans-serif;
@@ -1207,6 +1246,17 @@ button:focus{
     margin-right: 10%;
     overflow-y: scroll;
     height: 72%;
+    background: var(--primaryBackground);
+
+}
+
+.add--asset--select--filter{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.add--asset--select--filter::-webkit-scrollbar {
+    display: none;
 }
 
 .add--asset--input--container{
@@ -1223,8 +1273,9 @@ button:focus{
     color: #725EF2;
     border: 0;
     outline: 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--secondaryTextColor);
     width: 100%;
+    background:none;
 }
 
 .add--asset--select--image--container{
@@ -1261,7 +1312,7 @@ button:focus{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(255, 255, 255, 0.85);
+    background: var(--transparentBackground);
 }
 
 .add--asset--form--loader{
@@ -1301,6 +1352,7 @@ button:focus{
     list-style: none;
     padding-left:0;
     margin-top:0;
+    color:var(--secondaryTextColor);
 }
 
 .all--assets--list li{
@@ -1310,7 +1362,7 @@ button:focus{
 .all--assets--list li:hover{
     cursor: pointer;
     color:white;
-    background:#725EF2;
+    background: var(--linesBackground);
 }
 
 .home--page--asset--loader{
@@ -1328,6 +1380,7 @@ button:focus{
     flex-direction: column;
     margin-left: 10%;
     margin-right: 10%;
+    color:var(--secondaryTextColor)
 }
 
 .add--asset--input--form div{
@@ -1359,8 +1412,10 @@ button:focus{
     width: 67%;
     border: 0;
     outline: 0;
-    border-bottom: 1px solid #242424;
+    border-bottom: 1px solid var(--secondaryTextColor);
     text-align: right;
+    background:none;
+    color:var(--primaryTextColor)
 }
 
 .add--asset--buttons--container{
@@ -1376,8 +1431,8 @@ button:focus{
     margin-right:20px;
     padding:4px 40px;
     font-family:"Nunito ExtraBold",sans-serif;
-    color:#725EF2;
-    border:4px solid #725EF2;
+    color: var(--titleColor);
+    border:4px solid var(--buttonBackground);
     background:transparent;
     border-radius:3px;
     font-size:16px;
@@ -1399,7 +1454,7 @@ button:focus{
     font-family:"Nunito ExtraBold",sans-serif;
     color:white;
     border:0;
-    background:#725EF2;
+    background:var(--buttonBackground);
     border-radius:3px;
     font-size:16px;
     cursor:pointer;
@@ -1408,7 +1463,7 @@ button:focus{
 
 .add--asset--accept--button:hover{
     transition: 0.2s;
-    background: #4547f2;
+    background: var(--buttonBackgroundHover);
 }
 
 .vertical--line--add--asset{
@@ -1423,7 +1478,7 @@ button:focus{
     top:0;
     left:0;
     height:100%;
-    background:#4E35F2;
+    background: var(--linesBackground);
     border-radius: 5px 0 0 5px;
     transition:0.2s;
     z-index:2;
@@ -1542,6 +1597,8 @@ button:focus{
     left: 0;
     width: 100%;
 }
+
+
 
 /* #####################################  END OF ADDASSETPAGE  ###################################### */
 
@@ -1761,15 +1818,45 @@ button:focus{
 
 
 
+html {
+    --primaryBackground:white;
+    --primaryTextColor: black;
+    --secondaryTextColor: #818181;
+    --lightestBackground:white;
+    --transparentBackground: rgba(255, 255, 255, 0.85);
+    --navbarBackground: linear-gradient(to right, rgb(78, 53, 242), rgb(90, 53, 242));
+    --linesBackground:#4E35F2;
+    --navbarButtonBackground:#07ab33;
+    --buttonBackground:#4E35F2;
+    --buttonBackgroundHover: #2f45ff;
+    --titleColor:#725EF2;
+    --linksHover: #6876ff;
+}
 
 
+html[data-theme="DARK"] {
+    --primaryBackground: #383838;
+    --lightestBackground:#484848;
+    --darkestBackground:#272727;
+    --primaryTextColor: #ffffff;
+    --secondaryTextColor: #b5b5b5;
+    --transparentBackground: rgba(0, 0, 0, 0.71);
+    --navbarBackground: #3e3e3e;
+    --linesBackground: #018096;
+    --navbarButtonBackground:#018096;
+    --buttonBackground:#018096;
+    --buttonBackgroundHover: #0194aa;
+    --titleColor: #018096;
+    --linksHover:#018096;
+}
 
+html{
+    background-color: var(--darkestBackground);
+}
 
-
-
-
-
-
+.asset{
+    background-color: var(--lightestBackground);
+}
 
 
 

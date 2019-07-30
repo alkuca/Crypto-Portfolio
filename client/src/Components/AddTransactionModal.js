@@ -22,13 +22,14 @@ class AddTransactionModal extends Component {
                 <div className="add--transaction--modal">
                     <div className="add--transaction--container">
                         <div className="add--transaction--content">
-                            <h2>Add Transaction for: BTC </h2>
+                            <h2 className="add--transaction--title">Add Transaction for: BTC </h2>
                             <div className="add--transaction--form">
                                 <form>
                                     <label>
                                         Quantity:
                                         <input
                                             name="quantity"
+                                            disabled
                                         />
                                     </label>
                                     <br />
@@ -36,6 +37,7 @@ class AddTransactionModal extends Component {
                                         Date:
                                         <input
                                             name="date"
+                                            disabled
                                         />
                                     </label>
                                     <br />
@@ -44,6 +46,7 @@ class AddTransactionModal extends Component {
                                         <input
                                             type="number"
                                             name="price"
+                                            disabled
                                         />
                                     </label>
                                 </form>

@@ -6,8 +6,10 @@ import Navbar from "./Navbar";
 import {connect} from "react-redux";
 import {loadUser} from "../actions/auth";
 import logoLoader from "../Images/logoLoaderGif.gif";
+import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import {resetLiveData} from "../actions/assets";
 import classnames from "classnames";
+import {withRouter} from "react-router-dom";
 
 
 
@@ -16,7 +18,6 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     const [totalUsdValue, setTotalUsdValue] = useState("");
     const [totalBtcValue, setTotalBtcValue] = useState("");
     const [totalPercentValue, setTotalPercentValue] = useState("");
-
 
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 
@@ -56,6 +57,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     }, []);
 
 
+
     useMemo(()=>{
         calculateTotalUsdValue();
         calculateTotalPercentValue();
@@ -89,7 +91,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
             </div>
             <div className="assets--container">
                 <div className="assets--inner--container">
-                    {auth.user !== null ? null :<img className="home--page--asset--container--loader" src={logoLoader} alt="loader"/>}
+                    {auth.user !== null ? null :<img className="home--page--asset--container--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}
                     <div className="asset--container">
                         { auth.user !== null ?
                             auth.user.assets.map(function(asset) {
@@ -112,5 +114,5 @@ const mapStateToProps = state => ({
     assetLivePercentData:state.assets.assetLivePercentData
 });
 
-export default connect(mapStateToProps, {loadUser,resetLiveData})(Home);
+export default withRouter(connect(mapStateToProps, {loadUser,resetLiveData})(Home));
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import logoLoader from "../Images/logoLoaderGif.gif";
+import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
@@ -18,7 +19,8 @@ const AddAsset = ({
                       singleAssetLoading,
                       addAssetToUser,
                       assetFetching,
-                      assetFetchingState
+                      assetFetchingState,
+                      auth
                   }) => {
 
     const [assetSuccess, setAssetState] = useState(false);
@@ -42,20 +44,21 @@ const AddAsset = ({
 
     const addAsset = async e => {
         e.preventDefault();
+        if(singleAssetData) {
+            const data = {
+                id: singleAssetData.id,
+                name: singleAssetData.name,
+                symbol: singleAssetData.symbol,
+                purchasedAmount: purchasedAmount,
+                purchasedPrice: purchasedPrice,
+                image: singleAssetData.image.large,
+                purchasedPriceUsd: singleAssetData.market_data.current_price.usd
+            };
 
-        const data = {
-            id: singleAssetData.id,
-            name:singleAssetData.name,
-            symbol:singleAssetData.symbol,
-            purchasedAmount:purchasedAmount,
-            purchasedPrice:purchasedPrice,
-            image:singleAssetData.image.large,
-            purchasedPriceUsd: singleAssetData.market_data.current_price.usd
-        };
+            await addAssetToUser(data);
 
-        await addAssetToUser(data);
-
-        setAssetState(true);
+            setAssetState(true);
+        }
     };
 
 
@@ -105,7 +108,7 @@ const AddAsset = ({
                                     allAssets.filter(a => a.symbol.toLowerCase().includes(queryFilter.toLowerCase())).map(function(asset) {
                                         return <li key={asset.id} onClick={e => handleClick(e,asset.id)}>{asset.symbol}</li>
                                     })
-                                    : <img className="add--asset--list--loader" src={logoLoader} alt="loader"/>}
+                                    : <img className="add--asset--list--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}
                             </ul>
                         </form>
                     </div>
@@ -114,7 +117,7 @@ const AddAsset = ({
                 <div className="add--asset--content--right">
                     {assetFetchingState ?
                     <div className="add--asset--content--right--loader--background">
-                        <img className="add--asset--form--loader" src={logoLoader} alt="loader" />
+                        <img className="add--asset--form--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader" />
                     </div>
                     :null}
                     <form onSubmit={addAsset}>
@@ -137,6 +140,7 @@ const AddAsset = ({
                                     name="purchasedPrice"
                                     value={purchasedPrice}
                                     onChange={e => onChange(e)}
+                                    required
                                 />
                             </label>
                             <label>
@@ -146,6 +150,7 @@ const AddAsset = ({
                                     name="purchasedAmount"
                                     value={purchasedAmount}
                                     onChange={e => onChange(e)}
+                                    required
                                 />
                             </label>
                         </div>
@@ -168,7 +173,8 @@ const mapStateToProps = state => ({
     allAssetsLoading: state.assets.loading,
     singleAssetData: state.assets.singleAssetData,
     singleAssetLoading: state.assets.singleAssetLoading,
-    assetFetchingState: state.assets.assetFetching
+    assetFetchingState: state.assets.assetFetching,
+    auth: state.auth
 });
 
 export default connect(mapStateToProps, { getAllAssets,getSingleAssetData,addAssetToUser,assetFetching})(AddAsset);

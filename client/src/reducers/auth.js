@@ -6,7 +6,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    SUBMIT_LOADING
+    SUBMIT_LOADING,
+    THEME_CHANGED
 } from "../actions/types";
 
 
@@ -16,7 +17,8 @@ const initialState = {
     loading: true,
     submitLoading:false,
     registerSuccessful:false,
-    user:null
+    user:null,
+    theme:""
 };
 
 
@@ -27,7 +29,8 @@ export default function(state = initialState, action) {
                 ...state,
                 isAuthenticated:true,
                 loading:false,
-                user:action.payload
+                user:action.payload,
+                theme:action.payload.theme
             };
         case REGISTER_SUCCESS:
             localStorage.setItem("token",action.payload.token);
@@ -86,6 +89,11 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 submitLoading: true
+            };
+        case THEME_CHANGED:
+            return{
+                ...state,
+                theme: action.payload
             };
         default:
             return state

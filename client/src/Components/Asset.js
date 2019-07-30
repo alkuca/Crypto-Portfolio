@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import axios from 'axios';
 import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
+import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import classnames from "classnames";
 import {setLiveUsdData,setLiveBtcData,setLivePercentData} from "../actions/assets";
 
@@ -90,7 +91,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
                     <p className="asset--amount">{amount}</p>
                     <p className="asset--value">{ assets ? multiplyUsdPriceWithAmount().toFixed(2) + " $"
                         :
-                        <img className="home--page--asset--loader" src={logoLoader} alt="loader"/>}</p>
+                        <img className="home--page--asset--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}</p>
                     <p className={classnames("asset--change", {
                         "makeRed":  checkIfNegative()
                     })}>
@@ -98,7 +99,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
                             assets ?
                                 assets.market_data.price_change_percentage_24h.toFixed(2) + " %"
                                 :
-                                <img className="home--page--asset--loader" src={logoLoader} alt="loader"/>
+                                <img className="home--page--asset--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>
                         }
                     </p>
                 </div>

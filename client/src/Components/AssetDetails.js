@@ -2,14 +2,11 @@ import React, { useEffect,useState } from 'react';
 import '../App.css';
 import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
+import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import {connect} from "react-redux";
 
 
-const AssetDetails = ({ singleAssetData }) => {
-
-
-
-
+const AssetDetails = ({ singleAssetData,auth }) => {
 
     return (
         <div className="asset--details--container">
@@ -44,7 +41,7 @@ const AssetDetails = ({ singleAssetData }) => {
                     </div>
                     :
                     <div className="asset--detials--loader--container">
-                        <img className="asset--details--top--loader" src={logoLoader} alt="loader"/>
+                        <img className="asset--details--top--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>
                     </div>}
             </div>
         </div>

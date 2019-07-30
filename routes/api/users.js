@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator/check');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const auth = require("../../middleware/auth");
 
 const User = require("../../models/User");
 
@@ -64,6 +65,24 @@ router.post("/",
         }
 
     });
+
+
+router.patch("/theme", auth,
+    (req, res) => {
+        User.findByIdAndUpdate({_id: req.user.id})
+            .then(user => {
+                if(!user){
+                    return res.status(404).json({ message: "User not found" })
+                } else {
+                    user.theme = req.body.theme
+                    user.save()
+                    return res.json({ message: "Theme changed" })
+                }
+            })
+            .catch(err => console.log(err))
+    }
+)
+
 
 
 module.exports = router;

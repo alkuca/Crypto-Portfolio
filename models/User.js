@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    theme: {
+        type: String,
+        default: "LIGHT"
+    },
     assets: [{
         id: {
           type: String

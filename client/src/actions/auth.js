@@ -1,4 +1,4 @@
-import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING} from "./types";
+import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING,THEME_CHANGED} from "./types";
 import axios from 'axios';
 import setAuthToken from "../Utils/setAuthToken";
 
@@ -37,7 +37,7 @@ export const register = ({ username, email, password }) => async dispatch => {
     const body = JSON.stringify({ username, email, password });
 
     try{
-        const res = await axios.post('/api/users', body, config);
+        const res = await axios.post('/users', body, config);
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
@@ -95,4 +95,16 @@ export const logout = () => dispatch => {
 // SUBMIT LOADING
 export const subLoading = () => dispatch => {
     dispatch({ type: SUBMIT_LOADING })
+};
+
+// CHANGE THEME
+export const changeTheme = (mode) => dispatch =>  {
+    axios
+        .patch('/users/theme', {theme:mode})
+        .then(res =>
+            dispatch({
+                type: THEME_CHANGED,
+                payload:mode
+            })
+        )
 };

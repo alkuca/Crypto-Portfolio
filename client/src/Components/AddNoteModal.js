@@ -21,13 +21,14 @@ class AddNoteModal extends Component {
                 <div className="add--transaction--modal">
                     <div className="add--transaction--container">
                         <div className="add--transaction--content">
-                            <h2>Add Note for: BTC</h2>
+                            <h2 className="add--transaction--title">Add Note for: BTC</h2>
                             <div className="add--note--form">
                                 <form>
                                     <label>
                                         Note:
                                         <textarea rows="10" cols="60"
                                             name="note"
+                                                  disabled
                                         />
                                     </label>
                                 </form>
