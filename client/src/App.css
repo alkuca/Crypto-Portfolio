@@ -1653,14 +1653,14 @@ button:focus{
 
 .landing--page--navbar--logo{
     width:100%;
-    min-width:300px;
+}
+.landing--page--navbar--logo--mobile{
+    width:100%;
+    display:none;
 }
 
 .landing--page--navbar--links--container{
     display: flex;
-    width: 35%;
-    min-width:380px;
-    max-width:650px;
     justify-content: space-between;
 }
 
@@ -1802,7 +1802,6 @@ button:focus{
 
 
 .landing--page--second--section--container--left{
-    min-width:450px;
     position: relative;
 }
 
@@ -1832,11 +1831,121 @@ button:focus{
 }
 
 
+@media screen and (max-width: 1560px) {
+    .landing--page--first--section--container--left{
+        padding: 5% 0 200px 0;
+    }
+    .landing--page--first--section--container--left--title{
+        font-size: 65px;
+    }
+    .landing--page--first--section--container--left--text{
+        font-size: 18px;
+        width: 90%;
+    }
+    .landing--page--first--section--container--right--image{
+        margin-top: -6%;
+    }
+}
 
+@media screen and (max-width: 1275px) {
+    .landing--page--first--section--container--left--title{
+        font-size: 55px;
+    }
+    .landing--page--first--section--container--right--image{
+        width: 400px;
+    }
+}
 
+@media screen and (max-width: 1070px) {
+    .landing--page--second--section--container--right{
+        margin-left: 50px;
+    }
+    .landing--page--first--section--container--right--image{
+        width: 350px;
+        margin-left:-50px;
+    }
+    .landing--page--second--logo {
+        width: 230px;
+        margin-left: -12px;
+    }
+    .landing--page--first--section {
+        height:850px;
+    }
+}
 
+@media screen and (max-width: 900px) {
+    .landing--page--first--section--container--right--image{
+        width: 300px;
+        margin-left:-90px;
+    }
+    .landing--page--first--section {
+        height:750px;
+    }
+    .landing--page--second--section--container--right{
+        display:none;
+    }
+}
 
+@media screen and (max-width: 800px) {
+    .landing--page--first--section--container--right{
+        display: none;
+    }
+}
 
+@media screen and (max-width: 700px) {
+    .landing--page--second--section{
+        display:none;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .landing--page--navbar--logo--container{
+        width: 150px;
+        margin-top:7px;
+    }
+    .landing--page--first--section--container--left--title{
+        font-size: 41px;
+        text-align: center;
+    }
+    .landing--page--first--section--container--left--text{
+        font-size: 17px;
+        text-align: center;
+        width:100%;
+    }
+    .landing--page--first--section--container--left{
+        padding: 9% 0 200px 0;
+        min-width: 100%;
+        position: relative;
+    }
+    .landing--page--first--section--container--left--button{
+        width: 180px;
+        height: 48px;
+        margin-top: 40px;
+        font-size: 19px;
+    }
+    .landing--page--get--started--button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .landing--page--first--section--container {
+        padding: 28px 5% 0 5%;
+        width: 88%;
+    }
+    .landing--page--navbar--logo--mobile{
+        display:initial;
+        width:100%;
+    }
+    .landing--page--navbar--logo{
+        display:none;
+    }
+    .landing--page--first--section {
+        height:100vh;
+    }
+    .landing--page--second--section{
+        display:none;
+    }
+}
 
 
 

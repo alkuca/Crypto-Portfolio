@@ -47,7 +47,7 @@ const UserSchema = new mongoose.Schema({
         },
         purchasedPriceUsd: {
             type:String
-        }
+        },
     }]
 });
 

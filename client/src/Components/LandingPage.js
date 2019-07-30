@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import logo from "../Images/landingPageLogo.svg";
+import logoMobile from "../Images/landingPageLogoMobile.svg";
 import logoSecond from "../Images/landingPageSecondLogo.svg";
 import laptop from "../Images/laptop.png";
 import arrowRight from "../Images/arrowRight.svg";
@@ -17,11 +18,9 @@ const LandingPage = () => {
                     <div className="landing--page--navbar">
                         <div className="landing--page--navbar--logo--container">
                             <img alt="logo" className="landing--page--navbar--logo" src={logo} />
+                            <img alt="logo" className="landing--page--navbar--logo--mobile" src={logoMobile} />
                         </div>
                         <div className="landing--page--navbar--links--container">
-                            <p className="landing--page--navbar--link">About</p>
-                            <p className="landing--page--navbar--link">Solutions</p>
-                            <p className="landing--page--navbar--link">Contact</p>
                             <Link to="/login">
                                 <button className="landing--page--navbar--sign--in--button">Sign In<img alt="button-arrow" className="button--arrow" src={arrowRight} /></button>
                             </Link>
@@ -35,9 +34,11 @@ const LandingPage = () => {
                                 Duis molestie elit id semper bibendum. Quisque luctus rhoncus
                                 elit vel pharetra. Sed orci sapien.
                             </p>
-                            <Link to="/register">
-                                <button className="landing--page--first--section--container--left--button">Get Started</button>
-                            </Link>
+                            <div className="landing--page--get--started--button">
+                                <Link to="/register">
+                                    <button className="landing--page--first--section--container--left--button">Get Started</button>
+                                </Link>
+                            </div>
                         </div>
                         <div className="landing--page--first--section--container--right">
                             <img alt="laptop" className="landing--page--first--section--container--right--image" src={laptop} />
