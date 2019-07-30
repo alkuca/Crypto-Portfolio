@@ -235,6 +235,9 @@ html,body{
   background: var(--linesBackground);
   border-radius: 5px 5px 0 0;
   transition:0.2s;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .value--block-content{
@@ -249,12 +252,19 @@ html,body{
   margin:0;
   font-family: "Nunito ExtraBold",sans-serif;
     color:var(--secondaryTextColor);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
+
 }
 
 .value--block--value{
   font-size:30px;
   margin:10px 0 0 0;
   font-weight:700;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .makeGreen{
@@ -411,6 +421,9 @@ html,body{
 .asset--change{
   font-weight: 700;
   color:#21AC00;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .asset--image{
@@ -920,18 +933,27 @@ button:focus{
     font-weight: 700;
     font-size:15px;
     color:var(--secondaryTextColor);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .transaction--amount{
     font-weight: 700;
     color:var(--secondaryTextColor);
     font-size:15px;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .transaction--change{
     font-weight: 700;
     font-size:15px;
     color:var(--secondaryTextColor);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .note{
@@ -961,7 +983,9 @@ button:focus{
 }
 
 .note--title{
-
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
 }
 
 .note:hover{
