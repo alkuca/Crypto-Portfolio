@@ -1301,7 +1301,7 @@ button:focus{
 }
 
 .add--asset--list--loader{
-    width: 120px;
+    width: 50px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1316,7 +1316,7 @@ button:focus{
 }
 
 .add--asset--form--loader{
-    width: 120px;
+    width: 50px;
     position: absolute;
     top: 50%;
     left: 50%;
