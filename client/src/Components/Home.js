@@ -18,6 +18,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     const [totalUsdValue, setTotalUsdValue] = useState("");
     const [totalBtcValue, setTotalBtcValue] = useState("");
     const [totalPercentValue, setTotalPercentValue] = useState("");
+    const [btcValue, setBtcValue] = useState("");
+
 
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 
@@ -35,10 +37,13 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
         }
     };
 
-    const calculateTotalPercentValue = () => {
-        if(assetLivePercentData){
-            let averagePercent = arrSum(assetLivePercentData);
-            setTotalPercentValue(averagePercent)
+    const calculateTotalPercentChange = () => {
+        if(btcValue && totalBtcValue) {
+            let valueOnPurchasedDay = btcValue;
+            let valueNow = totalBtcValue;
+            let difference =  valueNow - valueOnPurchasedDay;
+            let res = (difference / valueOnPurchasedDay ) * 100;
+            setTotalPercentValue(res.toFixed(2))
         }
     };
 
@@ -50,19 +55,28 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
         }
     };
 
+    const calculateAllBtcValuesOnPurchasedDay = () => {
+        if(auth.user) {
+            let valuesOnPurchasedDay = auth.user.assets.map(asset => asset.purchasedAmount * asset.purchasedPrice);
+            let sumValues = arrSum(valuesOnPurchasedDay);
+            setBtcValue(sumValues);
+        }
+    };
 
     useEffect(() => {
         loadUser();
         resetLiveData();
     }, []);
 
-
-
     useMemo(()=>{
         calculateTotalUsdValue();
-        calculateTotalPercentValue();
         calculateTotalBtcValue();
+        calculateAllBtcValuesOnPurchasedDay();
     },[assetLiveUsdData]);
+
+    useMemo(() => {
+        calculateTotalPercentChange();
+    },[totalBtcValue]);
 
 
     return (
@@ -79,10 +93,10 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                     <div className="value--block">
                         <div className="blue--line"/>
                         <div className="value--block-content">
-                            <p className="value--block--value--type">Daily Change (wrong)</p>
+                            <p className="value--block--value--type">Total Change (BTC)</p>
                             <p className={classnames("value--block--value makeGreen", {
                                 "makeRed": checkIfNegative()
-                            })}>{totalPercentValue ? totalPercentValue.toFixed(2)+ " %"
+                            })}>{totalPercentValue ? totalPercentValue + " %"
                                 :
                                 "0.00 %"}</p>
                         </div>

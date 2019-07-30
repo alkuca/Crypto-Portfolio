@@ -62,7 +62,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
         if(userAssetData && auth.user && singleAssetData) {
             let valueOnPurchasedDay = userAssetData[0].purchasedAmount * userAssetData[0].purchasedPrice;
             let valueNow = userAssetData[0].purchasedAmount * singleAssetData.market_data.current_price.btc
-            let difference = valueOnPurchasedDay - valueNow;
+            let difference = valueNow -  valueOnPurchasedDay;
             let res = (difference / valueOnPurchasedDay ) * 100;
             setPercentValueNow(res.toFixed(2))
         }

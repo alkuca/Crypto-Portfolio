@@ -553,6 +553,7 @@ button:focus{
     background:#772CF8;
     cursor:pointer;
     position: relative;
+    transition: 0.2s;
 }
 
 
@@ -694,8 +695,13 @@ button:focus{
     font-size:17px;
     border-radius:4px;
     background:#772CF8;
+    transition: 0.2s;
 }
 
+.sign--in--button:hover{
+    transition: 0.2s;
+    background: #462ef8;
+}
 
 .sign--in--here--container{
     display:flex;
@@ -1742,7 +1748,7 @@ button:focus{
     height:50px;
     background:#AA16FF;
     border:0;
-    border-radius:8px;
+    border-radius:5px;
     margin-top:50px;
     color:white;
     font-size:21px;
