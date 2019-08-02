@@ -80,13 +80,13 @@ html,body{
   margin-left:25px;
   margin-right:20px;
   color:white;
-  font-family: "Nunito ExtraBold", sans-serif !important;
+  font-family:Nunito,  "Nunito ExtraBold", sans-serif !important;
 }
 
 .navbar--link--button{
     margin-right:25px;
     color:white;
-    font-family: "Nunito ExtraBold", sans-serif !important;
+    font-family: Nunito, "Nunito ExtraBold", sans-serif !important;
     border: 0;
     height: 35px;
     width: 119px;
@@ -412,7 +412,7 @@ html,body{
 
 .value--block--value--type{
   margin:0;
-  font-family: "Nunito ExtraBold",sans-serif;
+  font-family:Nunito,  "Nunito ExtraBold",sans-serif;
     color:var(--secondaryTextColor);
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility:    hidden;
@@ -479,7 +479,7 @@ html,body{
 
 .assets--search--filter input::placeholder{
   color: #797979;
-  font-family: "Nunito SemiBold",sans-serif;
+  font-family:Nunito,  "Nunito SemiBold",sans-serif;
 }
 
 .assets--sort--filter{
@@ -679,14 +679,14 @@ button:focus{
 
 
 .remember--me--label{
-    font-family: "Nunito SemiBold", sans-serif;
+    font-family:Nunito,  "Nunito SemiBold", sans-serif;
     font-size:12px;
     margin-left:5px;
     color: #747474;
 }
 
 .forgot--password--label{
-    font-family: "Nunito SemiBold", sans-serif;
+    font-family:Nunito,  "Nunito SemiBold", sans-serif;
     font-size:12px;
     color: #747474;
     margin-left: auto;
@@ -836,7 +836,7 @@ button:focus{
 }
 
 .accept--terms--label{
-    font-family: "Nunito SemiBold", sans-serif;
+    font-family:Nunito,  "Nunito SemiBold", sans-serif;
     font-size:12px;
     margin-left:5px;
     color: #747474;
@@ -1052,7 +1052,7 @@ button:focus{
 }
 
 .add--transaction--button{
-    font-family:"Nunito ExtraBold",sans-serif;
+    font-family:Nunito, "Nunito ExtraBold",sans-serif;
     color:white;
     border:0;
     background: var(--buttonBackground);
@@ -1189,7 +1189,7 @@ button:focus{
 }
 
 .add--note--button{
-    font-family: "Nunito ExtraBold",sans-serif;
+    font-family:Nunito,  "Nunito ExtraBold",sans-serif;
     color: white;
     border: 0;
     background: var(--buttonBackground);
@@ -1315,7 +1315,7 @@ button:focus{
 .add--transaction--cancel--button{
     margin-right:20px;
     padding:4px 40px;
-    font-family:"Nunito ExtraBold",sans-serif;
+    font-family:Nunito, "Nunito ExtraBold",sans-serif;
     color:var(--titleColor);
     border:4px solid var(--buttonBackground);
     background:transparent;
@@ -1335,7 +1335,7 @@ button:focus{
 .add--transaction--accept--button{
     margin-left:20px;
     padding:8px 40px;
-    font-family:"Nunito ExtraBold",sans-serif;
+    font-family:Nunito, "Nunito ExtraBold",sans-serif;
     color:white;
     border:0;
     background: var(--buttonBackground);
@@ -1635,7 +1635,7 @@ button:focus{
     color: var(--titleColor);
     margin-left:10%;
     margin-top:50px;
-    font-family: "Nunito ExtraBold",sans-serif;
+    font-family:Nunito,  "Nunito ExtraBold",sans-serif;
     font-size:21px;
 }
 
@@ -1831,7 +1831,7 @@ button:focus{
 .add--asset--cancel--button{
     margin-right:20px;
     padding:4px 40px;
-    font-family:"Nunito ExtraBold",sans-serif;
+    font-family:Nunito, "Nunito ExtraBold",sans-serif;
     color: var(--titleColor);
     border:4px solid var(--buttonBackground);
     background:transparent;
@@ -1852,7 +1852,7 @@ button:focus{
     margin-left:20px;
     padding:8px 55px;
     margin-right: 10%;
-    font-family:"Nunito ExtraBold",sans-serif;
+    font-family:Nunito, "Nunito ExtraBold",sans-serif;
     color:white;
     border:0;
     background:var(--buttonBackground);
@@ -1937,7 +1937,7 @@ button:focus{
     padding:8px 40px;
     margin-top:30px;
     margin-right: 10%;
-    font-family:"Nunito ExtraBold",sans-serif;
+    font-family:Nunito, "Nunito ExtraBold",sans-serif;
     color:#725EF2;
     border:0;
     background:white;
