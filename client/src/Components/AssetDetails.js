@@ -17,7 +17,7 @@ const AssetDetails = ({ singleAssetData,auth }) => {
                         <div className="asset--details--image--name--container">
                             <img alt="asset" className="asset--details--image"
                                  src={singleAssetData.image.large}/>
-                            <p className="asset--name">{singleAssetData.name}</p>
+                            <p className="asset--details--name">{singleAssetData.name}</p>
                         </div>
                         <div>
                             <p className="asset--detail--header">Market Cap</p>

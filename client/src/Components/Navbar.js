@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from 'react';
 import '../App.css';
-import logo from "../Images/logo.svg";
+import logoMobile from "../Images/landingPageLogoMobile.svg"
+import logoFull from "../Images/landingPageLogo.svg";
 import menuArrow from "../Images/menu-arrow.svg";
 import DarkenScreen from "./DarkenScreen";
 import classnames from "classnames";
@@ -51,7 +52,8 @@ const Navbar = ({ logout,auth,changeTheme }) => {
                         <div className="navbar--content">
                             <div className="navbar--content--left">
                                 <Link to="/home">
-                                    <img alt="logo" className="navbar--logo" src={logo} />
+                                    <img alt="logo" className="navbar--logo" src={logoFull} />
+                                    <img alt="logo" className="navbar--logo--mobile" src={logoMobile} />
                                 </Link>
                             </div>
                             <div className="navbar--content--right">

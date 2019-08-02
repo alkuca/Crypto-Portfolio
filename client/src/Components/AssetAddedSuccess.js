@@ -16,7 +16,7 @@ class AssetAddedSuccess extends Component {
                     <div className="asset--added--success--image--content">
                         <img className="add--asset--image--success" alt="asset" src={this.props.image}/>
                     </div>
-                    <h2>Successfully added to your Portfolio</h2>
+                    <h2 className="asset--added--success-title">Successfully added to your Portfolio</h2>
                     <Link to="/home">
                         <button>Continue</button>
                     </Link>

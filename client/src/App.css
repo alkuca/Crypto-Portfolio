@@ -63,6 +63,14 @@ html,body{
     display: flex;
 }
 
+.navbar--logo{
+    width: 225px;
+}
+.navbar--logo--mobile{
+    width:225px;
+    display:none
+}
+
 .navbar--content--right{
   display:flex;
   align-items:center;
@@ -186,6 +194,160 @@ html,body{
         opacity:1;
     }
 }
+
+@media screen and (max-width: 1100px) {
+    .asset--content{
+       font-size:13px;
+    }
+    .value--block--value--type{
+        font-size: 14px;
+    }
+    .value--block--value{
+        font-size: 24px !important;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .value--block--value--type{
+        font-size: 13px;
+    }
+    .value--block--value{
+        font-size: 23px !important;
+    }
+    .value--block {
+        height: 130px !important;
+    }
+    .asset--value{
+        width:auto !important;
+    }
+    .asset--amount{
+        width:auto !important;
+    }
+    .asset--content{
+        font-size:12px;
+    }
+    .asset--content {
+        margin-left: 30px !important;
+        margin-right: 30px !important;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .navbar--logo{
+        display:none;
+    }
+    .navbar--logo--mobile {
+        display:initial;
+        width:115px;
+    }
+    .value--block--value--type{
+        font-size: 11px;
+    }
+    .value--block--value{
+        font-size: 18px !important;
+    }
+    .value--block {
+        height: 110px !important;
+    }
+    .asset--content {
+        margin-left: 25px !important;
+        margin-right: 25px !important;
+    }
+    .asset--content{
+        font-size:13px;
+    }
+    .asset--name{
+        margin-left:20px !important;
+    }
+    .asset {
+        height: 55px !important;
+        margin-bottom: 15px !important;
+    }
+    .asset--image {
+        height: 34px !important;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .navbar--wrapper{
+        margin: 0 6% 0 6%;
+    }
+    .navbar--link--button{
+        margin-right:8px;
+        height: 32px;
+        width: 100px;
+        font-size:12px;
+    }
+    .block--container--content {
+        margin: 0 6% 0 6% !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .value--block {
+        width: 100% !important;
+        margin-top:13px;
+    }
+    .block--container {
+        padding: 0 0 13px 0 !important;
+    }
+    .value--block--value--type{
+        font-size: 13px;
+    }
+    .value--block--value{
+        font-size: 21px !important;
+    }
+    .assets--inner--container {
+        margin: 0 6% 0 6% !important;
+        padding-top: 13px !important;
+        min-height: auto !important;
+    }
+    .asset--container {
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+    .assets--container {
+        padding-bottom:20px !important;
+    }
+    .blue--line {
+        height: 5px !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .navbar--logo--mobile{
+        width:100px;
+    }
+    .navbar--wrapper{
+        margin: 0 4% 0 4%;
+    }
+    .navbar--link--button{
+        margin-right:1px;
+        height: 31px;
+        width: 90px;
+        font-size:11px;
+    }
+    .block--container--content {
+        margin: 0 5% 0 5% !important;
+    }
+    .assets--inner--container {
+        margin: 0 5% 0 5% !important;
+    }
+    .asset--content {
+        margin-left: 25px !important;
+        margin-right: 25px !important;
+    }
+    .asset--content{
+        font-size:12px;
+    }
+    .asset--name{
+        margin-left:15px !important;
+    }
+    .asset--amount{
+        display: none !important;
+    }
+}
+
 
 
 /* #####################################  END OF NAVBAR  ###################################### */
@@ -403,6 +565,11 @@ html,body{
 .asset--name{
   margin-left:30px;
   font-weight: 700;
+    color:var(--secondaryTextColor);
+}
+.asset--details--name{
+    margin-left:30px;
+    font-weight: 700;
     color:var(--secondaryTextColor);
 }
 
@@ -1039,7 +1206,7 @@ button:focus{
 .add--transaction--container{
     background:white;
     width:600px;
-    height:65%;
+    height:500px;
     position:fixed;
     margin-top: -55px;
     z-index:3;
@@ -1162,20 +1329,200 @@ button:focus{
 }
 
 
+@media screen and (max-width: 1100px) {
+    .asset--details--content{
+        font-size: 14px;
+    }
+    .transaction--content {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+    .transaction--content p{
+        font-size:13px;
+    }
+    .note--title{
+        font-size:13px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .transactions--and--notes--content {
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    .transactions--container {
+        width: 100%;
+        margin-bottom:16px;
+    }
+    .notes--container {
+        width: 100%;
+    }
+}
 
 @media screen and (max-width: 900px) {
     .add--transaction--container{
-        width:500px;
+        width:80%;
         height:70%;
+    }
+    .asset--details--content{
+        font-size: 12px !important;
+    }
+    .add--transaction--form {
+        height: 60%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .asset--details--content {
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+    .asset--details--content div{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+    }
+    .asset--details--image{
+        margin-left:-15px;
+        padding:12px;
     }
 }
 
 @media screen and (max-width: 650px) {
     .add--transaction--container{
-        width:400px;
-        height:80%;
+        width:80%;
+        height:60%;
+    }
+    .transaction--content p{
+        font-size:12px;
+    }
+    .add--transaction--title{
+        font-size:19px;
+    }
+    .add--transaction--form form label{
+        font-size:16px;
+    }
+    .add--transaction--content {
+        margin: 30px 35px;
+    }
+    .add--transaction--cancel--button {
+        margin-right: 20px;
+        padding: 2px 30px;
+        font-size: 15px;
+    }
+    .add--transaction--accept--button {
+        margin-left: 20px;
+        padding: 6px 30px;
+        font-size: 15px;
+    }
+    .add--transaction--buttons--container{
+        margin-top:20px;
     }
 }
+
+@media screen and (max-width: 550px) {
+    .graph--inner--container {
+        margin: 0 6% 0 6%;
+    }
+    .asset--details--inner--container {
+        margin: 0 6% 0 6%;
+    }
+    .asset--blue--line {
+        width: 7px;
+    }
+    .transactions--and--notes--inner--container {
+        margin: 0 6% 0 6%;
+    }
+    .add--transaction--button {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    .add--note--button {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    .transaction--content {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .note {
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+    .transaction {
+        height: 50px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+    .add--transaction--cancel--button {
+        margin-right: 10px;
+        font-size: 14px;
+    }
+    .add--transaction--accept--button {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .transactions--content {
+        margin: 0 20px 0 20px;
+    }
+    .transactions--container--title{
+        margin: 16px 0 0 20px;
+    }
+    .add--transaction--button {
+        margin-right: 20px;
+    }
+    .notes--container--title {
+        margin-left: 20px;
+    }
+    .add--note--button {
+        margin-right: 20px;
+    }
+    .notes--content {
+        margin: 0 20px 0 20px;
+    }
+    .note--content {
+        margin-left: 15px;
+    }
+    .add--transaction--container{
+        width:90%;
+    }
+    .add--transaction--content {
+        margin: 25px 25px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .asset--details--inner--container {
+        margin: 0 5% 0 5%;
+    }
+    .graph--inner--container {
+        margin: 0 5% 0 5%;
+    }
+    .transactions--and--notes--inner--container {
+        margin: 0 5% 0 5%;
+    }
+    .add--transaction--content {
+        margin: 25px 15px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .asset--details--content div{
+        flex-direction: column;
+        align-items: center;
+    }
+    .asset--details--image{
+        margin-left:0;
+    }
+    .asset--details--content div p{
+        margin:7px 0;
+        font-size:13px;
+    }
+}
+
 
 
 /* #####################################  END OF ASSETPAGE  ###################################### */
@@ -1196,7 +1543,6 @@ button:focus{
 .add--asset--container{
     height: 85%;
     width: 80%;
-    min-height: 500px;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
     border-radius: 5px;
     position: absolute;
@@ -1300,7 +1646,7 @@ button:focus{
 
 .add--asset--select--filter--input{
     height: 30px;
-    color: #725EF2;
+    color: var(--primaryTextColor);
     border: 0;
     outline: 0;
     border-bottom: 1px solid var(--secondaryTextColor);
@@ -1455,6 +1801,7 @@ button:focus{
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    padding-top: 30px;
 }
 
 .add--asset--cancel--button{
@@ -1497,7 +1844,7 @@ button:focus{
 }
 
 .vertical--line--add--asset{
-    background: rgb(220, 220, 220);
+    background: var(--primaryLine);
     width:1px;
     height:85%;
 }
@@ -1511,7 +1858,7 @@ button:focus{
     background: var(--linesBackground);
     border-radius: 5px 0 0 5px;
     transition:0.2s;
-    z-index:2;
+    z-index:0;
 }
 
 
@@ -1542,7 +1889,10 @@ button:focus{
     align-items: center;
     justify-content: center;
     height:100%;
-
+}
+.asset--added--success--title{
+    text-align: center;
+    padding: 20px;
 }
 
 .asset--added--success--content a{
@@ -1628,7 +1978,164 @@ button:focus{
     width: 100%;
 }
 
+@media screen and (max-width: 1300px) {
+    .add--asset--select--filter {
+        height: 68%;
+    }
+}
+@media screen and (max-width: 1150px) {
+    .add--asset--input--form div{
+        font-size:16px;
+    }
+    .add--asset--input--form label{
+        font-size:16px;
+    }
+    .add--asset--input--form input{
+        font-size:16px;
+    }
+    .add--asset--cancel--button{
+        margin-right: 13px;
+        padding: 3px 30px;
+        font-size: 14px;
+    }
+    .add--asset--accept--button{
+        margin-left: 13px;
+        padding: 7px 45px;
+        font-size: 14px;
+    }
+    .add-asset--content--left--title{
+        font-size:19px;
+    }
+}
 
+@media screen and (max-width: 900px) {
+    .add--asset--input--form div{
+        font-size:14px;
+    }
+    .add--asset--input--form label{
+        font-size:14px;
+    }
+    .add--asset--input--form input{
+        font-size:14px;
+    }
+    .add--asset--cancel--button{
+        margin-right: 11px;
+    }
+    .add--asset--accept--button{
+        margin-left: 11px;
+    }
+    .add-asset--content--left--title{
+        font-size:17px;
+    }
+    .add--asset--select--filter--input{
+        font-size:12px;
+    }
+    .add--asset--select--filter {
+        height: 65%;
+    }
+    .add--asset--container{
+        top:20px;
+        height:92%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .add--asset--select--filter {
+        height: 69%;
+    }
+    .add--asset--container{
+        top:20px;
+        height:auto;
+    }
+    .vertical--line--add--asset{
+        display:none;
+    }
+    .add-asset--content--left--title{
+        margin-top: 25px;
+    }
+    .add--asset--inner--content{
+        flex-direction: column;
+    }
+    .add--asset--content--left{
+        width:90%;
+    }
+    .add--asset--select--filter{
+        height:240px;
+    }
+    .add--asset--content--right{
+        width:90%;
+        margin-left: 11px;
+    }
+    .add--asset--buttons--container {
+        padding-top: 50px;
+        padding-bottom: 45px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .add--asset--container{
+        top:15px;
+    }
+    .add--asset--content--left{
+        width:90%;
+    }
+    .add--asset--content--right{
+        width:90%;
+    }
+    .add--asset--container {
+        width: 90%;
+    }
+    .add--asset--blue--line {
+        width: 8px;
+    }
+    .add--asset--content--left {
+        width: 100%;
+    }
+    .add--asset--content--right {
+        width:100%;
+        margin-left: 0;
+    }
+    .add--asset--input--form div{
+        margin-top: 30px;
+    }
+    .add--asset--input--form label{
+        margin-top: 30px;
+    }
+    .add--asset--select--filter{
+        margin-bottom:30px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .add-asset--content--left--title {
+        margin-left: 6%;
+        margin-top: 20px;
+        font-size: 15px;
+    }
+    .add--asset--input--container {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .add--asset--select--filter {
+        margin-left: 6%;
+        margin-top: 15px;
+        margin-right: 6%;
+    }
+    .add--asset--input--form {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+    .add--asset--cancel--button {
+        padding: 4px 25px;
+        border: 3px solid var(--buttonBackground);
+        font-size: 13px;
+    }
+    .add--asset--accept--button {
+        padding: 7px 40px;
+        margin-right: 6%;
+        font-size: 13px;
+    }
+}
 
 /* #####################################  END OF ADDASSETPAGE  ###################################### */
 
@@ -1970,6 +2477,7 @@ html {
     --buttonBackgroundHover: #2f45ff;
     --titleColor:#725EF2;
     --linksHover: #6876ff;
+    --primaryLine: rgb(220, 220, 220);
 }
 
 
@@ -1987,6 +2495,7 @@ html[data-theme="DARK"] {
     --buttonBackgroundHover: #0194aa;
     --titleColor: #018096;
     --linksHover:#018096;
+    --primaryLine: rgba(220, 220, 220, 0.2);
 }
 
 html{
