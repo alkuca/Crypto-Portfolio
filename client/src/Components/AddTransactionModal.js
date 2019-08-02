@@ -49,11 +49,11 @@ class AddTransactionModal extends Component {
                                             disabled
                                         />
                                     </label>
+                                    <div className="add--transaction--buttons--container">
+                                        <button onClick={this.props.toggleAddTransactionModal} className="add--transaction--cancel--button">Cancel</button>
+                                        <button onClick={this.addTransaction} className="add--transaction--accept--button">Accept</button>
+                                    </div>
                                 </form>
-                            </div>
-                            <div className="add--transaction--buttons--container">
-                                <button onClick={this.props.toggleAddTransactionModal} className="add--transaction--cancel--button">Cancel</button>
-                                <button onClick={this.addTransaction} className="add--transaction--accept--button">Accept</button>
                             </div>
                         </div>
                     </div>

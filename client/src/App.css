@@ -1221,6 +1221,7 @@ button:focus{
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    margin-top:25px;
 }
 
 .add--transaction--content{
@@ -1362,13 +1363,17 @@ button:focus{
 @media screen and (max-width: 900px) {
     .add--transaction--container{
         width:80%;
-        height:70%;
+        height: auto;
     }
     .asset--details--content{
         font-size: 12px !important;
     }
     .add--transaction--form {
-        height: 60%;
+        height: auto;
+    }
+    .add--note--form label {
+        font-size: 20px;
+        margin-top: 15px;
     }
 }
 
@@ -1392,7 +1397,7 @@ button:focus{
 @media screen and (max-width: 650px) {
     .add--transaction--container{
         width:80%;
-        height:60%;
+        height: auto;
     }
     .transaction--content p{
         font-size:12px;
@@ -1416,9 +1421,7 @@ button:focus{
         padding: 6px 30px;
         font-size: 15px;
     }
-    .add--transaction--buttons--container{
-        margin-top:20px;
-    }
+
 }
 
 @media screen and (max-width: 550px) {
