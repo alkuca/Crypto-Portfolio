@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../App.css';
 import { Link, Redirect } from 'react-router-dom';
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
-import logo from "../Images/logo.svg";
+import logo from "../Images/navbarLogo.png";
 import {connect} from "react-redux";
 import {login,subLoading} from "../actions/auth";
 
@@ -36,7 +36,7 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading}) => {
         <div className="login--page">
             <div className="login--page--logo--container">
                 <Link to="/">
-                    <img src={logo} alt="logo"/>
+                    <img className="login--page--logo"  src={logo} alt="logo"/>
                 </Link>
             </div>
             <div className="login--container">

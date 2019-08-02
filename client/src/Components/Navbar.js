@@ -1,7 +1,7 @@
 import React, { useState,useEffect} from 'react';
 import '../App.css';
-import logoMobile from "../Images/landingPageLogoMobile.svg"
-import logoFull from "../Images/landingPageLogo.svg";
+import logoMobile from "../Images/navbarLogo.png"
+import logoFull from "../Images/navbarLogo.png";
 import menuArrow from "../Images/menu-arrow.svg";
 import DarkenScreen from "./DarkenScreen";
 import classnames from "classnames";

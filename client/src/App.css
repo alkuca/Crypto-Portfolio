@@ -80,13 +80,13 @@ html,body{
   margin-left:25px;
   margin-right:20px;
   color:white;
-  font-family: "Nunito ExtraBold", sans-serif;
+  font-family: "Nunito ExtraBold", sans-serif !important;
 }
 
 .navbar--link--button{
     margin-right:25px;
     color:white;
-    font-family: "Nunito ExtraBold", sans-serif;
+    font-family: "Nunito ExtraBold", sans-serif !important;
     border: 0;
     height: 35px;
     width: 119px;
@@ -618,7 +618,9 @@ html,body{
     top:5%;
     left:4%;
 }
-
+.login--page--logo{
+    width:250px;
+}
 
 .login--container{
     min-width:500px;
@@ -888,6 +890,25 @@ button:focus{
     cursor:pointer;
 }
 
+@media screen and (max-width: 1400px) {
+    .register--content--title--container {
+        height: 45px;
+    }
+    .register--content--form--container input {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        height: 30px;
+    }
+    .accept--terms--container {
+        margin-top: 15px;
+    }
+    .sign--up--button--container {
+        margin-top: 25px;
+    }
+    .sign--in--here--container {
+        margin-top: 20px;
+    }
+}
 
 @media screen and (max-width: 700px) {
     .register--container{
@@ -1206,7 +1227,7 @@ button:focus{
 .add--transaction--container{
     background:white;
     width:600px;
-    height:500px;
+    height:auto;
     position:fixed;
     margin-top: -55px;
     z-index:3;

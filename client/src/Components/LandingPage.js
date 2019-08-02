@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
-import logo from "../Images/landingPageLogo.svg";
-import logoMobile from "../Images/landingPageLogoMobile.svg";
+import logo from "../Images/navbarLogo.png";
+import logoMobile from "../Images/navbarLogoMobile.png";
 import logoSecond from "../Images/landingPageSecondLogo.svg";
 import laptop from "../Images/laptop.png";
 import arrowRight from "../Images/arrowRight.svg";
