@@ -36,4 +36,37 @@ router.post("/", auth, async (req, res) => {
 });
 
 
+
+router.post("/transaction", auth, async (req, res) => {
+
+    try{
+
+        const user = await User.findById(req.user.id);
+
+        const newTransaction = {
+            purchasedAmount:req.body.purchasedAmount,
+            purchasedPrice:req.body.purchasedPrice,
+            purchasedPriceUsd:req.body.purchasedPriceUsd
+        };
+
+       await user.assets.forEach(asset => {
+            if(asset.id === req.body.id){
+                asset.transactions.push(newTransaction)
+            }
+        });
+
+        await user.save();
+        res.json(newTransaction)
+
+    } catch (err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+
+});
+
+
+
+
+
 module.exports = router;

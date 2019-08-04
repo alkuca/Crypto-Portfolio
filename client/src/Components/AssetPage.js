@@ -12,8 +12,9 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {getSingleAssetData} from "../actions/assets";
 import classnames from "classnames";
+import {loadUser} from "../actions/auth";
 
-const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
+const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transactionsUpdated,loadUser}) => {
 
     const [transactionModal, toggleTransactionModal] = useState(false);
     const [noteModal, toggleNoteModal] = useState(false);
@@ -83,6 +84,10 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
     }, [auth.user]);
 
     useEffect(() => {
+        loadUser();
+    }, [transactionsUpdated]);
+
+    useEffect(() => {
         getSingleAssetData(match.params.asset_id);
     }, []);
 
@@ -97,7 +102,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
             <div>
                 <Navbar/>
                 <div className="asset--page">
-                    {transactionModal ? <AddTransactionModal toggleAddTransactionModal={toggleAddTransactionModal}/> : null}
+                    {transactionModal ? <AddTransactionModal userAssetData={userAssetData} toggleAddTransactionModal={toggleAddTransactionModal}/> : null}
                     {noteModal ? <AddNoteModal toggleAddNoteModal={toggleAddNoteModal}/> : null}
                     <AssetDetails/>
                     <div className="block--container">
@@ -142,9 +147,10 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
 
 const mapStateToProps = state => ({
     auth: state.auth,
+    transactionsUpdated:state.assets.transactions,
     singleAssetData: state.assets.singleAssetData
 });
 
-export default withRouter(connect(mapStateToProps, { getSingleAssetData })(AssetPage));
+export default withRouter(connect(mapStateToProps, { getSingleAssetData,loadUser })(AssetPage));
 
 

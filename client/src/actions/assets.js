@@ -1,6 +1,7 @@
 import {
     GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR, ADD_ASSET_TO_USER,
-    ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA
+    ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA,
+    ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR
 } from "./types";
 import axios from 'axios';
 
@@ -68,12 +69,40 @@ export const addAssetToUser = ({ id,name,symbol,purchasedPrice,purchasedAmount,i
     }
 };
 
-export const assetFetching = () => dispatch => {
-    dispatch({ type: ASSET_FETCHING })
+// add transaction to user asset
+export const addTransactionToUserAsset = ({ id,purchasedPrice,purchasedAmount,purchasedPriceUsd }) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ id,purchasedPrice,purchasedAmount,purchasedPriceUsd });
+
+    try{
+        const res = await axios.post("/api/asset/transaction", body, config);
+        dispatch({
+            type: ADD_TRANSACTION_TO_USER,
+            payload: res.data
+        });
+
+    } catch (err){
+        const errors = err.response.errors;
+        if(errors) {
+            errors.forEach(error => console.log(error.msg))
+        }
+
+        dispatch({
+            type: ADD_TRANSACTION_TO_USER_ERROR
+        });
+    }
 };
 
 
 
+export const assetFetching = () => dispatch => {
+    dispatch({ type: ASSET_FETCHING })
+};
 
 export const setLiveUsdData = (res) => dispatch => {
     dispatch({ type: ASSET_LIVE_USD_DATA, payload:res })

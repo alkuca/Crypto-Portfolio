@@ -25,7 +25,6 @@ const AddAsset = ({
     const [assetSuccess, setAssetState] = useState(false);
     const [queryFilter, setQueryFilter] = useState("");
     const [excludeSymbols, setExcludeSymbols] = useState("");
-    const [allAssetsExcluded, setAllAssetsExcluded] = useState("");
 
 
     const [formData, setFormData] = useState({
@@ -114,7 +113,7 @@ const AddAsset = ({
                     <div className="add--asset--select--filter">
                         <form>
                             <ul className="all--assets--list">
-                                { !allAssetsLoading ?
+                                { allAssets ?
                                     allAssets.filter(a => a.symbol.toLowerCase().includes(queryFilter.toLowerCase())).map(function(asset) {
                                         return <li key={asset.id} onClick={e => handleClick(e,asset.id)}>{asset.symbol}</li>
                                     })
