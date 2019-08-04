@@ -45,6 +45,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
     };
 
     const multiplyUsdPriceWithAmount = () => {
+
         return assets.market_data.current_price.usd * amount;
     };
 

@@ -5,14 +5,15 @@ import {
 import axios from 'axios';
 
 
-export const getAllAssets = () => async dispatch => {
+export const getAllAssets = (removeSymbols) => async dispatch => {
 
     try{
         const res = await axios.get('https://api.coingecko.com/api/v3/coins/list');
+        const allAssets = res.data.filter((a) => !removeSymbols.includes(a.symbol)   );
 
         dispatch({
             type: GET_ALL_ASSETS,
-            payload: res.data
+            payload: allAssets
         });
     } catch(err){
         dispatch({

@@ -23,6 +23,9 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
     const [percentValueNow, setPercentValueNow] = useState("");
 
 
+
+    const arrSum = arr => arr.reduce((a,b) => a + b, 0);
+
     const toggleAddTransactionModal = () => {
         toggleTransactionModal(!transactionModal)
     };
@@ -32,7 +35,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
     };
 
     const checkIfNegative = () => {
-        if(percentValueNow < 0){
+        if(percentValueNow < 0) {
             return true
         }
     };
@@ -46,24 +49,30 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
 
     const calculateTotalUsdValue = () => {
         if(userAssetData && singleAssetData && auth.user) {
-            let res = userAssetData[0].purchasedAmount * singleAssetData.market_data.current_price.usd;
-            setUsdValue(res.toFixed(2))
+            let res = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.usd);
+            let resSum = arrSum(res);
+            setUsdValue(resSum.toFixed(2))
         }
     };
 
     const calculateTotalBtcValue = () => {
         if(userAssetData && auth.user && singleAssetData) {
-            let res =  userAssetData[0].purchasedAmount * singleAssetData.market_data.current_price.btc;
-            setBtcValue(res.toFixed(8))
+            let res =  userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc)
+            let resSum = arrSum(res);
+            setBtcValue(resSum.toFixed(8))
         }
     };
 
     const calculateTotalPercentChange = () => {
         if(userAssetData && auth.user && singleAssetData) {
-            let valueOnPurchasedDay = userAssetData[0].purchasedAmount * userAssetData[0].purchasedPrice;
-            let valueNow = userAssetData[0].purchasedAmount * singleAssetData.market_data.current_price.btc
-            let difference = valueNow -  valueOnPurchasedDay;
-            let res = (difference / valueOnPurchasedDay ) * 100;
+            let valueOnPurchasedDayArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * transaction.purchasedPrice);
+            let valueOnPurchasedDayArraySum = arrSum(valueOnPurchasedDayArray);
+
+            let valueNowArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc);
+            let valueNowArraySum = arrSum(valueNowArray);
+
+            let difference = valueNowArraySum -  valueOnPurchasedDayArraySum;
+            let res = (difference / valueOnPurchasedDayArraySum ) * 100;
             setPercentValueNow(res.toFixed(2))
         }
     };
@@ -120,7 +129,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData}) => {
                     <div className="transactions--and--notes--container">
                         <div className="transactions--and--notes--inner--container">
                             <div className="transactions--and--notes--content">
-                                <Transactions addTransactionModalToggled={transactionModal} toggleAddTransactionModal={toggleAddTransactionModal} />
+                                <Transactions userAssetData={userAssetData} toggleAddTransactionModal={toggleAddTransactionModal} />
                                 <Notes addNoteModalToggled={noteModal} toggleAddNoteModal={toggleAddNoteModal} />
                             </div>
                         </div>

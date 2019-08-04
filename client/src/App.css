@@ -81,6 +81,7 @@ html,body{
   margin-right:20px;
   color:white;
   font-family:Nunito,  "Nunito ExtraBold", sans-serif !important;
+  font-weight:bold;
 }
 
 .navbar--link--button{
@@ -94,6 +95,7 @@ html,body{
     background: var(--navbarButtonBackground);
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
     cursor:pointer;
+    font-weight: bold;
     transition:0.2s;
 }
 
@@ -238,7 +240,7 @@ html,body{
     }
     .navbar--logo--mobile {
         display:initial;
-        width:115px;
+        width: 145px;
     }
     .value--block--value--type{
         font-size: 11px;
@@ -412,6 +414,7 @@ html,body{
 
 .value--block--value--type{
   margin:0;
+    font-weight: bold;
   font-family:Nunito,  "Nunito ExtraBold",sans-serif;
     color:var(--secondaryTextColor);
     -webkit-backface-visibility: hidden;
@@ -1063,6 +1066,7 @@ button:focus{
     margin-right:25px;
     margin-top: 12px;
     transition: 0.2s;
+
 }
 
 .add--transaction--button:hover{
@@ -1323,6 +1327,7 @@ button:focus{
     font-size:16px;
     cursor:pointer;
     transition: 0.2s;
+    font-weight: bold;
 }
 
 .add--transaction--cancel--button:hover{
@@ -1343,6 +1348,7 @@ button:focus{
     font-size:16px;
     cursor:pointer;
     transition: 0.2s;
+    font-weight:bold;
 }
 
 .add--transaction--accept--button:hover{
@@ -1637,6 +1643,7 @@ button:focus{
     margin-top:50px;
     font-family:Nunito,  "Nunito ExtraBold",sans-serif;
     font-size:21px;
+    font-weight: bold;
 }
 
 

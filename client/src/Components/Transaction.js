@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import '../App.css';
+import {connect} from "react-redux";
+import Moment from 'react-moment';
 
-class Transaction extends Component {
-    constructor(props){
-        super(props);
+const Transaction = ({ date,amount,price }) => {
 
-    }
-
-    render() {
         return (
             <div className="transaction">
                 <div className="transaction--content">
-                    <p className="transaction--amount">05.10.2019 18:39</p>
-                    <p className="transaction--value">Price: 0.00000278</p>
-                    <p className="transaction--change">Amount: 1458</p>
+                    <p className="transaction--amount"><Moment format="DD.MM.YYYY HH:MM">{date}</Moment></p>
+                    <p className="transaction--value">Price: {price}</p>
+                    <p className="transaction--change">Amount: {amount}</p>
                 </div>
             </div>
         );
     }
-}
 
-export default Transaction;
+
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps, {  })(Transaction);

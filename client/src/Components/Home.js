@@ -45,6 +45,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
             let res = (difference / valueOnPurchasedDay ) * 100;
             setTotalPercentValue(res.toFixed(2))
         }
+
     };
 
     const checkIfNegative = () => {
@@ -57,9 +58,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
 
     const calculateAllBtcValuesOnPurchasedDay = () => {
         if(auth.user) {
-            let valuesOnPurchasedDay = auth.user.assets.map(asset => asset.purchasedAmount * asset.purchasedPrice);
-            let sumValues = arrSum(valuesOnPurchasedDay);
-            setBtcValue(sumValues);
+            let r = auth.user.assets.reduce((acc, asset) => acc + asset.transactions.reduce((acc, tr) => acc + (+tr.purchasedPrice * +tr.purchasedAmount), 0), 0);
+            setBtcValue(r);
         }
     };
 
@@ -108,8 +108,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                     {auth.user !== null ? null :<img className="home--page--asset--container--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}
                     <div className="asset--container">
                         { auth.user !== null ?
-                            auth.user.assets.map(function(asset) {
-                                return <Asset key={asset._id} name={asset.name} amount={asset.purchasedAmount} image={asset.image} id={asset.id}/>
+                            auth.user.assets.map( asset => {
+                                return <Asset key={asset._id} name={asset.name} amount={asset.transactions.reduce((acc,val) => acc + +val.purchasedAmount ,0) } image={asset.image} id={asset.id}/>
                             })
                             : null}
                     </div>

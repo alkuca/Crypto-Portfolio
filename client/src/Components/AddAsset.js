@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useMemo } from 'react';
 import '../App.css';
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
 import {getAllAssets, getSingleAssetData, addAssetToUser,assetFetching} from "../actions/assets";
 import {connect} from "react-redux";
-
 
 
 const AddAsset = ({
@@ -25,7 +24,8 @@ const AddAsset = ({
 
     const [assetSuccess, setAssetState] = useState(false);
     const [queryFilter, setQueryFilter] = useState("");
-
+    const [excludeSymbols, setExcludeSymbols] = useState("");
+    const [allAssetsExcluded, setAllAssetsExcluded] = useState("");
 
 
     const [formData, setFormData] = useState({
@@ -80,11 +80,21 @@ const AddAsset = ({
         })
     };
 
+    const userAssetSymbols = () => {
+        if(auth.user){
+            let all = auth.user.assets.map(asset => asset.symbol);
+            setExcludeSymbols(all)
+        }
+    };
 
 
     useEffect(() => {
-        getAllAssets();
-    }, []);
+        getAllAssets(excludeSymbols);
+    }, [excludeSymbols]);
+
+    useEffect( () => {
+        userAssetSymbols();
+    },[auth.user]);
 
 
     return (

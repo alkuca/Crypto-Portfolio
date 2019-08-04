@@ -14,10 +14,12 @@ router.post("/", auth, async (req, res) => {
             id:req.body.id,
             name:req.body.name,
             symbol:req.body.symbol,
-            purchasedAmount:req.body.purchasedAmount,
-            purchasedPrice:req.body.purchasedPrice,
             image:req.body.image,
-            purchasedPriceUsd:req.body.purchasedPriceUsd
+            transactions:{
+                purchasedAmount:req.body.purchasedAmount,
+                purchasedPrice:req.body.purchasedPrice,
+                purchasedPriceUsd:req.body.purchasedPriceUsd
+            }
         };
 
         await user.assets.unshift(newAsset);

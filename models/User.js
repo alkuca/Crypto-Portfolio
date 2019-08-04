@@ -29,25 +29,27 @@ const UserSchema = new mongoose.Schema({
         name: {
             type: String
         },
-        purchasedAmount: {
-            type: String
-        },
         symbol:{
             type:String
-        },
-        purchasedPrice: {
-            type: String
-        },
-        purchasedDate: {
-            type:Date,
-            default:Date.now
         },
         image: {
             type:String
         },
-        purchasedPriceUsd: {
-            type:String
-        },
+        transactions: [{
+            purchasedPrice: {
+                type: String
+            },
+            purchasedPriceUsd: {
+                type:String
+            },
+            purchasedAmount: {
+                type: String
+            },
+            purchasedDate: {
+                type:Date,
+                default:Date.now
+            },
+        }]
     }]
 });
 
