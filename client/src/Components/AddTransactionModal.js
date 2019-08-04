@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import DarkenScreen from "./DarkenScreen";
 import {connect} from "react-redux";

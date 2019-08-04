@@ -14,7 +14,7 @@ import {getSingleAssetData} from "../actions/assets";
 import classnames from "classnames";
 import {loadUser} from "../actions/auth";
 
-const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transactionsUpdated,loadUser}) => {
+const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transactionsUpdated,loadUser,notesUpdated}) => {
 
     const [transactionModal, toggleTransactionModal] = useState(false);
     const [noteModal, toggleNoteModal] = useState(false);
@@ -85,7 +85,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
 
     useEffect(() => {
         loadUser();
-    }, [transactionsUpdated]);
+    }, [transactionsUpdated,notesUpdated]);
 
     useEffect(() => {
         getSingleAssetData(match.params.asset_id);
@@ -103,7 +103,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                 <Navbar/>
                 <div className="asset--page">
                     {transactionModal ? <AddTransactionModal userAssetData={userAssetData} toggleAddTransactionModal={toggleAddTransactionModal}/> : null}
-                    {noteModal ? <AddNoteModal toggleAddNoteModal={toggleAddNoteModal}/> : null}
+                    {noteModal ? <AddNoteModal userAssetData={userAssetData} toggleAddNoteModal={toggleAddNoteModal}/> : null}
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
@@ -135,7 +135,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                         <div className="transactions--and--notes--inner--container">
                             <div className="transactions--and--notes--content">
                                 <Transactions userAssetData={userAssetData} toggleAddTransactionModal={toggleAddTransactionModal} />
-                                <Notes addNoteModalToggled={noteModal} toggleAddNoteModal={toggleAddNoteModal} />
+                                <Notes userAssetData={userAssetData} toggleAddNoteModal={toggleAddNoteModal} />
                             </div>
                         </div>
                     </div>
@@ -148,6 +148,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
 const mapStateToProps = state => ({
     auth: state.auth,
     transactionsUpdated:state.assets.transactions,
+    notesUpdated:state.assets.notes,
     singleAssetData: state.assets.singleAssetData
 });
 

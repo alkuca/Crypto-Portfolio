@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import '../App.css';
+import {connect} from "react-redux";
 
-class Note extends Component {
-    constructor(props){
-        super(props);
+const Note = ({ note }) => {
 
-    }
-
-    render() {
         return (
             <div className="note">
                 <div className="note--content">
-                    <p className="note--title">Lorem ipsum adipiscing elit ...</p>
+                    <p className="note--title">{note}</p>
                 </div>
             </div>
         );
-    }
-}
+    };
 
-export default Note;
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps, {  })(Note);

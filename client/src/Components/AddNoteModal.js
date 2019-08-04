@@ -1,20 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import DarkenScreen from "./DarkenScreen";
+import {connect} from "react-redux";
+import {addNoteToUserAsset} from "../actions/assets";
+
+const AddNoteModal = ({ toggleAddNoteModal,addNoteToUserAsset,singleAssetData,userAssetData }) => {
+
+    const [formData, setFormData] = useState({
+        note:"",
+        id:""
+    });
+
+    const { note } = formData;
+
+    const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+
+    const addNoteToUser = async e => {
+        e.preventDefault();
+        if(singleAssetData) {
+            const data = {
+                id: userAssetData[0].id,
+                note: note,
+            };
+            await addNoteToUserAsset(data);
+            toggleAddNoteModal();
+        }
+    };
 
 
-class AddNoteModal extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-
-        };
-
-
-    }
-
-
-    render() {
         return (
             <div>
                 <DarkenScreen/>
@@ -23,26 +36,32 @@ class AddNoteModal extends Component {
                         <div className="add--transaction--content">
                             <h2 className="add--transaction--title">Add Note for: BTC</h2>
                             <div className="add--note--form">
-                                <form>
+                                <form onSubmit={addNoteToUser}>
                                     <label>
                                         Note:
                                         <textarea rows="10" cols="60"
-                                            name="note"
-                                                  disabled
+                                                  name="note"
+                                                  value={note}
+                                                  onChange={e => onChange(e)}
+                                                  required
                                         />
                                     </label>
+                                    <div className="add--transaction--buttons--container">
+                                        <button onClick={toggleAddNoteModal} className="add--transaction--cancel--button">Cancel</button>
+                                        <button className="add--transaction--accept--button">Accept</button>
+                                    </div>
                                 </form>
-                            </div>
-                            <div className="add--transaction--buttons--container">
-                                <button onClick={this.props.toggleAddNoteModal} className="add--transaction--cancel--button">Cancel</button>
-                                <button onClick={this.addNote} className="add--transaction--accept--button">Accept</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         );
-    }
-}
+    };
 
-export default AddNoteModal;
+const mapStateToProps = state => ({
+    singleAssetData: state.assets.singleAssetData,
+    singleAssetLoading: state.assets.singleAssetLoading,
+});
+
+export default connect(mapStateToProps, { addNoteToUserAsset })(AddNoteModal);

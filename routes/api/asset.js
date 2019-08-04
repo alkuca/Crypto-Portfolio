@@ -36,11 +36,8 @@ router.post("/", auth, async (req, res) => {
 });
 
 
-
 router.post("/transaction", auth, async (req, res) => {
-
     try{
-
         const user = await User.findById(req.user.id);
 
         const newTransaction = {
@@ -62,11 +59,31 @@ router.post("/transaction", auth, async (req, res) => {
         console.error(err.message);
         res.status(500).send('Server Error');
     }
-
 });
 
 
+router.post("/note", auth, async (req, res) => {
+    try{
+        const user = await User.findById(req.user.id);
 
+        const newNote = {
+            note:req.body.note
+        };
+
+        await user.assets.forEach(asset => {
+            if(asset.id === req.body.id){
+                asset.notes.push(newNote)
+            }
+        });
+
+        await user.save();
+        res.json(newNote)
+
+    } catch (err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 
 module.exports = router;

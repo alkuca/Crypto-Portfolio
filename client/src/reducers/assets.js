@@ -1,5 +1,6 @@
 import {GET_ALL_ASSETS, ALL_ASSETS_ERROR,SINGLE_ASSET_ERROR,GET_SINGLE_ASSET_DATA,ADD_ASSET_TO_USER,ADD_ASSET_TO_USER_ERROR,
-    ASSET_FETCHING,ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA,ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR} from "../actions/types";
+    ASSET_FETCHING,ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA,ADD_TRANSACTION_TO_USER,
+    ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR} from "../actions/types";
 
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     assetLiveBtcData:[],
     assetLiveUsdData:[],
     assetLivePercentData:[],
-    transactions:[]
+    transactions:[],
+    notes:[]
 };
 
 
@@ -59,6 +61,17 @@ export default function(state = initialState, action) {
                 transactions: action.payload
             };
         case ADD_TRANSACTION_TO_USER_ERROR:
+            return{
+                ...state,
+                loading:false
+            };
+        case ADD_NOTE_TO_USER:
+            return{
+                ...state,
+                loading:false,
+                notes: action.payload
+            };
+        case ADD_NOTE_TO_USER_ERROR:
             return{
                 ...state,
                 loading:false
