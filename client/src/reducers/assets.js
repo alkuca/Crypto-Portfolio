@@ -1,6 +1,22 @@
-import {GET_ALL_ASSETS, ALL_ASSETS_ERROR,SINGLE_ASSET_ERROR,GET_SINGLE_ASSET_DATA,ADD_ASSET_TO_USER,ADD_ASSET_TO_USER_ERROR,
-    ASSET_FETCHING,ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA,ADD_TRANSACTION_TO_USER,
-    ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR} from "../actions/types";
+import {
+    GET_ALL_ASSETS,
+    ALL_ASSETS_ERROR,
+    SINGLE_ASSET_ERROR,
+    GET_SINGLE_ASSET_DATA,
+    ADD_ASSET_TO_USER,
+    ADD_ASSET_TO_USER_ERROR,
+    ASSET_FETCHING,
+    ASSET_LIVE_USD_DATA,
+    ASSET_LIVE_BTC_DATA,
+    ASSET_LIVE_PERCENT_DATA,
+    RESET_LIVE_DATA,
+    ADD_TRANSACTION_TO_USER,
+    ADD_TRANSACTION_TO_USER_ERROR,
+    ADD_NOTE_TO_USER,
+    ADD_NOTE_TO_USER_ERROR,
+    DELETE_TRANSACTION,
+    RESET_TRANSACTION
+} from "../actions/types";
 
 
 const initialState = {
@@ -13,7 +29,8 @@ const initialState = {
     assetLiveUsdData:[],
     assetLivePercentData:[],
     transactions:[],
-    notes:[]
+    notes:[],
+    transactionDeleted:false
 };
 
 
@@ -96,6 +113,11 @@ export default function(state = initialState, action) {
                 ...state,
                 assetLivePercentData:[...state.assetLivePercentData,action.payload]
             };
+        case DELETE_TRANSACTION:
+            return{
+                ...state,
+                transactionDeleted: true,
+            };
         case RESET_LIVE_DATA:
             return{
                 ...state,
@@ -104,6 +126,11 @@ export default function(state = initialState, action) {
                 assetLiveUsdData:[],
                 singleAssetData:null,
                 singleAssetLoading:true
+            };
+        case RESET_TRANSACTION:
+            return{
+                ...state,
+                transactionDeleted:false
             };
         default:
             return state

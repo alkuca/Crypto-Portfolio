@@ -2,11 +2,13 @@ import React, {  } from 'react';
 import '../App.css';
 import Transaction from "./Transaction";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 
 
 
 const Transactions = ({ toggleAddTransactionModal,userAssetData }) => {
+
 
     return (
         <div className="transactions--container">
@@ -18,7 +20,7 @@ const Transactions = ({ toggleAddTransactionModal,userAssetData }) => {
             <div className="transactions--content">
                 { userAssetData ?
                     userAssetData[0].transactions.map( transaction => {
-                        return <Transaction key={transaction._id} date={transaction.purchasedDate} price={transaction.purchasedPrice} amount={transaction.purchasedAmount}/>
+                        return <Transaction userAssetData={userAssetData} key={transaction._id} _id={transaction._id} priceUsd={transaction.purchasedPriceUsd} date={transaction.purchasedDate} price={transaction.purchasedPrice} amount={transaction.purchasedAmount}/>
                     })
                     : null}
             </div>
@@ -30,4 +32,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, {  })(Transactions);
+export default withRouter(connect(mapStateToProps, {  })(Transactions));

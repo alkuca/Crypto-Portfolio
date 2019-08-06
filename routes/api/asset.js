@@ -86,4 +86,31 @@ router.post("/note", auth, async (req, res) => {
 });
 
 
+router.delete("/transaction", auth, async (req, res) => {
+    try{
+        const user = await User.findById(req.user.id);
+
+        await user.assets.forEach((asset,index) => {
+            if(asset.id === req.body.assetId){
+                asset.transactions.forEach((transaction, index) => {
+                    if(JSON.stringify(transaction._id) === JSON.stringify(req.body.transactionId)){
+                        asset.transactions.splice(index, 1);
+                    }
+                });
+                if(!asset.transactions.length){
+                    user.assets.splice(index,1);
+                    res.json(asset.transactions)
+                }
+            }
+        });
+
+        await user.save();
+
+    } catch (err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
 module.exports = router;

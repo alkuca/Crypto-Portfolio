@@ -7,13 +7,13 @@ import {connect} from "react-redux";
 import {loadUser} from "../actions/auth";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
-import {resetLiveData} from "../actions/assets";
+import {resetLiveData,resetTransaction} from "../actions/assets";
 import classnames from "classnames";
 import {withRouter} from "react-router-dom";
 
 
 
-const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercentData,resetLiveData}) => {
+const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercentData,resetLiveData,transactionDeleted,resetTransaction,ass}) => {
 
     const [totalUsdValue, setTotalUsdValue] = useState("");
     const [totalBtcValue, setTotalBtcValue] = useState("");
@@ -45,7 +45,6 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
             let res = (difference / valueOnPurchasedDay ) * 100;
             setTotalPercentValue(res.toFixed(2))
         }
-
     };
 
     const checkIfNegative = () => {
@@ -74,9 +73,12 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
         calculateAllBtcValuesOnPurchasedDay();
     },[assetLiveUsdData]);
 
+
     useMemo(() => {
         calculateTotalPercentChange();
     },[totalBtcValue]);
+
+
 
 
     return (
@@ -125,8 +127,9 @@ const mapStateToProps = state => ({
     auth: state.auth,
     assetLiveUsdData:state.assets.assetLiveUsdData,
     assetLiveBtcData:state.assets.assetLiveBtcData,
-    assetLivePercentData:state.assets.assetLivePercentData
+    assetLivePercentData:state.assets.assetLivePercentData,
+    transactionDeleted: state.assets.transactionDeleted
 });
 
-export default withRouter(connect(mapStateToProps, {loadUser,resetLiveData})(Home));
+export default withRouter(connect(mapStateToProps, {loadUser,resetLiveData,resetTransaction})(Home));
 

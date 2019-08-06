@@ -1,6 +1,6 @@
 import React, { useState,useEffect} from 'react';
 import '../App.css';
-import logoMobile from "../Images/navbarLogo.png"
+import logoMobile from "../Images/navbarLogoMobile.png"
 import logoFull from "../Images/navbarLogo.png";
 import menuArrow from "../Images/menu-arrow.svg";
 import DarkenScreen from "./DarkenScreen";

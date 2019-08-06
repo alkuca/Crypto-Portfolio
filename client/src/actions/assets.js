@@ -1,7 +1,7 @@
 import {
     GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR, ADD_ASSET_TO_USER,
     ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA,
-    ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR
+    ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR,DELETE_TRANSACTION,RESET_TRANSACTION
 } from "./types";
 import axios from 'axios';
 
@@ -128,6 +128,20 @@ export const addNoteToUserAsset = ({ id,note }) => async dispatch => {
 };
 
 
+// delete Transaction from User
+export const deleteTransaction = ({ assetId,transactionId }) => dispatch => {
+
+    axios
+        .delete(`/api/asset/transaction`,{data:{assetId:assetId,transactionId:transactionId}})
+        .then(res =>
+            dispatch({
+                type: DELETE_TRANSACTION,
+                payload:res.data
+            })
+        )
+};
+
+
 
 
 export const assetFetching = () => dispatch => {
@@ -150,3 +164,6 @@ export const resetLiveData = () => dispatch => {
     dispatch({ type: RESET_LIVE_DATA })
 };
 
+export const resetTransaction = () => dispatch => {
+    dispatch({ type: RESET_TRANSACTION })
+};

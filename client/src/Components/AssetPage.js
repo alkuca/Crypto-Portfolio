@@ -14,9 +14,11 @@ import {getSingleAssetData} from "../actions/assets";
 import classnames from "classnames";
 import {loadUser} from "../actions/auth";
 
+
 const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transactionsUpdated,loadUser,notesUpdated}) => {
 
     const [transactionModal, toggleTransactionModal] = useState(false);
+    const [openTransactionModal, toggleOpenTransactionModal] = useState(false);
     const [noteModal, toggleNoteModal] = useState(false);
     const [userAssetData, setUserAssetData] = useState();
     const [usdValue, setUsdValue] = useState("");
@@ -29,6 +31,10 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
 
     const toggleAddTransactionModal = () => {
         toggleTransactionModal(!transactionModal)
+    };
+
+    const handleOpenTransactionModal = () => {
+        toggleOpenTransactionModal(!openTransactionModal)
     };
 
     const toggleAddNoteModal = () =>  {
@@ -97,6 +103,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
         calculateTotalUsdValue();
         calculateTotalPercentChange();
     }, [singleAssetData,userAssetData]);
+
 
         return (
             <div>
