@@ -8,7 +8,7 @@ import {loadUser} from "../actions/auth";
 import { Redirect,withRouter } from 'react-router-dom';
 
 
-const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTransaction,userAssetData,loadUser,transactionDeleted }) => {
+const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTransaction,loadUser,transactionDeleted ,auth}) => {
 
     const [toggleTransaction, setToggleTransaction] = useState(false);
     const [percentChange, setPercentChange] = useState("");
@@ -45,13 +45,14 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
         }
     };
 
-    const handleDeleteTransaction = () => {
+     const handleDeleteTransaction = async () => {
         if(singleAssetData){
             const data = {
                 assetId: singleAssetData.id,
                 transactionId: _id
             };
-            deleteTransaction(data);
+            await deleteTransaction(data);
+            loadUser();
         }
 
     };
@@ -61,9 +62,7 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
         calculateChange();
     },[singleAssetData]);
 
-    if(transactionDeleted){
-        return <Redirect to="/home"/>
-    }
+
 
 
     return (
@@ -90,7 +89,7 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
                                 "0.00 %"}</p>
                         </div>
                         <div className="transaction--content--dropdown--content--buttons--container">
-                            <button className="delete--transaction--button">Delete</button>
+                            <button onClick={handleDeleteTransaction} className="delete--transaction--button">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -100,8 +99,9 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
 
 
 const mapStateToProps = state => ({
+    auth:state.auth,
     singleAssetData: state.assets.singleAssetData,
-    transactionDeleted: state.assets.transactionDeleted
+    transactionDeleted: state.auth.lastTransactionDeleted,
 });
 
 export default  withRouter(connect(mapStateToProps,{ deleteTransaction,loadUser })(Transaction));

@@ -1,7 +1,7 @@
 import {
     GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR, ADD_ASSET_TO_USER,
     ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA,
-    ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR,DELETE_TRANSACTION,RESET_TRANSACTION
+    ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR,DELETE_TRANSACTION,GET_SINGLE_ASSET_DATA_FOR_STATE
 } from "./types";
 import axios from 'axios';
 
@@ -36,6 +36,19 @@ export const getSingleAssetData = (id) => async dispatch => {
         dispatch({
             type: SINGLE_ASSET_ERROR
         });
+    }
+};
+
+export const getSingleAssetDataForState = (id) => async dispatch => {
+    try {
+        const res = await axios.get(`https://api.coingecko.com/api/v3/coins/${id}`);
+
+        dispatch({
+            type: GET_SINGLE_ASSET_DATA_FOR_STATE,
+            payload: res.data
+        });
+    } catch (err) {
+
     }
 };
 
@@ -162,8 +175,4 @@ export const setLivePercentData = (res) => dispatch => {
 
 export const resetLiveData = () => dispatch => {
     dispatch({ type: RESET_LIVE_DATA })
-};
-
-export const resetTransaction = () => dispatch => {
-    dispatch({ type: RESET_TRANSACTION })
 };

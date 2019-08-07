@@ -7,12 +7,12 @@ import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import classnames from "classnames";
-import {setLiveUsdData,setLiveBtcData,setLivePercentData} from "../actions/assets";
+import {setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState} from "../actions/assets";
 
 
-const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLivePercentData}) => {
+const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState,userAssets,transactionDeleted}) => {
 
-    const [assets, setAssets] = useState();
+    const [assets, setAssets] = useState("");
 
 
     {/* replace all with redux action and state */}
@@ -23,12 +23,26 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
             })
     }
 
+    const get = (id) => {
+        getSingleAssetDataForState(id)
+    };
+
+
     const getLiveAssetDataEffect = () => {
       if(auth !== null){
           getLiveAssetData(id)
       }
     };
 
+    const getEffect = () => {
+        if(auth !== null){
+            get(id)
+        }
+    };
+
+    useEffect(() => {
+        getEffect()
+    }, []);
 
     useEffect(() => {
         getLiveAssetDataEffect()
@@ -51,7 +65,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
 
 
     const getUsdValues  = () => {
-        if(assets) {
+        if(assets ) {
             let res = amount * assets.market_data.current_price.usd;
             setLiveUsdData(res)
         }
@@ -65,7 +79,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
     };
 
     const getPercentageValues  = () => {
-        if(assets) {
+        if(assets ) {
             let res = assets.market_data.price_change_percentage_24h;
             setLivePercentData(res)
         }
@@ -74,10 +88,12 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
 
 
     useMemo(()=>{
+        console.log(assets)
         getUsdValues();
         getBtcValues();
         getPercentageValues();
     },[assets]);
+
 
 
     return (
@@ -86,7 +102,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
                 <div className="asset--blue--line"/>
                 <div className="asset--content">
                     <div className="asset--image--name--container">
-                        <img alt="asset" className="asset--image" src={image}  />
+                        <img alt="asset" className="asset--image" src={image}/>
                         <p className="asset--name">{name}</p>
                     </div>
                     <p className="asset--amount">{amount}</p>
@@ -110,7 +126,9 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    userAssets: state.assets.userAssets,
+    transactionDeleted: state.auth.lastTransactionDeleted,
 });
 
-export default withRouter(connect(mapStateToProps, {setLiveUsdData,setLiveBtcData,setLivePercentData})(Asset));
+export default withRouter(connect(mapStateToProps, {setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState})(Asset));

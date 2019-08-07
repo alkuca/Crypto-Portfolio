@@ -99,7 +99,7 @@ router.delete("/transaction", auth, async (req, res) => {
                 });
                 if(!asset.transactions.length){
                     user.assets.splice(index,1);
-                    res.json(asset.transactions)
+                    res.json(true)
                 }
             }
         });

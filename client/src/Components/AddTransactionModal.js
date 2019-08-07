@@ -3,6 +3,7 @@ import '../App.css';
 import DarkenScreen from "./DarkenScreen";
 import {connect} from "react-redux";
 import {addTransactionToUserAsset} from "../actions/assets";
+import {loadUser} from "../actions/auth";
 
 const AddTransactionModal = ({ toggleAddTransactionModal,userAssetData,singleAssetData,singleAssetLoading,addTransactionToUserAsset }) => {
 
@@ -37,6 +38,7 @@ const AddTransactionModal = ({ toggleAddTransactionModal,userAssetData,singleAss
             };
 
             await addTransactionToUserAsset(data);
+            loadUser();
             toggleAddTransactionModal();
         }
     };

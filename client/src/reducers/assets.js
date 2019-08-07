@@ -14,8 +14,7 @@ import {
     ADD_TRANSACTION_TO_USER_ERROR,
     ADD_NOTE_TO_USER,
     ADD_NOTE_TO_USER_ERROR,
-    DELETE_TRANSACTION,
-    RESET_TRANSACTION
+    GET_SINGLE_ASSET_DATA_FOR_STATE
 } from "../actions/types";
 
 
@@ -30,7 +29,7 @@ const initialState = {
     assetLivePercentData:[],
     transactions:[],
     notes:[],
-    transactionDeleted:false
+    userAssets:[]
 };
 
 
@@ -113,11 +112,6 @@ export default function(state = initialState, action) {
                 ...state,
                 assetLivePercentData:[...state.assetLivePercentData,action.payload]
             };
-        case DELETE_TRANSACTION:
-            return{
-                ...state,
-                transactionDeleted: true,
-            };
         case RESET_LIVE_DATA:
             return{
                 ...state,
@@ -125,12 +119,13 @@ export default function(state = initialState, action) {
                 assetLiveBtcData:[],
                 assetLiveUsdData:[],
                 singleAssetData:null,
-                singleAssetLoading:true
+                singleAssetLoading:true,
+                userAssets: []
             };
-        case RESET_TRANSACTION:
+        case GET_SINGLE_ASSET_DATA_FOR_STATE:
             return{
                 ...state,
-                transactionDeleted:false
+                userAssets: [...state.userAssets, action.payload]
             };
         default:
             return state

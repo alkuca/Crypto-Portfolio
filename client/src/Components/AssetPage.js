@@ -25,6 +25,12 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
     const [btcValue, setBtcValue] = useState("");
     const [percentValueNow, setPercentValueNow] = useState("");
 
+    const [mounted, setMounted] = useState(false);
+
+
+    useEffect(() => {
+        setMounted(true)
+    }, []);
 
 
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
@@ -55,7 +61,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
     };
 
     const calculateTotalUsdValue = () => {
-        if(userAssetData && singleAssetData && auth.user) {
+        if(userAssetData && singleAssetData && auth.user && mounted) {
             let res = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.usd);
             let resSum = arrSum(res);
             setUsdValue(resSum.toFixed(2))
@@ -63,15 +69,17 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
     };
 
     const calculateTotalBtcValue = () => {
-        if(userAssetData && auth.user && singleAssetData) {
-            let res =  userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc)
-            let resSum = arrSum(res);
-            setBtcValue(resSum.toFixed(8))
+        if( auth.user && singleAssetData) {
+            if(userAssetData && userAssetData[0].transactions && userAssetData[0].transactions.length && mounted){
+                let res =  userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc)
+                let resSum = arrSum(res);
+                setBtcValue(resSum.toFixed(8))
+            }
         }
     };
 
     const calculateTotalPercentChange = () => {
-        if(userAssetData && auth.user && singleAssetData) {
+        if(userAssetData && auth.user && singleAssetData && mounted) {
             let valueOnPurchasedDayArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * transaction.purchasedPrice);
             let valueOnPurchasedDayArraySum = arrSum(valueOnPurchasedDayArray);
 
@@ -99,9 +107,11 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
 
 
     useMemo(() => {
-        calculateTotalBtcValue();
-        calculateTotalUsdValue();
-        calculateTotalPercentChange();
+        if(userAssetData && userAssetData.length){
+            calculateTotalBtcValue();
+            calculateTotalUsdValue();
+            calculateTotalPercentChange();
+        }
     }, [singleAssetData,userAssetData]);
 
 

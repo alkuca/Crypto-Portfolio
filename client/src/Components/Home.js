@@ -7,24 +7,21 @@ import {connect} from "react-redux";
 import {loadUser} from "../actions/auth";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
-import {resetLiveData,resetTransaction} from "../actions/assets";
+import {resetLiveData} from "../actions/assets";
 import classnames from "classnames";
 import {withRouter} from "react-router-dom";
 
-
-
-const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercentData,resetLiveData,transactionDeleted,resetTransaction,ass}) => {
+const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercentData,resetLiveData,transactionDeleted,userAssets}) => {
 
     const [totalUsdValue, setTotalUsdValue] = useState("");
     const [totalBtcValue, setTotalBtcValue] = useState("");
     const [totalPercentValue, setTotalPercentValue] = useState("");
     const [btcValue, setBtcValue] = useState("");
 
-
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 
     const calculateTotalUsdValue = () => {
-        if(assetLiveUsdData){
+        if(assetLiveUsdData && auth.user){
             let sumUsd = arrSum(assetLiveUsdData);
             setTotalUsdValue(sumUsd)
         }
@@ -37,8 +34,9 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
         }
     };
 
+
     const calculateTotalPercentChange = () => {
-        if(btcValue && totalBtcValue) {
+        if(btcValue && totalBtcValue ) {
             let valueOnPurchasedDay = btcValue;
             let valueNow = totalBtcValue;
             let difference =  valueNow - valueOnPurchasedDay;
@@ -65,6 +63,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     useEffect(() => {
         loadUser();
         resetLiveData();
+        console.log(totalUsdValue)
     }, []);
 
     useMemo(()=>{
@@ -77,7 +76,6 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     useMemo(() => {
         calculateTotalPercentChange();
     },[totalBtcValue]);
-
 
 
 
@@ -109,7 +107,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                 <div className="assets--inner--container">
                     {auth.user !== null ? null :<img className="home--page--asset--container--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}
                     <div className="asset--container">
-                        { auth.user !== null ?
+                        { auth.user !== null && auth.user.assets.length ?
                             auth.user.assets.map( asset => {
                                 return <Asset key={asset._id} name={asset.name} amount={asset.transactions.reduce((acc,val) => acc + +val.purchasedAmount ,0) } image={asset.image} id={asset.id}/>
                             })
@@ -128,8 +126,9 @@ const mapStateToProps = state => ({
     assetLiveUsdData:state.assets.assetLiveUsdData,
     assetLiveBtcData:state.assets.assetLiveBtcData,
     assetLivePercentData:state.assets.assetLivePercentData,
-    transactionDeleted: state.assets.transactionDeleted
+    transactionDeleted: state.auth.lastTransactionDeleted,
+    userAssets:state.assets.userAssets
 });
 
-export default withRouter(connect(mapStateToProps, {loadUser,resetLiveData,resetTransaction})(Home));
+export default withRouter(connect(mapStateToProps, {loadUser,resetLiveData})(Home));
 
