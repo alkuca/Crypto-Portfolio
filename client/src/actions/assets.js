@@ -4,6 +4,7 @@ import {
     ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR,DELETE_TRANSACTION,GET_SINGLE_ASSET_DATA_FOR_STATE
 } from "./types";
 import axios from 'axios';
+import {loadUser} from "./auth";
 
 
 export const getAllAssets = (removeSymbols) => async dispatch => {
@@ -142,16 +143,20 @@ export const addNoteToUserAsset = ({ id,note }) => async dispatch => {
 
 
 // delete Transaction from User
-export const deleteTransaction = ({ assetId,transactionId }) => dispatch => {
-
-    axios
-        .delete(`/api/asset/transaction`,{data:{assetId:assetId,transactionId:transactionId}})
-        .then(res =>
-            dispatch({
-                type: DELETE_TRANSACTION,
-                payload:res.data
-            })
-        )
+export const deleteTransaction = ({ assetId,transactionId }) => async dispatch => {
+    try{
+        const res = await axios.delete(`/api/asset/transaction`,{data:{assetId:assetId,transactionId:transactionId}})
+        dispatch({
+            type: DELETE_TRANSACTION,
+            payload:res.data
+        })
+    }
+    catch (err) {
+        const errors = err.response.errors;
+        if(errors) {
+            errors.forEach(error => console.log(error.msg))
+        }
+    }
 };
 
 

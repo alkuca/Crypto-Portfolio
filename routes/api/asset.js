@@ -99,12 +99,12 @@ router.delete("/transaction", auth, async (req, res) => {
                 });
                 if(!asset.transactions.length){
                     user.assets.splice(index,1);
-                    res.json(true)
                 }
             }
         });
 
         await user.save();
+        await res.json("transaction deleted")
 
     } catch (err){
         console.error(err.message);

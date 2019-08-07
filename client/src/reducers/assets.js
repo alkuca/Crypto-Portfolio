@@ -14,7 +14,7 @@ import {
     ADD_TRANSACTION_TO_USER_ERROR,
     ADD_NOTE_TO_USER,
     ADD_NOTE_TO_USER_ERROR,
-    GET_SINGLE_ASSET_DATA_FOR_STATE
+    GET_SINGLE_ASSET_DATA_FOR_STATE,
 } from "../actions/types";
 
 
@@ -28,6 +28,7 @@ const initialState = {
     assetLiveUsdData:[],
     assetLivePercentData:[],
     transactions:[],
+    transactionDeleteLoading:true,
     notes:[],
     userAssets:[]
 };

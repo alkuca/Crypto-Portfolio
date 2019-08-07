@@ -20,7 +20,8 @@ const initialState = {
     registerSuccessful:false,
     user:null,
     theme:"",
-    lastTransactionDeleted:false
+    transaction:[],
+    transactionDeleteLoading:true
 };
 
 
@@ -33,7 +34,8 @@ export default function(state = initialState, action) {
                 loading:false,
                 user:action.payload,
                 theme:action.payload.theme,
-                lastTransactionDeleted:false
+                transaction:[],
+                transactionDeleteLoading:true
             };
         case REGISTER_SUCCESS:
             localStorage.setItem("token",action.payload.token);
@@ -101,7 +103,8 @@ export default function(state = initialState, action) {
         case DELETE_TRANSACTION:
             return{
                 ...state,
-                lastTransactionDeleted: action.payload,
+                transaction: action.payload,
+                transactionDeleteLoading:false
             };
         default:
             return state

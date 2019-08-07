@@ -8,7 +8,7 @@ import {loadUser} from "../actions/auth";
 import { Redirect,withRouter } from 'react-router-dom';
 
 
-const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTransaction,loadUser,transactionDeleted ,auth}) => {
+const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTransaction,loadUser,auth}) => {
 
     const [toggleTransaction, setToggleTransaction] = useState(false);
     const [percentChange, setPercentChange] = useState("");
@@ -52,17 +52,16 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
                 transactionId: _id
             };
             await deleteTransaction(data);
-            loadUser();
+            await loadUser();
         }
-
     };
+
+
 
 
     useMemo(() => {
         calculateChange();
     },[singleAssetData]);
-
-
 
 
     return (
@@ -101,7 +100,6 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
 const mapStateToProps = state => ({
     auth:state.auth,
     singleAssetData: state.assets.singleAssetData,
-    transactionDeleted: state.auth.lastTransactionDeleted,
 });
 
 export default  withRouter(connect(mapStateToProps,{ deleteTransaction,loadUser })(Transaction));
