@@ -70,7 +70,7 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
                 "disable--hover": toggleTransaction
             })}>
                 <div onClick={handleToggle} className="transaction--content">
-                    <p className="transaction--amount"><Moment format="DD.MM.YYYY HH:MM">{date}</Moment></p>
+                    <p className="transaction--amount"><Moment format="DD.MM.YYYY HH:mm">{date}</Moment></p>
                     <p className="transaction--value">Price: {price}</p>
                     <p className="transaction--change">Amount: {amount}</p>
                 </div>
