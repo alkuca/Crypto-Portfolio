@@ -1882,7 +1882,6 @@ button:focus{
 }
 
 .add--asset--input--form {
-    height: 80%;
     display:flex;
     flex-direction: column;
     margin-left: 10%;
