@@ -1101,14 +1101,11 @@ button:focus{
 }
 
 .transaction--content--dropdown{
-    display: none;
     opacity:0;
-    transition: 0.5s;
-    transition-delay: 0.2s;
+    transition: 0.1s;
 }
 
 .make--visible{
-    display: initial;
     opacity:1;
     transition: 0.5s;
     transition-delay: 0.2s;
@@ -1185,6 +1182,9 @@ button:focus{
     -ms-backface-visibility:     hidden;
 }
 
+.margin--fix{
+    margin-left:-82px;
+}
 
 .delete--transaction--button{
     background:none;
@@ -1463,6 +1463,9 @@ button:focus{
     .note--title{
         font-size:13px;
     }
+    .margin--fix{
+        margin-left: -71px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -1540,10 +1543,13 @@ button:focus{
         padding: 6px 30px;
         font-size: 15px;
     }
+    .margin--fix {
+        margin-left: -66px;
+    }
 
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
     .graph--inner--container {
         margin: 0 6% 0 6%;
     }
@@ -1613,6 +1619,12 @@ button:focus{
     }
     .add--transaction--content {
         margin: 25px 25px;
+    }
+    .transaction--amount--paid{
+        width:62px;
+    }
+    .margin--fix{
+        margin-left: -43px;
     }
 }
 

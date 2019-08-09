@@ -1,25 +1,25 @@
-import React, { useState, useEffect,useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
-import {getAllAssets, getSingleAssetData, addAssetToUser,assetFetching} from "../actions/assets";
+import {getAllAssets, getSingleAssetData, addAssetToUser, assetFetching, resetLiveData} from "../actions/assets";
 import {connect} from "react-redux";
 
 
 const AddAsset = ({
                       getAllAssets,
                       allAssets,
-                      allAssetsLoading,
                       getSingleAssetData,
                       singleAssetData,
                       singleAssetLoading,
                       addAssetToUser,
                       assetFetching,
                       assetFetchingState,
-                      auth
+                      auth,
+                      resetLiveData
                   }) => {
 
     const [assetSuccess, setAssetState] = useState(false);
@@ -94,6 +94,11 @@ const AddAsset = ({
     useEffect( () => {
         userAssetSymbols();
     },[auth.user]);
+
+    useEffect( () => {
+        resetLiveData();
+    },[]);
+
 
 
     return (
@@ -186,5 +191,5 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { getAllAssets,getSingleAssetData,addAssetToUser,assetFetching})(AddAsset);
+export default connect(mapStateToProps, { getAllAssets,getSingleAssetData,addAssetToUser,assetFetching,resetLiveData})(AddAsset);
 

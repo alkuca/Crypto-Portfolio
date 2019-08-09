@@ -7,7 +7,7 @@ import {withRouter} from "react-router-dom";
 
 
 
-const Transactions = ({ toggleAddTransactionModal,userAssetData,auth }) => {
+const Transactions = ({ toggleAddTransactionModal,userAssetData }) => {
     const [mounted, setMounted] = useState(false);
 
 
@@ -36,7 +36,7 @@ const Transactions = ({ toggleAddTransactionModal,userAssetData,auth }) => {
 }
 
 const mapStateToProps = state => ({
-auth:state.auth
+
 });
 
 export default withRouter(connect(mapStateToProps, {  })(Transactions));

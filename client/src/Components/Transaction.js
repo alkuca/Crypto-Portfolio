@@ -1,14 +1,14 @@
-import React, { useState,useMemo,useEffect } from 'react';
+import React, { useState,useMemo } from 'react';
 import '../App.css';
 import {connect} from "react-redux";
 import Moment from 'react-moment';
-import {deleteTransaction,resetLiveData} from "../actions/assets";
+import {deleteTransaction} from "../actions/assets";
 import classnames from "classnames";
 import {loadUser} from "../actions/auth";
-import { Redirect,withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
-const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTransaction,loadUser,auth}) => {
+const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTransaction,loadUser}) => {
 
     const [toggleTransaction, setToggleTransaction] = useState(false);
     const [percentChange, setPercentChange] = useState("");
@@ -80,7 +80,7 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
                     <div  className="transaction--content--dropdown--content">
                         <div onClick={handleToggle} className="transaction--content">
                             <p className="transaction--amount--paid">BTC Paid: {calculateBtcPaid().toFixed(8)}</p>
-                            <p className="transaction--amount--paid">USD Paid: {calculateUsdPaid().toFixed(2)} $</p>
+                            <p className="transaction--amount--paid margin--fix">USD Paid: {calculateUsdPaid().toFixed(2)} $</p>
                             <p className={classnames("transaction--change makeGreen", {
                                 "makeRed": checkIfNegative()
                             })}>{percentChange ? percentChange + " %"
@@ -98,8 +98,7 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
 
 
 const mapStateToProps = state => ({
-    auth:state.auth,
-    singleAssetData: state.assets.singleAssetData,
+    singleAssetData: state.assets.singleAssetData
 });
 
 export default  withRouter(connect(mapStateToProps,{ deleteTransaction,loadUser })(Transaction));
