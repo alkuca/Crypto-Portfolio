@@ -15,6 +15,7 @@ import {
     ADD_NOTE_TO_USER,
     ADD_NOTE_TO_USER_ERROR,
     GET_SINGLE_ASSET_DATA_FOR_STATE,
+    SET_LOADING
 } from "../actions/types";
 
 
@@ -27,10 +28,10 @@ const initialState = {
     assetLiveBtcData:[],
     assetLiveUsdData:[],
     assetLivePercentData:[],
-    transactions:[],
-    transactionDeleteLoading:true,
+    transactionstransactions:[],
     notes:[],
-    userAssets:[]
+    userAssets:[],
+    assetAddingLoading:false
 };
 
 
@@ -39,8 +40,7 @@ export default function(state = initialState, action) {
         case GET_ALL_ASSETS:
             return{
                 ...state,
-                allAssets:action.payload,
-                loading:false
+                allAssets:action.payload
             };
         case ALL_ASSETS_ERROR:
             return{
@@ -64,7 +64,8 @@ export default function(state = initialState, action) {
         case ADD_ASSET_TO_USER:
             return{
                 ...state,
-                loading:false
+                loading:false,
+                assetAddingLoading: false
             };
         case ADD_ASSET_TO_USER_ERROR:
             return{
@@ -127,6 +128,11 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 userAssets: [...state.userAssets, action.payload]
+            };
+        case SET_LOADING:
+            return{
+                ...state,
+                assetAddingLoading: true
             };
         default:
             return state

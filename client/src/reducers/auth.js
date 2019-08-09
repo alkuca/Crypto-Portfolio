@@ -9,6 +9,7 @@ import {
     SUBMIT_LOADING,
     THEME_CHANGED,
     DELETE_TRANSACTION,
+    DELETE_NOTE
 } from "../actions/types";
 
 
@@ -21,7 +22,10 @@ const initialState = {
     user:null,
     theme:"",
     transaction:[],
-    transactionDeleteLoading:true
+    transactionDeleteLoading:true,
+    note:[],
+    noteDeleteLoading:true
+
 };
 
 
@@ -105,6 +109,12 @@ export default function(state = initialState, action) {
                 ...state,
                 transaction: action.payload,
                 transactionDeleteLoading:false
+            };
+        case DELETE_NOTE:
+            return{
+                ...state,
+                note: action.payload,
+                noteDeleteLoading:false
             };
         default:
             return state

@@ -113,4 +113,29 @@ router.delete("/transaction", auth, async (req, res) => {
 });
 
 
+router.delete("/note", auth, async (req, res) => {
+    try{
+        const user = await User.findById(req.user.id);
+
+        await user.assets.forEach((asset) => {
+            if(asset.id === req.body.assetId){
+                asset.notes.forEach((note, index) => {
+                    if(JSON.stringify(note._id) === JSON.stringify(req.body.noteId)){
+                        asset.notes.splice(index, 1);
+                        res.json("note deleted")
+                    }
+                });
+            }
+        });
+
+        await user.save();
+        await res.json("note deleted")
+
+    } catch (err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
 module.exports = router;

@@ -1,7 +1,8 @@
 import {
     GET_ALL_ASSETS, ALL_ASSETS_ERROR, GET_SINGLE_ASSET_DATA, SINGLE_ASSET_ERROR, ADD_ASSET_TO_USER,
     ADD_ASSET_TO_USER_ERROR, ASSET_FETCHING, ASSET_LIVE_USD_DATA,ASSET_LIVE_BTC_DATA,ASSET_LIVE_PERCENT_DATA,RESET_LIVE_DATA,
-    ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR,DELETE_TRANSACTION,GET_SINGLE_ASSET_DATA_FOR_STATE
+    ADD_TRANSACTION_TO_USER,ADD_TRANSACTION_TO_USER_ERROR,ADD_NOTE_TO_USER,ADD_NOTE_TO_USER_ERROR,DELETE_TRANSACTION,GET_SINGLE_ASSET_DATA_FOR_STATE,
+    SET_LOADING,DELETE_NOTE
 } from "./types";
 import axios from 'axios';
 import {loadUser} from "./auth";
@@ -145,9 +146,27 @@ export const addNoteToUserAsset = ({ id,note }) => async dispatch => {
 // delete Transaction from User
 export const deleteTransaction = ({ assetId,transactionId }) => async dispatch => {
     try{
-        const res = await axios.delete(`/api/asset/transaction`,{data:{assetId:assetId,transactionId:transactionId}})
+        const res = await axios.delete(`/api/asset/transaction`,{data:{assetId:assetId,transactionId:transactionId}});
         dispatch({
             type: DELETE_TRANSACTION,
+            payload:res.data
+        })
+    }
+    catch (err) {
+        const errors = err.response.errors;
+        if(errors) {
+            errors.forEach(error => console.log(error.msg))
+        }
+    }
+};
+
+
+// delete Note from User
+export const deleteNote = ({ assetId,noteId }) => async dispatch => {
+    try{
+        const res = await axios.delete(`/api/asset/note`,{data:{assetId:assetId,noteId:noteId}});
+        dispatch({
+            type: DELETE_NOTE,
             payload:res.data
         })
     }
@@ -178,6 +197,10 @@ export const setLivePercentData = (res) => dispatch => {
     dispatch({ type: ASSET_LIVE_PERCENT_DATA, payload:res })
 };
 
-export const resetLiveData = () => dispatch => {
-    dispatch({ type: RESET_LIVE_DATA })
+export const resetLiveData = () => async dispatch => {
+    await dispatch({ type: RESET_LIVE_DATA })
+};
+
+export const setLoading = () => dispatch => {
+    dispatch({ type: SET_LOADING })
 };

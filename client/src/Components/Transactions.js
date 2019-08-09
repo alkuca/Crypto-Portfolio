@@ -3,13 +3,13 @@ import '../App.css';
 import Transaction from "./Transaction";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-
-
-
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group';
 
 const Transactions = ({ toggleAddTransactionModal,userAssetData }) => {
     const [mounted, setMounted] = useState(false);
-
 
     useEffect(() => {
         setMounted(true)
@@ -25,11 +25,18 @@ const Transactions = ({ toggleAddTransactionModal,userAssetData }) => {
             </div>
             <div className="asset--blue--line"/>
             <div className="transactions--content">
+                <TransitionGroup>
                 { userAssetData && userAssetData.length ?
                     userAssetData[0].transactions.map( transaction => {
-                        return <Transaction key={transaction._id} _id={transaction._id} priceUsd={transaction.purchasedPriceUsd} date={transaction.purchasedDate} price={transaction.purchasedPrice} amount={transaction.purchasedAmount}/>
+                       return <CSSTransition
+                            key={transaction._id}
+                            timeout={300}
+                            classNames="fade">
+                            <Transaction key={transaction._id} _id={transaction._id} priceUsd={transaction.purchasedPriceUsd} date={transaction.purchasedDate} price={transaction.purchasedPrice} amount={transaction.purchasedAmount}/>
+                        </CSSTransition>
                     })
                     : null}
+                </TransitionGroup>
             </div>
         </div>
     );

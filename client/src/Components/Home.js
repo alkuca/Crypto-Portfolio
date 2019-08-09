@@ -63,7 +63,6 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     useEffect(() => {
         loadUser();
         resetLiveData();
-        console.log(totalUsdValue)
     }, []);
 
     useMemo(()=>{
@@ -95,7 +94,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                         <div className="value--block-content">
                             <p className="value--block--value--type">Total Change (BTC)</p>
                             <p className={classnames("value--block--value makeGreen", {
-                                "makeRed": checkIfNegative()
+                                "makeRed": checkIfNegative(),
+                                "fadeInText": totalPercentValue
                             })}>{totalPercentValue ? totalPercentValue + " %"
                                 :
                                 "0.00 %"}</p>

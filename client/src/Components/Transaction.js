@@ -7,7 +7,6 @@ import classnames from "classnames";
 import {loadUser} from "../actions/auth";
 import { withRouter } from 'react-router-dom';
 
-
 const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTransaction,loadUser}) => {
 
     const [toggleTransaction, setToggleTransaction] = useState(false);

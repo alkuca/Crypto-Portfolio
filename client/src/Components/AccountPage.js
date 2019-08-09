@@ -12,10 +12,15 @@ const AccountPage = ({ auth,changeTheme}) => {
 
 
     const [switchToggle, setSwitchToggle] = useState(false);
+    const [switchToggleRefresh, setSwitchToggleRefresh] = useState(false);
 
     const handleSwitchToggle = () => {
         handleThemeChange();
         setSwitchToggle(!switchToggle)
+    };
+
+    const handleRefreshSwitchToggle = () => {
+        setSwitchToggleRefresh(!switchToggleRefresh)
     };
 
     const handleThemeChange = () => {
@@ -51,11 +56,24 @@ const AccountPage = ({ auth,changeTheme}) => {
                                 <p className="information--title">SETTINGS</p>
                             </div>
                             <div className="information--content same-row">
-                                <p className="information--text">Toggle dark/light theme: </p>
+                                <p className="information--text">Dark/Light Theme: </p>
                                 <div className="switch--button">
                                     <div className="switch" onClick={handleSwitchToggle}>
                                         <div className={classnames("ball",{
                                             "ball-move" : switchToggle
+                                        })}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="information--content same-row">
+                                <p className="information--text">Auto Refresh: </p>
+                                <div className="switch--button">
+                                    <div onClick={handleRefreshSwitchToggle} className={classnames("switch",{
+                                        "switch-gray" : switchToggleRefresh,
+                                    })}>
+                                        <div className={classnames("ball",{
+                                            "ball-move" : switchToggleRefresh,
+                                            "ball-gray" : switchToggleRefresh
                                         })}/>
                                     </div>
                                 </div>

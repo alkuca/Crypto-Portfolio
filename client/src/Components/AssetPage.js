@@ -124,15 +124,16 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
-                            <ValueBlock type="USD Value" value={ usdValue && userAssetData ? usdValue + " $" : "0.00 $"}/>
+                            <ValueBlock type="USD Value" value={ usdValue ? usdValue + " $" : "0.00 $"}/>
                             <ValueBlock type="Bitcoin Value (btc)" value={ btcValue ? btcValue : "0.00000000"}/>
                             <div className="value--block">
                                 <div className="blue--line"/>
                                 <div className="value--block-content">
                                     <p className="value--block--value--type">Total Change (BTC)</p>
                                     <p className={classnames("value--block--value makeGreen", {
-                                        "makeRed": checkIfNegative()
-                                    })}>{percentValueNow ? percentValueNow + " %"
+                                        "makeRed": checkIfNegative(),
+                                        "fadeInText": percentValueNow
+                                    })}>{percentValueNow.length ? percentValueNow + " %"
                                         :
                                         "0.00 %"}</p>
                                 </div>

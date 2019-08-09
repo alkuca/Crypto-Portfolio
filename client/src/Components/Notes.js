@@ -2,8 +2,12 @@ import React, {  } from 'react';
 import '../App.css';
 import Note from "./Note";
 import {connect} from "react-redux";
+import {
+    CSSTransition,
+    TransitionGroup,
+} from 'react-transition-group';
 
-const Notes = ({ toggleAddNoteModal,userAssetData ,auth}) => {
+const Notes = ({ toggleAddNoteModal,userAssetData }) => {
 
         return (
             <div className="notes--container">
@@ -15,11 +19,18 @@ const Notes = ({ toggleAddNoteModal,userAssetData ,auth}) => {
                 </div>
                 <div className="asset--blue--line"/>
                 <div className="notes--content">
+                    <TransitionGroup>
                     { userAssetData && userAssetData.length ?
                         userAssetData[0].notes.map( note => {
-                            return <Note key={note._id} note={note.note}/>
+                            return <CSSTransition
+                                    key={note._id}
+                                    timeout={300}
+                                    classNames="fade">
+                                    <Note _id={note._id} key={note._id} note={note.note}/>
+                                    </CSSTransition>
                         })
                         : null}
+                    </TransitionGroup>
                 </div>
             </div>
         );

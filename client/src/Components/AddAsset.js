@@ -5,7 +5,7 @@ import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import AssetAddedSuccess from "./AssetAddedSuccess";
-import {getAllAssets, getSingleAssetData, addAssetToUser, assetFetching, resetLiveData} from "../actions/assets";
+import {getAllAssets, getSingleAssetData, addAssetToUser, assetFetching, resetLiveData,setLoading} from "../actions/assets";
 import {connect} from "react-redux";
 
 
@@ -19,7 +19,9 @@ const AddAsset = ({
                       assetFetching,
                       assetFetchingState,
                       auth,
-                      resetLiveData
+                      resetLiveData,
+                      setLoading,
+                      assetAddingLoading
                   }) => {
 
     const [assetSuccess, setAssetState] = useState(false);
@@ -54,9 +56,13 @@ const AddAsset = ({
                 purchasedPriceUsd: singleAssetData.market_data.current_price.usd
             };
 
-            await addAssetToUser(data);
-
-            setAssetState(true);
+            if(formData.purchasedAmount > 0 && formData.purchasedPrice > 0){
+                await setLoading();
+                await addAssetToUser(data);
+                await setAssetState(true);
+            }else{
+                alert("values must be greater than zero")
+            }
         }
     };
 
@@ -172,7 +178,7 @@ const AddAsset = ({
                             <Link to="/home">
                                 <button className="add--asset--cancel--button">Cancel</button>
                             </Link>
-                            <button className="add--asset--accept--button">Add</button>
+                            <button className="add--asset--accept--button">{!assetAddingLoading ?"Add" : <img className="button--loader--white" src={logoLoaderWhite} alt="loader"/>}</button>
                         </div>
                     </form>
                 </div>
@@ -188,8 +194,9 @@ const mapStateToProps = state => ({
     singleAssetData: state.assets.singleAssetData,
     singleAssetLoading: state.assets.singleAssetLoading,
     assetFetchingState: state.assets.assetFetching,
-    auth: state.auth
+    auth: state.auth,
+    assetAddingLoading:state.assets.assetAddingLoading
 });
 
-export default connect(mapStateToProps, { getAllAssets,getSingleAssetData,addAssetToUser,assetFetching,resetLiveData})(AddAsset);
+export default connect(mapStateToProps, { getAllAssets,getSingleAssetData,addAssetToUser,assetFetching,resetLiveData,setLoading})(AddAsset);
 

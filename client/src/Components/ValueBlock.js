@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import '../App.css';
+import classnames from "classnames";
 
-class ValueBlock extends Component {
-    constructor(props){
-        super(props);
+const ValueBlock = ({ type,value}) => {
 
-    }
 
-    render() {
-        return (
-            <div className="value--block">
-                <div className="blue--line"/>
-                <div className="value--block-content">
-                    <p className="value--block--value--type">{this.props.type}</p>
-                    <p className="value--block--value">{this.props.value}</p>
-                </div>
+
+    return (
+        <div className="value--block">
+            <div className="blue--line"/>
+            <div className="value--block-content">
+                <p className="value--block--value--type">{type}</p>
+
+                <p className={classnames("value--block--value", {
+                    "fadeInText": value.length > 0
+                })}>{value}</p>
+
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default ValueBlock;
