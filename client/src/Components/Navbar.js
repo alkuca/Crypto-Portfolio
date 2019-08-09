@@ -7,33 +7,15 @@ import DarkenScreen from "./DarkenScreen";
 import classnames from "classnames";
 import { Link } from 'react-router-dom';
 import {connect} from "react-redux";
-import {logout,changeTheme} from "../actions/auth";
+import {logout} from "../actions/auth";
 import Headroom from "react-headroom";
 
-const Navbar = ({ logout,auth,changeTheme }) => {
+const Navbar = ({ logout,auth }) => {
 
     const [menu, setMenu] = useState(false);
 
     function toggleMenu() {
         setMenu(!menu);
-    }
-
-    const handleThemeToggle = () => {
-        toggleMenu();
-        handleThemeChange();
-    };
-
-
-    const handleThemeChange = () => {
-        let dark = "DARK";
-        let light = "LIGHT";
-
-        if(auth.theme === "LIGHT"){
-            changeTheme(dark);
-        }else if(auth.theme === "DARK"){
-            changeTheme(light);
-        }
-        document.documentElement.setAttribute("data-theme", auth.theme);
     }
 
 
@@ -83,9 +65,6 @@ const Navbar = ({ logout,auth,changeTheme }) => {
                                     <Link to="/home">
                                         <p className="dropdown--menu--link">Home</p>
                                     </Link>
-                                    <a onClick={handleThemeToggle} className="toggle--theme">
-                                        <p className="dropdown--menu--link">{auth.theme === "LIGHT" ? "Dark Mode" : "Light Mode" }</p>
-                                    </a>
                                     <Link to="/login">
                                         <p className="dropdown--menu--link" onClick={logout}>Logout</p>
                                     </Link>
@@ -104,5 +83,5 @@ const mapStateToProps = state => ({
     auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout,changeTheme })(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
 

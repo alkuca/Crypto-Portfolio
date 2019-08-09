@@ -79,8 +79,8 @@ const Transaction = ({ date,amount,price,priceUsd,singleAssetData,_id,deleteTran
                 })}>
                     <div  className="transaction--content--dropdown--content">
                         <div onClick={handleToggle} className="transaction--content">
-                            <p className="transaction--amount--paid">BTC Paid: {calculateBtcPaid().toFixed(8)}</p>
-                            <p className="transaction--amount--paid margin--fix">USD Paid: {calculateUsdPaid().toFixed(2)} $</p>
+                            <p className="transaction--amount--paid align-left">BTC Paid: {calculateBtcPaid().toFixed(8)}</p>
+                            <p className="transaction--amount--paid ">USD Paid: {calculateUsdPaid().toFixed(2)} $</p>
                             <p className={classnames("transaction--change makeGreen", {
                                 "makeRed": checkIfNegative()
                             })}>{percentChange ? percentChange + " %"
