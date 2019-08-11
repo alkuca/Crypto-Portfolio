@@ -629,6 +629,7 @@ html,body{
 
 .login--container{
     min-width:500px;
+    max-width:500px;
     background:white;
     border-radius:15px;
     box-shadow: 0 0 11px rgba(0, 0, 0, 0.40);
@@ -678,16 +679,12 @@ button:focus{
 .remember--me--container{
     display:flex;
     margin-top:10px;
-    flex-direction: row;
-    align-items: center;
+    justify-content: flex-end;
 }
 
-
-.remember--me--label{
-    font-family:Nunito,  "Nunito SemiBold", sans-serif;
-    font-size:12px;
-    margin-left:5px;
-    color: #747474;
+.remember--me--container a{
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .forgot--password--label{
@@ -695,12 +692,7 @@ button:focus{
     font-size:12px;
     color: #747474;
     margin-left: auto;
-}
-
-.remember--me--checkbox{
-    box-shadow:none !important;
-    margin:0 12px 0 0 !important;
-    width:17px !important;
+    cursor: pointer;
 }
 
 .sign--up--here--container a{
@@ -730,6 +722,19 @@ button:focus{
     transition: 0.2s;
 }
 
+.reset--password--button{
+    border:none;
+    width: 150px;
+    height: 45px;
+    color:white;
+    font-weight:700;
+    font-size:15px;
+    border-radius:4px;
+    background:#772CF8;
+    cursor:pointer;
+    position: relative;
+    transition: 0.2s;
+}
 
 .sign--up--here--container{
     display:flex;
@@ -2803,6 +2808,9 @@ html{
     transition:0.2s;
 }
 
+.more-margin{
+    margin-top:20px;
+}
 
 
 

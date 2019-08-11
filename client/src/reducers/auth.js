@@ -9,7 +9,9 @@ import {
     SUBMIT_LOADING,
     THEME_CHANGED,
     DELETE_TRANSACTION,
-    DELETE_NOTE
+    DELETE_NOTE,
+    REFRESH_TOGGLED,
+    RESET_PASSWORD
 } from "../actions/types";
 
 
@@ -24,8 +26,10 @@ const initialState = {
     transaction:[],
     transactionDeleteLoading:true,
     note:[],
-    noteDeleteLoading:true
-
+    noteDeleteLoading:true,
+    autoRefresh:false,
+    passwordReset:false,
+    isConfirmed:false
 };
 
 
@@ -35,11 +39,14 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 isAuthenticated:true,
+                isConfirmed:action.payload.emaillConfirmed,
                 loading:false,
                 user:action.payload,
                 theme:action.payload.theme,
+                autoRefresh:action.payload.autoRefresh,
                 transaction:[],
-                transactionDeleteLoading:true
+                transactionDeleteLoading:true,
+                passwordReset:false
             };
         case REGISTER_SUCCESS:
             localStorage.setItem("token",action.payload.token);
@@ -82,7 +89,8 @@ export default function(state = initialState, action) {
                 token:null,
                 isAuthenticated: false,
                 loading:false,
-                submitLoading: false
+                submitLoading: false,
+                passwordReset:false
             };
         case LOGOUT:
             localStorage.removeItem("token");
@@ -104,6 +112,11 @@ export default function(state = initialState, action) {
                 ...state,
                 theme: action.payload
             };
+        case REFRESH_TOGGLED:
+            return{
+                ...state,
+                autoRefresh: action.payload
+            };
         case DELETE_TRANSACTION:
             return{
                 ...state,
@@ -115,6 +128,11 @@ export default function(state = initialState, action) {
                 ...state,
                 note: action.payload,
                 noteDeleteLoading:false
+            };
+        case RESET_PASSWORD:
+            return{
+                ...state,
+                passwordReset:true
             };
         default:
             return state

@@ -26,7 +26,7 @@ const Notes = ({ toggleAddNoteModal,userAssetData }) => {
                                     key={note._id}
                                     timeout={300}
                                     classNames="fade">
-                                    <Note _id={note._id} key={note._id} note={note.note}/>
+                                    <Note _id={note._id} key={note._id} note={note.note} date={note.date}/>
                                     </CSSTransition>
                         })
                         : null}

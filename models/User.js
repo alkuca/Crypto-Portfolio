@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    emaillConfirmed: {
+      type:Boolean,
+      default: false
+    },
     password: {
         type: String,
         required: true
@@ -21,6 +25,10 @@ const UserSchema = new mongoose.Schema({
     theme: {
         type: String,
         default: "LIGHT"
+    },
+    autoRefresh: {
+        type: Boolean,
+        default: false
     },
     assets: [{
         id: {
@@ -53,6 +61,10 @@ const UserSchema = new mongoose.Schema({
         notes:[{
             note:{
                 type:String
+            },
+            date:{
+                type:Date,
+                default:Date.now
             }
         }]
     }]

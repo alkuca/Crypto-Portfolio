@@ -36,10 +36,13 @@ const AddTransactionModal = ({ toggleAddTransactionModal,userAssetData,singleAss
                 purchasedPrice: purchasedPrice,
                 purchasedPriceUsd: singleAssetData.market_data.current_price.usd
             };
-
-            await addTransactionToUserAsset(data);
-            loadUser();
-            toggleAddTransactionModal();
+            if(formData.purchasedAmount > 0 && formData.purchasedPrice > 0) {
+                await addTransactionToUserAsset(data);
+                loadUser();
+                toggleAddTransactionModal();
+            }else{
+                alert("values must be greater than zero");
+            }
         }
     };
 

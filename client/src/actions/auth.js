@@ -1,4 +1,4 @@
-import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING,THEME_CHANGED} from "./types";
+import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING,THEME_CHANGED,REFRESH_TOGGLED,RESET_PASSWORD} from "./types";
 import axios from 'axios';
 import setAuthToken from "../Utils/setAuthToken";
 
@@ -73,7 +73,7 @@ export const login = ( email, password ) => async dispatch => {
             payload: res.data
         });
 
-        dispatch(loadUser());
+        await dispatch(loadUser());
     } catch (err){
         const errors = err.response.errors;
         if(errors) {
@@ -101,10 +101,33 @@ export const subLoading = () => dispatch => {
 export const changeTheme = (mode) => dispatch =>  {
     axios
         .patch('/users/theme', {theme:mode})
-        .then(res =>
+        .then(
             dispatch({
                 type: THEME_CHANGED,
                 payload:mode
+            })
+        )
+};
+
+// TOGGLE AUTO REFRESH
+export const toggleAutoRefresh = (data) => dispatch =>  {
+    axios
+        .patch('/users/refresh', {autoRefresh:data})
+        .then(
+            dispatch({
+                type: REFRESH_TOGGLED,
+                payload:data
+            })
+        )
+};
+
+
+export const resetPassword = (email, username, newPassword) => dispatch =>  {
+    axios
+        .patch('/users/reset', {email, username, newPassword})
+        .then(
+            dispatch({
+                type: RESET_PASSWORD
             })
         )
 };

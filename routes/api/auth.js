@@ -6,14 +6,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const config = require("config");
 
-
 const User = require("../../models/User");
 
 
 router.get("/", auth, async (req, res) => {
    try{
     const user = await User.findById(req.user.id).select("-password");
-       res.json(user);
+    if(user.emaillConfirmed === true){
+       await res.json(user);
+    }
    } catch(err) {
        console.error(err.message);
        res.status(500).send("server error")
@@ -50,6 +51,7 @@ router.post("/",
                 return res.status(400).json({ errors: [{ msg: "invalid credentials" }] });
             }
 
+
             const payload = {
                 user: {
                     id: user.id
@@ -65,12 +67,15 @@ router.post("/",
                     res.json({ token });
                 }
             );
+
+
         }catch(err) {
             console.log(err.message);
             res.status(500).send("server error")
         }
 
     });
+
 
 
 module.exports = router;

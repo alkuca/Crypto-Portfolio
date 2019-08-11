@@ -21,7 +21,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 
     const calculateTotalUsdValue = () => {
-        if(assetLiveUsdData && auth.user){
+        if(assetLiveUsdData){
             let sumUsd = arrSum(assetLiveUsdData);
             setTotalUsdValue(sumUsd)
         }
@@ -46,10 +46,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     };
 
     const checkIfNegative = () => {
-        if(totalPercentValue){
-            if(totalPercentValue < 0){
-                return true
-            }
+        if(totalPercentValue < 0){
+            return true
         }
     };
 
@@ -78,15 +76,17 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
 
 
 
+
+
     return (
         <div>
             <Navbar/>
             <div className="block--container">
                 <div className="block--container--content">
-                    <ValueBlock type="USD" value={totalUsdValue ? totalUsdValue.toFixed(2) + " $"
+                    <ValueBlock type="USD" value={totalPercentValue.length ? totalUsdValue.toFixed(2) + " $"
                         :
                         "0.00 $"}/>
-                    <ValueBlock type="Bitcoin (BTC)" value={totalBtcValue ? totalBtcValue.toFixed(8)
+                    <ValueBlock type="Bitcoin (BTC)" value={totalPercentValue.length ? totalBtcValue.toFixed(8)
                         :
                         "0.00000000"}/>
                     <div className="value--block">

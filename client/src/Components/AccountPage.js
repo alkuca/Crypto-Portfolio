@@ -4,11 +4,11 @@ import Navbar from "./Navbar";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import classnames from "classnames";
-import {changeTheme} from "../actions/auth";
+import {changeTheme,toggleAutoRefresh} from "../actions/auth";
 import Moment from 'react-moment';
+import ReactTooltip from 'react-tooltip'
 
-
-const AccountPage = ({ auth,changeTheme}) => {
+const AccountPage = ({ auth,changeTheme,toggleAutoRefresh}) => {
 
 
     const [switchToggle, setSwitchToggle] = useState(false);
@@ -19,7 +19,9 @@ const AccountPage = ({ auth,changeTheme}) => {
         setSwitchToggle(!switchToggle)
     };
 
+
     const handleRefreshSwitchToggle = () => {
+        handleRefreshToggle();
         setSwitchToggleRefresh(!switchToggleRefresh)
     };
 
@@ -34,6 +36,14 @@ const AccountPage = ({ auth,changeTheme}) => {
         }
         document.documentElement.setAttribute("data-theme", auth.theme);
     }
+
+    const handleRefreshToggle = () => {
+        if(auth.autoRefresh){
+            toggleAutoRefresh(false)
+        }else{
+            toggleAutoRefresh(true)
+        }
+    };
 
     return (
         <div>
@@ -55,7 +65,7 @@ const AccountPage = ({ auth,changeTheme}) => {
                             <div className="information--title--container">
                                 <p className="information--title">SETTINGS</p>
                             </div>
-                            <div className="information--content same-row">
+                            <div className="information--content same-row more-margin">
                                 <p className="information--text">Dark/Light Theme: </p>
                                 <div className="switch--button">
                                     <div className="switch" onClick={handleSwitchToggle}>
@@ -66,14 +76,15 @@ const AccountPage = ({ auth,changeTheme}) => {
                                 </div>
                             </div>
                             <div className="information--content same-row">
-                                <p className="information--text">Auto Refresh: </p>
+                                <p data-tip="Auto refresh data on home page every 3 minutes">Auto Refresh: </p>
+                                <ReactTooltip place="top" type="dark" effect="float"/>
                                 <div className="switch--button">
                                     <div onClick={handleRefreshSwitchToggle} className={classnames("switch",{
-                                        "switch-gray" : switchToggleRefresh,
+                                        "switch-gray" : !auth.autoRefresh
                                     })}>
                                         <div className={classnames("ball",{
-                                            "ball-move" : switchToggleRefresh,
-                                            "ball-gray" : switchToggleRefresh
+                                            "ball-move" : !auth.autoRefresh,
+                                            "ball-gray" : !auth.autoRefresh
                                         })}/>
                                     </div>
                                 </div>
@@ -91,4 +102,4 @@ const mapStateToProps = state => ({
     auth: state.auth,
 });
 
-export default withRouter(connect(mapStateToProps, { changeTheme })(AccountPage));
+export default withRouter(connect(mapStateToProps, { changeTheme,toggleAutoRefresh })(AccountPage));

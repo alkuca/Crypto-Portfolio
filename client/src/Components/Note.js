@@ -4,8 +4,9 @@ import {connect} from "react-redux";
 import classnames from "classnames";
 import {loadUser} from "../actions/auth";
 import {deleteNote} from "../actions/assets";
+import Moment from 'react-moment';
 
-const Note = ({ note,singleAssetData,deleteNote,loadUser,_id }) => {
+const Note = ({ note,singleAssetData,deleteNote,loadUser,_id,date }) => {
 
     const [toggleNote, setToggleNote] = useState(false);
 
@@ -36,7 +37,7 @@ const Note = ({ note,singleAssetData,deleteNote,loadUser,_id }) => {
                     <div className={classnames("note--content--dropdown--content", {
                     "make--visible" : toggleNote
                 })}>
-                        <p className="note--date">21.03.2019</p>
+                        <p className="note--date"><Moment format="DD.MM.YYYY">{date}</Moment></p>
                         <button onClick={handleDeleteNote} className="delete--note--button">Delete</button>
                     </div>
                 </div>

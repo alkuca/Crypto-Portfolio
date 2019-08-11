@@ -7,10 +7,16 @@ import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import classnames from "classnames";
-import {setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState} from "../actions/assets";
+import {
+    setLiveUsdData,
+    setLiveBtcData,
+    setLivePercentData,
+    getSingleAssetDataForState,
+    resetLiveData
+} from "../actions/assets";
 
 
-const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState,userAssets,transactionDeleted}) => {
+const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState,userAssets,transactionDeleted}) => {
 
     const [assets, setAssets] = useState("");
 
@@ -88,12 +94,21 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,setLiveBtcData,setLive
 
 
     useMemo(()=>{
-        console.log(assets)
         getUsdValues();
         getBtcValues();
         getPercentageValues();
     },[assets]);
 
+
+    useEffect(() => {
+        if(auth.autoRefresh) {
+            const interval = setInterval(() => {
+                resetLiveData();
+                getLiveAssetData(id)
+            }, 180000);
+            return () => clearInterval(interval);
+        }
+    }, []);
 
 
     return (
@@ -131,4 +146,4 @@ const mapStateToProps = state => ({
     transactionDeleted: state.auth.lastTransactionDeleted,
 });
 
-export default withRouter(connect(mapStateToProps, {setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState})(Asset));
+export default withRouter(connect(mapStateToProps, {resetLiveData,setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState})(Asset));

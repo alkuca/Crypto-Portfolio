@@ -1,37 +1,45 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Link, Redirect } from 'react-router-dom';
-import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
+import { Link,Redirect } from 'react-router-dom';
 import logo from "../Images/navbarLogo.png";
 import {connect} from "react-redux";
-import {loadUser, login, subLoading} from "../actions/auth";
+import {resetPassword, subLoading} from "../actions/auth";
+import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 
 
-const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,loadUser}) => {
+const PasswordResetPage = ({ resetPassword, subLoading, submitLoading,passwordReset }) => {
+
+    const [submit, setSubmit] = useState(false);
 
     const [formData, setFormData] = useState({
         email: "",
-        password: ""
+        username: "",
+        newPassword: "",
+        newPassword2: ""
     });
 
-    const {  email, password } = formData;
 
-    const [submit, setSubmit] = useState(false);
+    const {  email, username, newPassword, newPassword2 } = formData;
+
 
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
     const onSubmit = async e => {
         e.preventDefault();
         setSubmit(true);
-        subLoading();
-        await login(email, password);
-        console.log(isConfirmed)
+        if(newPassword !== newPassword2){
+            console.log("passwords do not match");
+        }else{
+            subLoading();
+            await resetPassword(email, username, newPassword);
+        }
     };
 
-
-    if(isAuthenticated && isConfirmed){
-        return <Redirect to = "/home"/>
+    if(passwordReset){
+        return <Redirect to = "/login"/>
     }
+
+
 
 
 
@@ -46,7 +54,7 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,lo
             <div className="login--container">
                 <div className="login--content">
                     <div className="login--content--title--container">
-                        <h1 className="login--content--title">Sign In</h1>
+                        <h1 className="login--content--title">Reset Password</h1>
                     </div>
                     <div className="login--content--form--container">
                         <form onSubmit={e => onSubmit(e)}>
@@ -61,37 +69,38 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,lo
                                 />
                                 <br />
                                 <input
+                                    type="text"
+                                    name="username"
+                                    placeholder="Username"
+                                    value={username}
+                                    onChange={e => onChange(e)}
+                                    required
+                                />
+                                <input
                                     type="password"
-                                    name="password"
-                                    placeholder="Password"
-                                    value={password}
+                                    name="newPassword"
+                                    placeholder="New Password"
+                                    value={newPassword}
+                                    onChange={e => onChange(e)}
+                                    required
+                                />
+                                <input
+                                    type="password"
+                                    name="newPassword2"
+                                    placeholder="Repeat New Password"
+                                    value={newPassword2}
                                     onChange={e => onChange(e)}
                                     required
                                 />
                             </label>
-                            <div className="login-buttons-container">
-
-                            </div>
-
-                            <div className="remember--me--container">
-                                <Link to="/reset">
-                                    <label className="forgot--password--label">Forgot Password?</label>
-                                </Link>
-                            </div>
                             <div className="sign--in--button--container">
-                                <button type="submit" className="sign--in--button">
+                                <button type="submit" className="reset--password--button">
                                     {submit && submitLoading ?
                                         < img className="button--loader--white" src={logoLoaderWhite} alt="loader"/>
-                                        : "Sign In"}
+                                        : "Reset Password"}
                                 </button>
                             </div>
                         </form>
-                    </div>
-                    <div className="sign--up--here--container">
-                        <p className="sign--up--here">Don't Have an Account?</p>
-                        <Link to="/register">
-                            <p className="sign--up--here--link">Sign Up Here!</p>
-                        </Link>
                     </div>
                 </div>
             </div>
@@ -100,9 +109,8 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,lo
 };
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    isConfirmed: state.auth.isConfirmed,
-    submitLoading:state.auth.submitLoading
+    submitLoading:state.auth.submitLoading,
+    passwordReset:state.auth.passwordReset
 });
 
-export default connect(mapStateToProps, { login,subLoading,loadUser })(Login);
+export default connect(mapStateToProps, { resetPassword,subLoading })(PasswordResetPage);
