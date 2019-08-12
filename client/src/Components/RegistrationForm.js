@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../App.css';
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import {register, subLoading} from "../actions/auth";
 
-const RegistrationForm = ({ register, registerSuccessful,subLoading,submitLoading }) => {
+const RegistrationForm = ({ register, registerSuccessful,subLoading,submitLoading,errors}) => {
 
     const [formData, setFormData] = useState({
         username: "",
@@ -35,6 +35,7 @@ const RegistrationForm = ({ register, registerSuccessful,subLoading,submitLoadin
     if(submit && registerSuccessful){
         return <Redirect to = "/login"/>
     }
+
 
     return (
             <div className="register--container">
@@ -87,6 +88,11 @@ const RegistrationForm = ({ register, registerSuccessful,subLoading,submitLoadin
                                     I Accept <span className="make--blue">Terms and Conditions</span>
                                 </label>
                             </div>
+                            {errors && errors.length ?
+                                <div className="error--message">
+                                    <p>{errors[0].msg}</p>
+                                </div>
+                                :null}
                             <div className="sign--up--button--container">
                                 <button type="submit" className="sign--in--button">
                                     {submit && submitLoading ?
@@ -109,7 +115,8 @@ const RegistrationForm = ({ register, registerSuccessful,subLoading,submitLoadin
 
 const mapStateToProps = state => ({
     registerSuccessful: state.auth.registerSuccessful,
-    submitLoading: state.auth.submitLoading
+    submitLoading: state.auth.submitLoading,
+    errors:state.auth.errors
 });
 
 export default withRouter(connect(mapStateToProps,  { register,subLoading })(RegistrationForm));

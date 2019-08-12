@@ -43,7 +43,7 @@ router.post("/",
         try{
             let user = await User.findOne({ email });
             if(user){
-               return res.status(400).json({ errors: [{ msg: "user already exists" }] });
+               return res.status(400).json({ errors: [{ msg: "Email is already taken" }] });
             }
 
             user = new User({
@@ -86,9 +86,10 @@ router.post("/",
 
             await transporter.sendMail ({
                 to: user.email,
-                subject: 'Confirm Email',
-                html: `please click: <a href="${url}">${url}</a>`
+                subject: 'Confirm your Email',
+                html: `Please click the link to confirm your email and login <a href="${url}">${url}</a>`
             });
+
 
         }catch(err) {
             console.log(err.message);
@@ -144,7 +145,7 @@ router.get("/confirmation/:token", async (req, res) => {
                 } else {
                     user.emaillConfirmed = true
                     user.save()
-                    return res.json({ message: "user changed" })
+                    return res.redirect("http://altposit.com/login")
                 }
             })
             .catch(err => console.log(err))
@@ -187,12 +188,12 @@ router.post("/request_password_reset",
 
 
 
-            const url = `http://localhost:5000/users/request_password_reset/${emailToken}`;
+            const url = `http://altposit.com/users/request_password_reset/${emailToken}`;
 
             await transporter.sendMail ({
                 to: user.email,
                 subject: 'Password Reset',
-                html: `please click to reset password: <a href="${url}">${url}</a>`
+                html: `Please click the link to reset your password: <a href="${url}">${url}</a>`
             });
 
             await res.json(`Email sent to ${user.email}`)
@@ -219,7 +220,7 @@ router.get("/request_password_reset/:token", async (req, res) => {
                     user.requestedPasswordReset = true;
                     user.save();
 
-                    return res.redirect(`http://localhost:3000/reset/${req.params.token}`)
+                    return res.redirect(`http://altposit.com/reset/${req.params.token}`)
                 }
             })
             .catch(err => console.log(err))

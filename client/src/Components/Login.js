@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import logo from "../Images/navbarLogo.png";
 import {connect} from "react-redux";
-import {loadUser, login, subLoading} from "../actions/auth";
+import {loadUser, login, subLoading, registerSuccessfullToFalse} from "../actions/auth";
 
 
 const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,errors}) => {
@@ -25,7 +25,6 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,er
         setSubmit(true);
         subLoading();
         await login(email, password);
-        console.log(isConfirmed)
     };
 
 
@@ -108,4 +107,4 @@ const mapStateToProps = state => ({
     errors:state.auth.errors
 });
 
-export default connect(mapStateToProps, { login,subLoading,loadUser })(Login);
+export default connect(mapStateToProps, { login,subLoading,loadUser,registerSuccessfullToFalse})(Login);

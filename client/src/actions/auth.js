@@ -1,4 +1,19 @@
-import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED,GET_ERRORS, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING,THEME_CHANGED,REFRESH_TOGGLED,RESET_PASSWORD,REQUESTED_EMAIL_PASSWORD_RESET} from "./types";
+import {
+    REGISTER_FAIL,
+    REGISTER_SUCCESS,
+    USER_LOADED,
+    GET_ERRORS,
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+    SUBMIT_LOADING,
+    THEME_CHANGED,
+    REFRESH_TOGGLED,
+    RESET_PASSWORD,
+    REQUESTED_EMAIL_PASSWORD_RESET,
+    RESET_DATA
+} from "./types";
 import axios from 'axios';
 import setAuthToken from "../Utils/setAuthToken";
 
@@ -50,7 +65,8 @@ export const register = ({ username, email, password }) => async dispatch => {
         }
 
         dispatch({
-           type: REGISTER_FAIL
+           type: REGISTER_FAIL,
+            payload: err.response.data.errors
         });
     }
 };
@@ -153,4 +169,9 @@ export const requestPasswordEmail = (email) => dispatch =>  {
             payload: err.response.data.errors
         })
     );
+};
+
+
+export const registerSuccessfullToFalse = () => async dispatch => {
+    await dispatch({ type: RESET_DATA })
 };

@@ -94,8 +94,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
                         <div className="value--block-content">
                             <p className="value--block--value--type">Total Change (BTC)</p>
                             <p className={classnames("value--block--value makeGreen", {
-                                "makeRed": checkIfNegative(),
-                                "fadeInText": totalPercentValue
+                                "makeRed": checkIfNegative()
                             })}>{totalPercentValue ? totalPercentValue + " %"
                                 :
                                 "0.00 %"}</p>

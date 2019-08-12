@@ -13,7 +13,8 @@ import {
     REFRESH_TOGGLED,
     RESET_PASSWORD,
     REQUESTED_EMAIL_PASSWORD_RESET,
-    GET_ERRORS
+    GET_ERRORS,
+    RESET_DATA
 } from "../actions/types";
 
 
@@ -51,7 +52,9 @@ export default function(state = initialState, action) {
                 autoRefresh:action.payload.autoRefresh,
                 transaction:[],
                 transactionDeleteLoading:true,
-                passwordReset:false
+                passwordReset:false,
+                errors:[],
+                registerSuccessful: false
             };
         case REGISTER_SUCCESS:
             localStorage.setItem("token",action.payload.token);
@@ -59,7 +62,8 @@ export default function(state = initialState, action) {
                 ...state,
                 ...action.payload,
                 loading:false,
-                registerSuccessful:true
+                registerSuccessful:true,
+                errors:[]
             };
         case LOGIN_SUCCESS:
             localStorage.setItem("token",action.payload.token);
@@ -67,7 +71,8 @@ export default function(state = initialState, action) {
                 ...state,
                 ...action.payload,
                 isAuthenticated: true,
-                loading:false
+                loading:false,
+                errors:[]
             };
         case REGISTER_FAIL:
             localStorage.removeItem("token");
@@ -76,7 +81,8 @@ export default function(state = initialState, action) {
                 token:null,
                 isAuthenticated: false,
                 loading:false,
-                submitLoading: false
+                submitLoading: false,
+                errors:action.payload
             };
         case LOGIN_FAIL:
             localStorage.removeItem("token");
@@ -86,7 +92,7 @@ export default function(state = initialState, action) {
                 isAuthenticated: false,
                 loading:false,
                 submitLoading: false,
-                errors: action.payload,
+                errors: action.payload
             };
         case AUTH_ERROR:
             localStorage.removeItem("token");
@@ -111,7 +117,7 @@ export default function(state = initialState, action) {
             localStorage.removeItem("token");
             return{
                 ...state,
-                submitLoading: true
+                submitLoading: true,
             };
         case THEME_CHANGED:
             return{
@@ -152,6 +158,12 @@ export default function(state = initialState, action) {
                 ...state,
                 errors: action.payload,
                 submitLoading:false
+            };
+        case RESET_DATA:
+            return{
+                ...state,
+                errors:[],
+                registerSuccessful: false
             };
         default:
             return state
