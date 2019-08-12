@@ -82,7 +82,7 @@ router.post("/",
                 }
             );
 
-            const url = `http://localhost:5000/users/confirmation/${emailToken}`;
+            const url = `http://altposit.com/users/confirmation/${emailToken}`;
 
             await transporter.sendMail ({
                 to: user.email,
