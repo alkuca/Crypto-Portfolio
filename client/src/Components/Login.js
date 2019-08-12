@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {loadUser, login, subLoading} from "../actions/auth";
 
 
-const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,loadUser}) => {
+const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,errors}) => {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -69,12 +69,14 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,lo
                                     required
                                 />
                             </label>
-                            <div className="login-buttons-container">
-
-                            </div>
+                            {errors && errors.length ?
+                                <div className="error--message">
+                                    <p>{errors[0].msg}</p>
+                                </div>
+                                :null}
 
                             <div className="remember--me--container">
-                                <Link to="/reset">
+                                <Link to="/enter_email">
                                     <label className="forgot--password--label">Forgot Password?</label>
                                 </Link>
                             </div>
@@ -102,7 +104,8 @@ const Login = ({ login, isAuthenticated, submitLoading,subLoading,isConfirmed,lo
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     isConfirmed: state.auth.isConfirmed,
-    submitLoading:state.auth.submitLoading
+    submitLoading:state.auth.submitLoading,
+    errors:state.auth.errors
 });
 
 export default connect(mapStateToProps, { login,subLoading,loadUser })(Login);

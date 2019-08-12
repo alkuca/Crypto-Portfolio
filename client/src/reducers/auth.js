@@ -11,7 +11,9 @@ import {
     DELETE_TRANSACTION,
     DELETE_NOTE,
     REFRESH_TOGGLED,
-    RESET_PASSWORD
+    RESET_PASSWORD,
+    REQUESTED_EMAIL_PASSWORD_RESET,
+    GET_ERRORS
 } from "../actions/types";
 
 
@@ -29,7 +31,9 @@ const initialState = {
     noteDeleteLoading:true,
     autoRefresh:false,
     passwordReset:false,
-    isConfirmed:false
+    isConfirmed:false,
+    requestedPasswordReset:false,
+    errors:[]
 };
 
 
@@ -40,6 +44,7 @@ export default function(state = initialState, action) {
                 ...state,
                 isAuthenticated:true,
                 isConfirmed:action.payload.emaillConfirmed,
+                requestedPasswordReset:action.payload.requestedPasswordReset,
                 loading:false,
                 user:action.payload,
                 theme:action.payload.theme,
@@ -80,7 +85,8 @@ export default function(state = initialState, action) {
                 token:null,
                 isAuthenticated: false,
                 loading:false,
-                submitLoading: false
+                submitLoading: false,
+                errors: action.payload,
             };
         case AUTH_ERROR:
             localStorage.removeItem("token");
@@ -133,6 +139,19 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 passwordReset:true
+            };
+        case REQUESTED_EMAIL_PASSWORD_RESET:
+            return{
+                ...state,
+                errors: [],
+                submitLoading:false,
+                successMessage:action.payload
+            };
+        case GET_ERRORS:
+            return{
+                ...state,
+                errors: action.payload,
+                submitLoading:false
             };
         default:
             return state

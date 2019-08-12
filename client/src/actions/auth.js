@@ -1,4 +1,4 @@
-import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING,THEME_CHANGED,REFRESH_TOGGLED,RESET_PASSWORD} from "./types";
+import {REGISTER_FAIL,REGISTER_SUCCESS, USER_LOADED,GET_ERRORS, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL,LOGOUT,SUBMIT_LOADING,THEME_CHANGED,REFRESH_TOGGLED,RESET_PASSWORD,REQUESTED_EMAIL_PASSWORD_RESET} from "./types";
 import axios from 'axios';
 import setAuthToken from "../Utils/setAuthToken";
 
@@ -79,9 +79,9 @@ export const login = ( email, password ) => async dispatch => {
         if(errors) {
             errors.forEach(error => console.log(error.msg))
         }
-
         dispatch({
-            type: LOGIN_FAIL
+            type: LOGIN_FAIL,
+            payload: err.response.data.errors
         });
     }
 };
@@ -122,12 +122,35 @@ export const toggleAutoRefresh = (data) => dispatch =>  {
 };
 
 
-export const resetPassword = (email, username, newPassword) => dispatch =>  {
+export const resetPassword = (newPassword,token) => dispatch =>  {
     axios
-        .patch('/users/reset', {email, username, newPassword})
+        .patch('/users/reset', {newPassword,token})
         .then(
             dispatch({
                 type: RESET_PASSWORD
             })
         )
+        .catch(err =>
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response
+        })
+    );
+};
+
+export const requestPasswordEmail = (email) => dispatch =>  {
+    axios
+        .post('/users/request_password_reset', {email})
+        .then(res =>
+            dispatch({
+                type: REQUESTED_EMAIL_PASSWORD_RESET,
+                payload:res.data
+            })
+        )
+        .catch(err =>
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data.errors
+        })
+    );
 };
