@@ -80,15 +80,27 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
 
     const calculateTotalPercentChange = () => {
         if(userAssetData && auth.user && singleAssetData && mounted) {
-            let valueOnPurchasedDayArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * transaction.purchasedPrice);
-            let valueOnPurchasedDayArraySum = arrSum(valueOnPurchasedDayArray);
+            if(userAssetData[0].id === "bitcoin"){
+                let valueOnPurchasedDayArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * transaction.purchasedPriceUsd);
+                let valueOnPurchasedDayArraySum = arrSum(valueOnPurchasedDayArray);
 
-            let valueNowArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc);
-            let valueNowArraySum = arrSum(valueNowArray);
+                let valueNowArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.usd);
+                let valueNowArraySum = arrSum(valueNowArray);
 
-            let difference = valueNowArraySum -  valueOnPurchasedDayArraySum;
-            let res = (difference / valueOnPurchasedDayArraySum ) * 100;
-            setPercentValueNow(res.toFixed(2))
+                let difference = valueNowArraySum -  valueOnPurchasedDayArraySum;
+                let res = (difference / valueOnPurchasedDayArraySum ) * 100;
+                setPercentValueNow(res.toFixed(2))
+            }else{
+                let valueOnPurchasedDayArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * transaction.purchasedPrice);
+                let valueOnPurchasedDayArraySum = arrSum(valueOnPurchasedDayArray);
+
+                let valueNowArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc);
+                let valueNowArraySum = arrSum(valueNowArray);
+
+                let difference = valueNowArraySum -  valueOnPurchasedDayArraySum;
+                let res = (difference / valueOnPurchasedDayArraySum ) * 100;
+                setPercentValueNow(res.toFixed(2))
+            }
         }
     };
 
@@ -144,7 +156,9 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                         <div className="graph--inner--container">
                             <div className="graph--content">
                                 { singleAssetData ?
-                                    <TradingViewWidget interval="240" theme={auth.theme === "DARK" ? Themes.DARK : Themes.LIGHT} symbol={singleAssetData.symbol + "BTC"}/>
+                                    <TradingViewWidget interval="240" theme={auth.theme === "DARK" ? Themes.DARK : Themes.LIGHT}
+                                                       symbol={singleAssetData.id === "bitcoin" ? singleAssetData.symbol + "USD" : singleAssetData.symbol + "BTC"}
+                                    />
                                 :null}
                             </div>
                         </div>

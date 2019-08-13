@@ -1966,7 +1966,7 @@ button:focus{
 }
 
 .add--asset--input--form div{
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     margin-top: 60px;
     justify-content: space-between;
@@ -1982,7 +1982,7 @@ button:focus{
 }
 
 .add--asset--input--form label{
-    font-size:20px;
+    font-size: 18px;
     display: flex;
     margin-top: 60px;
     justify-content: space-between;
@@ -2124,8 +2124,9 @@ button:focus{
     margin-top:30px;
     margin-right: 10%;
     font-family:Nunito, "Nunito ExtraBold",sans-serif;
-    color:#725EF2;
+    color:#4e35f2;
     border:0;
+    font-weight: bold;
     background:white;
     border-radius:3px;
     font-size:16px;
@@ -2324,6 +2325,9 @@ button:focus{
     }
     .information--title{
         font-size:15px;
+    }
+    .asset--added--success--content h2{
+        font-size:18px;
     }
 }
 
@@ -2835,7 +2839,9 @@ html{
     margin-top:10px;
 }
 
-
+.makeInvisible{
+    opacity:0;
+}
 
 
 

@@ -33,12 +33,13 @@ const AddAsset = ({
         name:"",
         id:"",
         purchasedAmount: "0",
-        purchasedPrice:"0.00000000"
+        purchasedPrice:"0.00000000",
+        purchasedPriceUsd:"0.00"
     });
 
 
 
-    const { purchasedAmount,purchasedPrice } = formData;
+    const { purchasedAmount,purchasedPrice,purchasedPriceUsd } = formData;
 
     const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
@@ -56,7 +57,7 @@ const AddAsset = ({
                 purchasedPriceUsd: singleAssetData.market_data.current_price.usd
             };
 
-            if(formData.purchasedAmount > 0 && formData.purchasedPrice > 0){
+            if(formData.purchasedAmount > 0 && (formData.purchasedPrice > 0 || formData.purchasedPriceUsd > 0)){
                 await setLoading();
                 await addAssetToUser(data);
                 await setAssetState(true);
@@ -72,9 +73,11 @@ const AddAsset = ({
         assetFetching();
         getSingleAssetData(id);
         setFormData({...formData,
-            purchasedPrice:"0.00000000"
+            purchasedPrice:"0.00000000",
+            purchasedPriceUsd:"0.00"
         })
     };
+
 
     const setQuery = e => {setQueryFilter(e)};
 
@@ -82,6 +85,12 @@ const AddAsset = ({
     const fillPriceFormWithCurrentPrice = (e) =>{
         setFormData({...formData,
             purchasedPrice:e.target.innerText
+        })
+    };
+
+    const fillPriceFormWithCurrentPriceUsd = (e) =>{
+        setFormData({...formData,
+            purchasedPriceUsd:e.target.innerText
         })
     };
 
@@ -147,21 +156,41 @@ const AddAsset = ({
                                 <p>{!singleAssetLoading ? singleAssetData.name : null}</p>
                             </div>
                             <div>
-                                <p>Current price:</p>
-                                <p
-                                    className="add--asset--current--price" onClick={ e => fillPriceFormWithCurrentPrice(e)}>
-                                    {!singleAssetLoading ? singleAssetData.market_data.current_price.btc.toFixed(8) : null}
+                                <p>Current price {!singleAssetLoading && singleAssetData.id === "bitcoin" ?
+                                    "(usd)": "(btc)"}:
                                 </p>
+                                {!singleAssetLoading && singleAssetData.id === "bitcoin" ?
+                                    <p
+                                        className="add--asset--current--price" onClick={ e => fillPriceFormWithCurrentPriceUsd(e)}>
+                                        {!singleAssetLoading ? singleAssetData.market_data.current_price.usd.toFixed(2) : null}
+                                    </p>
+                                :
+                                    <p
+                                        className="add--asset--current--price" onClick={ e => fillPriceFormWithCurrentPrice(e)}>
+                                        {!singleAssetLoading ? singleAssetData.market_data.current_price.btc.toFixed(8) : null}
+                                    </p>
+                                }
                             </div>
                             <label>
-                                Purchased price:
-                                <input
+                                Purchased price {!singleAssetLoading && singleAssetData.id === "bitcoin" ?
+                                "(usd)": "(btc)"}:
+                                {!singleAssetLoading && singleAssetData.id === "bitcoin" ?
+                                    <input
                                     type="text"
-                                    name="purchasedPrice"
-                                    value={purchasedPrice}
+                                    name="purchasedPriceUsd"
+                                    value={purchasedPriceUsd}
                                     onChange={e => onChange(e)}
                                     required
-                                />
+                                    />
+                                :
+                                    <input
+                                        type="text"
+                                        name="purchasedPrice"
+                                        value={purchasedPrice}
+                                        onChange={e => onChange(e)}
+                                        required
+                                    />
+                                }
                             </label>
                             <label>
                                 Purchased amount:
