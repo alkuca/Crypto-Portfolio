@@ -28,7 +28,8 @@ const initialState = {
     assetLiveBtcData:[],
     assetLiveUsdData:[],
     assetLivePercentData:[],
-    transactionstransactions:[],
+    assetLiveUsdData24hAgo:[],
+    assetLiveBtcData24hAgo:[],
     notes:[],
     userAssets:[],
     assetAddingLoading:false
@@ -102,12 +103,14 @@ export default function(state = initialState, action) {
         case ASSET_LIVE_USD_DATA:
             return{
                 ...state,
-                assetLiveUsdData:[...state.assetLiveUsdData,action.payload]
+                assetLiveUsdData:[...state.assetLiveUsdData,action.payload.valueNow],
+                assetLiveUsdData24hAgo:[...state.assetLiveUsdData24hAgo, action.payload.value24hAgo]
             };
         case ASSET_LIVE_BTC_DATA:
             return{
                 ...state,
-                assetLiveBtcData:[...state.assetLiveBtcData,action.payload]
+                assetLiveBtcData:[...state.assetLiveBtcData,action.payload.valueNow],
+                assetLiveBtcData24hAgo:[...state.assetLiveBtcData24hAgo, action.payload.value24hAgo]
             };
         case ASSET_LIVE_PERCENT_DATA:
             return{
@@ -120,6 +123,8 @@ export default function(state = initialState, action) {
                 assetLivePercentData:[],
                 assetLiveBtcData:[],
                 assetLiveUsdData:[],
+                assetLiveUsdData24hAgo:[],
+                assetLiveBtcData24hAgo:[],
                 singleAssetData:null,
                 singleAssetLoading:true,
                 userAssets: []

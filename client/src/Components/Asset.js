@@ -16,12 +16,11 @@ import {
 } from "../actions/assets";
 
 
-const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState,userAssets,transactionDeleted}) => {
+const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState}) => {
 
     const [assets, setAssets] = useState("");
 
 
-    {/* replace all with redux action and state */}
    const getLiveAssetData = (id) => {
         axios.get(`https://api.coingecko.com/api/v3/coins/${id}`)
             .then(res => {
@@ -72,14 +71,20 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveB
 
     const getUsdValues  = () => {
         if(assets ) {
-            let res = amount * assets.market_data.current_price.usd;
+            let res = {
+                valueNow:amount * assets.market_data.current_price.usd,
+                value24hAgo: amount * ( assets.market_data.current_price.usd - assets.market_data.price_change_24h_in_currency.usd)
+            };
             setLiveUsdData(res)
         }
     };
 
     const getBtcValues  = () => {
         if(assets) {
-            let res = amount * assets.market_data.current_price.btc;
+            let res = {
+                valueNow:amount * assets.market_data.current_price.btc,
+                value24hAgo: amount * ( assets.market_data.current_price.btc - assets.market_data.price_change_24h_in_currency.btc)
+            };
             setLiveBtcData(res)
         }
     };

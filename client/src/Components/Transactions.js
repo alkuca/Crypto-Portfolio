@@ -1,7 +1,6 @@
-import React, { useEffect,useState } from 'react';
+import React, {  } from 'react';
 import '../App.css';
 import Transaction from "./Transaction";
-import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {
     CSSTransition,
@@ -9,11 +8,7 @@ import {
 } from 'react-transition-group';
 
 const Transactions = ({ toggleAddTransactionModal,userAssetData }) => {
-    const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        setMounted(true)
-    }, []);
 
     return (
         <div className="transactions--container">
@@ -40,10 +35,8 @@ const Transactions = ({ toggleAddTransactionModal,userAssetData }) => {
             </div>
         </div>
     );
-}
+};
 
-const mapStateToProps = state => ({
 
-});
 
-export default withRouter(connect(mapStateToProps, {  })(Transactions));
+export default withRouter(Transactions);

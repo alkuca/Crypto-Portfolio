@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import '../App.css';
 
 
-class DarkenScreen extends Component {
-    constructor(props){
-        super(props);
+const DarkenScreen = ({toggleMenu}) => {
 
-    }
-
-    render() {
-        return (
-            <div className="darken" onClick={this.props.toggleMenu}/>
+    return (
+        <div className="darken" onClick={toggleMenu}/>
         );
-    }
-}
+    };
 
 export default DarkenScreen;

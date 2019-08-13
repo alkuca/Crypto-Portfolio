@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Link,Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from "../Images/navbarLogo.png";
 import {connect} from "react-redux";
 import {requestPasswordEmail,subLoading} from "../actions/auth";

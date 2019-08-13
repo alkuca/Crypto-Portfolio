@@ -11,27 +11,17 @@ import AddNoteModal from "./AddNoteModal";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {getSingleAssetData} from "../actions/assets";
-import classnames from "classnames";
 import {loadUser} from "../actions/auth";
 
 
 const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transactionsUpdated,loadUser,notesUpdated}) => {
 
     const [transactionModal, toggleTransactionModal] = useState(false);
-    const [openTransactionModal, toggleOpenTransactionModal] = useState(false);
     const [noteModal, toggleNoteModal] = useState(false);
     const [userAssetData, setUserAssetData] = useState();
     const [usdValue, setUsdValue] = useState("");
     const [btcValue, setBtcValue] = useState("");
     const [percentValueNow, setPercentValueNow] = useState("");
-
-    const [mounted, setMounted] = useState(false);
-
-
-    useEffect(() => {
-        setMounted(true)
-    }, []);
-
 
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 
@@ -39,19 +29,10 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
         toggleTransactionModal(!transactionModal)
     };
 
-    const handleOpenTransactionModal = () => {
-        toggleOpenTransactionModal(!openTransactionModal)
-    };
-
     const toggleAddNoteModal = () =>  {
         toggleNoteModal(!noteModal)
     };
 
-    const checkIfNegative = () => {
-        if(percentValueNow < 0) {
-            return true
-        }
-    };
 
     const findCurrentAssetUserData = () => {
         if(auth.user) {
@@ -61,7 +42,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
     };
 
     const calculateTotalUsdValue = () => {
-        if(userAssetData && singleAssetData && auth.user && mounted) {
+        if(userAssetData && singleAssetData && auth.user) {
             let res = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.usd);
             let resSum = arrSum(res);
             setUsdValue(resSum.toFixed(2))
@@ -70,7 +51,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
 
     const calculateTotalBtcValue = () => {
         if( auth.user && singleAssetData) {
-            if(userAssetData && userAssetData[0].transactions && userAssetData[0].transactions.length && mounted){
+            if(userAssetData && userAssetData[0].transactions && userAssetData[0].transactions.length){
                 let res =  userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc)
                 let resSum = arrSum(res);
                 setBtcValue(resSum.toFixed(8))
@@ -79,7 +60,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
     };
 
     const calculateTotalPercentChange = () => {
-        if(userAssetData && auth.user && singleAssetData && mounted) {
+        if(userAssetData && auth.user && singleAssetData) {
             if(userAssetData[0].id === "bitcoin"){
                 let valueOnPurchasedDayArray = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * transaction.purchasedPriceUsd);
                 let valueOnPurchasedDayArraySum = arrSum(valueOnPurchasedDayArray);
@@ -137,19 +118,8 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                     <div className="block--container">
                         <div className="block--container--content">
                             <ValueBlock type="USD Value" value={ usdValue ? usdValue + " $" : "0.00 $"}/>
-                            <ValueBlock type="Bitcoin Value (btc)" value={ btcValue ? btcValue : "0.00000000"}/>
-                            <div className="value--block">
-                                <div className="blue--line"/>
-                                <div className="value--block-content">
-                                    <p className="value--block--value--type">Total Change (BTC)</p>
-                                    <p className={classnames("value--block--value makeGreen", {
-                                        "makeRed": checkIfNegative(),
-                                        "fadeInText": percentValueNow
-                                    })}>{percentValueNow.length ? percentValueNow + " %"
-                                        :
-                                        "0.00 %"}</p>
-                                </div>
-                            </div>
+                            <ValueBlock type="Bitcoin Value (BTC)" value={ btcValue ? btcValue : "0.00000000"}/>
+                            <ValueBlock alwaysColored={true} type="Total Change" value={ percentValueNow ? percentValueNow : "0.00"}/>
                         </div>
                     </div>
                     <div className="graph--container">

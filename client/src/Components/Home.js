@@ -8,15 +8,21 @@ import {loadUser} from "../actions/auth";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import {resetLiveData} from "../actions/assets";
-import classnames from "classnames";
 import {withRouter} from "react-router-dom";
 
-const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercentData,resetLiveData,transactionDeleted,userAssets}) => {
+const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,assetLiveUsdData24hAgo,assetLiveBtcData24hAgo}) => {
 
     const [totalUsdValue, setTotalUsdValue] = useState("");
     const [totalBtcValue, setTotalBtcValue] = useState("");
     const [totalPercentValue, setTotalPercentValue] = useState("");
-    const [btcValue, setBtcValue] = useState("");
+    const [usdValue, setUsdValue] = useState("");
+    const [toggleValueBlockUsd, setToggleValueBlockUsd] = useState(false);
+    const [toggleValueBlockBtc, setToggleValueBlockBtc] = useState(false);
+    const [toggleValueBlockPercent, setToggleValueBlockPercent] = useState(false);
+    const [totalUsdValue24hAgo, setTotalUsdValue24hAgo] = useState("");
+    const [totalBtcValue24hAgo, setTotalBtcValue24hAgo] = useState("");
+    const [dailyPercentChange,setDailyPercentChange] = useState("");
+
 
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 
@@ -27,6 +33,13 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
         }
     };
 
+    const calculateTotalUsdValue24hAgo = () => {
+        if(assetLiveUsdData24hAgo){
+            let sumUsd = arrSum(assetLiveUsdData24hAgo);
+            setTotalUsdValue24hAgo(sumUsd)
+        }
+    };
+
     const calculateTotalBtcValue = () => {
         if(assetLiveBtcData){
             let sumBtc = arrSum(assetLiveBtcData);
@@ -34,29 +47,42 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
         }
     };
 
+    const calculateTotalBtcValue24hAgo = () => {
+        if(assetLiveBtcData24hAgo){
+            let sumBtc = arrSum(assetLiveBtcData24hAgo);
+            setTotalBtcValue24hAgo(sumBtc)
+        }
+    };
+
 
     const calculateTotalPercentChange = () => {
-        if(btcValue && totalBtcValue ) {
-            let valueOnPurchasedDay = btcValue;
-            let valueNow = totalBtcValue;
+        if(usdValue && totalUsdValue ) {
+            let valueOnPurchasedDay = usdValue;
+            let valueNow = totalUsdValue;
             let difference =  valueNow - valueOnPurchasedDay;
             let res = (difference / valueOnPurchasedDay ) * 100;
             setTotalPercentValue(res.toFixed(2))
         }
     };
 
-    const checkIfNegative = () => {
-        if(totalPercentValue < 0){
-            return true
+    const calculateTotalPercentChange24h = () => {
+        if(totalUsdValue && totalBtcValue && totalUsdValue24hAgo ) {
+            let value24hAgo = totalUsdValue24hAgo;
+            let valueNow = totalUsdValue;
+            let difference = value24hAgo - valueNow;
+            let res = (difference / value24hAgo ) * 100;
+            setDailyPercentChange(res.toFixed(2))
         }
     };
 
-    const calculateAllBtcValuesOnPurchasedDay = () => {
+
+    const calculateAllUsdValuesOnPurchasedDay = () => {
         if(auth.user) {
-            let r = auth.user.assets.reduce((acc, asset) => acc + asset.transactions.reduce((acc, tr) => acc + (+tr.purchasedPrice * +tr.purchasedAmount), 0), 0);
-            setBtcValue(r);
+            let r = auth.user.assets.reduce((acc, asset) => acc + asset.transactions.reduce((acc, tr) => acc + (+tr.purchasedPriceUsd * +tr.purchasedAmount), 0), 0);
+            setUsdValue(r);
         }
     };
+
 
     useEffect(() => {
         loadUser();
@@ -66,16 +92,29 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
     useMemo(()=>{
         calculateTotalUsdValue();
         calculateTotalBtcValue();
-        calculateAllBtcValuesOnPurchasedDay();
+        calculateAllUsdValuesOnPurchasedDay();
+        calculateTotalUsdValue24hAgo();
+        calculateTotalBtcValue24hAgo();
     },[assetLiveUsdData]);
 
 
     useMemo(() => {
         calculateTotalPercentChange();
+        calculateTotalPercentChange24h();
     },[totalBtcValue]);
 
 
+    const toggleUsdValues = () =>{
+        setToggleValueBlockUsd(!toggleValueBlockUsd)
+    };
 
+    const toggleBtcValues = () =>{
+        setToggleValueBlockBtc(!toggleValueBlockBtc)
+    };
+
+    const togglePercentValues = () =>{
+        setToggleValueBlockPercent(!toggleValueBlockPercent)
+    };
 
 
     return (
@@ -83,23 +122,33 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
             <Navbar/>
             <div className="block--container">
                 <div className="block--container--content">
-                    <ValueBlock type="USD" value={totalPercentValue.length ? totalUsdValue.toFixed(2) + " $"
+                    { !toggleValueBlockUsd ?
+                        <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd}
+                                    type="USD"
+                                    value={totalUsdValue ? totalUsdValue.toFixed(2) : "0.00 $"}/>
                         :
-                        "0.00 $"}/>
-                    <ValueBlock type="Bitcoin (BTC)" value={totalPercentValue.length ? totalBtcValue.toFixed(8)
+                        <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd}
+                                    type="Daily Change (USD)"
+                                    value={totalUsdValue ? (totalUsdValue - totalUsdValue24hAgo).toFixed(2) : "0.00 $"}/>
+                    }
+                    { !toggleValueBlockBtc ?
+                        <ValueBlock toggle={toggleBtcValues} toggleValueBlockBtc={toggleValueBlockBtc}
+                                    type="Bitcoin (BTC)"
+                                    value={totalBtcValue ? totalBtcValue.toFixed(8) : "0.00000000"}/>
                         :
-                        "0.00000000"}/>
-                    <div className="value--block">
-                        <div className="blue--line"/>
-                        <div className="value--block-content">
-                            <p className="value--block--value--type">Total Change (BTC)</p>
-                            <p className={classnames("value--block--value makeGreen", {
-                                "makeRed": checkIfNegative()
-                            })}>{totalPercentValue ? totalPercentValue + " %"
-                                :
-                                "0.00 %"}</p>
-                        </div>
-                    </div>
+                        <ValueBlock toggle={toggleBtcValues} toggleValueBlockBtc={toggleValueBlockBtc}
+                                    type="Daily Change (BTC)"
+                                    value={totalBtcValue ? (totalBtcValue - totalBtcValue24hAgo).toFixed(8) : "0.00000000"}/>
+                    }
+                    { !toggleValueBlockPercent ?
+                        <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
+                                    type="Daily Change"
+                                    value={dailyPercentChange ? dailyPercentChange : "0.00"}/>
+                        :
+                        <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
+                                    type="Total Change"
+                                    value={totalPercentValue ? totalPercentValue : "0.00"}/>
+                    }
                 </div>
             </div>
             <div className="assets--container">
@@ -119,14 +168,12 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,assetLivePercent
 };
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    loading: state.auth.loading,
     auth: state.auth,
     assetLiveUsdData:state.assets.assetLiveUsdData,
     assetLiveBtcData:state.assets.assetLiveBtcData,
     assetLivePercentData:state.assets.assetLivePercentData,
-    transactionDeleted: state.auth.lastTransactionDeleted,
-    userAssets:state.assets.userAssets
+    assetLiveUsdData24hAgo:state.assets.assetLiveUsdData24hAgo,
+    assetLiveBtcData24hAgo:state.assets.assetLiveBtcData24hAgo
 });
 
 export default withRouter(connect(mapStateToProps, {loadUser,resetLiveData})(Home));
