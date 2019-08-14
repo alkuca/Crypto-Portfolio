@@ -1,8 +1,9 @@
 import React, {  } from 'react';
 import '../App.css';
 import classnames from "classnames";
+import NumberFormat from "react-number-format";
 
-const ValueBlock = ({ type,value,toggle,toggleValueBlockUsd,toggleValueBlockBtc, toggleValueBlockPercent,alwaysColored}) => {
+const ValueBlock = ({ type,value,toggle,toggleValueBlockUsd,toggleValueBlockBtc, toggleValueBlockPercent,alwaysColored,dollar}) => {
 
 
 
@@ -15,7 +16,7 @@ const ValueBlock = ({ type,value,toggle,toggleValueBlockUsd,toggleValueBlockBtc,
                 <p className={classnames("value--block--value", {
                     "makeRed":  (toggleValueBlockUsd || toggleValueBlockBtc || toggleValueBlockPercent || alwaysColored)  && value < 0,
                     "makeGreen": (toggleValueBlockUsd || toggleValueBlockBtc || toggleValueBlockPercent  || alwaysColored) && value > 0
-                })}>{value}<span>{alwaysColored ? " %" :null}{toggleValueBlockUsd? " $" :null}</span></p>
+                })}><NumberFormat value={value} displayType={'text'} thousandSeparator={true}/><span>{alwaysColored ? " %" :null}{dollar? " $" :null}</span></p>
 
             </div>
         </div>

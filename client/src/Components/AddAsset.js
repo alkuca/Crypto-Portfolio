@@ -103,7 +103,9 @@ const AddAsset = ({
 
 
     useEffect(() => {
-        getAllAssets(excludeSymbols);
+        if(excludeSymbols){
+            getAllAssets(excludeSymbols);
+        }
     }, [excludeSymbols]);
 
     useEffect( () => {

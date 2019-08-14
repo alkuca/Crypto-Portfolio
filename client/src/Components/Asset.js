@@ -14,6 +14,7 @@ import {
     getSingleAssetDataForState,
     resetLiveData
 } from "../actions/assets";
+import NumberFormat from 'react-number-format';
 
 
 const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState}) => {
@@ -125,8 +126,8 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveB
                         <img alt="asset" className="asset--image" src={image}/>
                         <p className="asset--name">{name}</p>
                     </div>
-                    <p className="asset--amount">{amount}</p>
-                    <p className="asset--value">{ assets ? multiplyUsdPriceWithAmount().toFixed(2) + " $"
+                    <p className="asset--amount"><NumberFormat value={amount} displayType={'text'} thousandSeparator={true}/></p>
+                    <p className="asset--value">{ assets ? <NumberFormat value={multiplyUsdPriceWithAmount().toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={"$ "}/>
                         :
                         <img className="home--page--asset--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}</p>
                     <p className={classnames("asset--change", {

@@ -30,6 +30,7 @@ html,body{
   background: var(--navbarBackground);
   width:100%;
   position:relative;
+  transition:1s;
   z-index: 3;
 }
 
@@ -206,6 +207,9 @@ html,body{
     }
     .value--block--value{
         font-size: 24px !important;
+    }
+    .twitter--embed{
+        width:100% !important;
     }
 }
 
@@ -1029,7 +1033,6 @@ button:focus{
 .transactions--and--notes--container{
     width:100%;
     margin-top:13px;
-    margin-bottom:50px;
 }
 
 .transactions--and--notes--inner--container{
@@ -1051,7 +1054,7 @@ button:focus{
     border-radius: 5px;
     position:relative;
     background: var(--primaryBackground);
-    min-height: 216px;
+    min-height: 256px;
 }
 
 .transactions--content{
@@ -1102,7 +1105,7 @@ button:focus{
     position:relative;
     background: var(--primaryBackground);
     align-self: baseline;
-    min-height: 216px;
+    min-height: 256px;
 }
 
 .notes--content{
@@ -1124,7 +1127,7 @@ button:focus{
 }
 
 .transaction--toggled{
-    height:160px !important;
+    height:170px !important;
 }
 
 .transaction{
@@ -1655,6 +1658,9 @@ button:focus{
         margin-left: 10px;
         font-size: 14px;
     }
+    .more--details--inner--container {
+        margin: 0 6% 0 6% !important;
+    }
 }
 @media screen and (max-width: 500px) {
     .transactions--content {
@@ -1701,6 +1707,9 @@ button:focus{
     }
     .add--transaction--content {
         margin: 25px 15px;
+    }
+    .more--details--inner--container {
+        margin: 0 5% 0 5% !important;
     }
 }
 
@@ -1939,6 +1948,9 @@ button:focus{
 
 .all--assets--list li{
     width:90%;
+    font-size: 17px;
+    padding-bottom: 3px;
+    padding-top: 3px;
 }
 
 .all--assets--list li:hover{
@@ -2189,6 +2201,82 @@ button:focus{
     width: 100%;
 }
 
+
+
+
+
+.more--details--container{
+    width:100%;
+    margin-top:16px;
+    margin-bottom:50px;
+}
+
+.more--details--inner--container{
+    margin: 0 10% 0 10%;
+    border-radius: 5px;
+    position: relative;
+}
+
+.more--details--content{
+    width:100%;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+    position:relative;
+    background: var(--primaryBackground);
+    padding-bottom: 45px;
+    min-height:450px;
+    transition: 1s;
+}
+
+.more--details--content--navbar{
+    display:flex;
+    justify-content: center;
+    font-weight: bold;
+    padding-top:12px;
+    cursor:pointer;
+}
+
+.more--details--content--navbar--tab--button{
+    padding: 5px 30px 5px 30px;
+    color:var(--secondaryTextColor);
+    transition: 0.2s;
+}
+
+.more--details--content--details div p a {
+    color:var(--secondaryTextColor)
+}
+
+
+.more--details--content--details{
+    padding: 0 30px 0 30px;
+}
+
+.bold{
+    font-weight: bold;
+    color:var(--secondaryTextColor);
+}
+
+.more--details--content--details p{
+    color:var(--secondaryTextColor);
+}
+
+.tab--active{
+    color:var(--primaryTextColor);
+    transition: 0.2s;
+}
+
+.twitter--embed{
+    margin-top:30px;
+    width:60%;
+}
+
+
+
+
+
+
+
+
 @media screen and (max-width: 1300px) {
     .add--asset--select--filter {
         height: 68%;
@@ -2359,6 +2447,10 @@ button:focus{
         font-size: 13px;
     }
 }
+
+
+
+
 
 /* #####################################  END OF ADDASSETPAGE  ###################################### */
 
@@ -2725,6 +2817,7 @@ html[data-theme="DARK"] {
 
 html{
     background-color: var(--darkestBackground);
+    transition:1s;
 }
 
 .asset{
@@ -2750,6 +2843,7 @@ html{
     border-radius: 5px;
     background:var(--primaryBackground);
     color:var(--primaryTextColor);
+    transition:1s;
 }
 
 .account--page--inner--container{
@@ -2815,8 +2909,6 @@ html{
 .more-margin{
     margin-top:20px;
 }
-
-
 
 .error--message p{
     color:red;

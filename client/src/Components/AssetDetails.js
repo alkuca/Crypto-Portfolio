@@ -4,6 +4,7 @@ import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import {connect} from "react-redux";
+import NumberFormat from "react-number-format";
 
 
 const AssetDetails = ({ singleAssetData,auth }) => {
@@ -21,17 +22,17 @@ const AssetDetails = ({ singleAssetData,auth }) => {
                         </div>
                         <div>
                             <p className="asset--detail--header">Market Cap</p>
-                            <p>{singleAssetData.market_data.market_cap.usd + " USD"}</p>
-                            <p>{singleAssetData.market_data.market_cap.btc + " BTC"}</p>
+                            <p><NumberFormat value={singleAssetData.market_data.market_cap.usd} displayType={'text'} thousandSeparator={true}/> $</p>
+                            <p><NumberFormat value={singleAssetData.market_data.market_cap.btc} displayType={'text'} thousandSeparator={true}/> BTC</p>
                         </div>
                         <div>
                             <p className="asset--detail--header">Total Volume</p>
-                            <p>{singleAssetData.market_data.total_volume.usd + " USD"}</p>
-                            <p>{singleAssetData.market_data.total_volume.btc + " BTC"}</p>
+                            <p><NumberFormat value={singleAssetData.market_data.total_volume.usd} displayType={'text'} thousandSeparator={true}/> $</p>
+                            <p><NumberFormat value={singleAssetData.market_data.total_volume.btc} displayType={'text'} thousandSeparator={true}/> BTC</p>
                         </div>
                         <div>
                             <p className="asset--detail--header">Circulating Supply</p>
-                            <p>{singleAssetData.market_data.circulating_supply}</p>
+                            <p><NumberFormat value={singleAssetData.market_data.circulating_supply.toFixed(2)} displayType={'text'} thousandSeparator={true}/> {singleAssetData.symbol}</p>
                         </div>
                         <div>
                             <p className="asset--detail--header">Rank</p>

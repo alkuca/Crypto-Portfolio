@@ -15,7 +15,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
     const [totalUsdValue, setTotalUsdValue] = useState("");
     const [totalBtcValue, setTotalBtcValue] = useState("");
     const [totalPercentValue, setTotalPercentValue] = useState("");
-    const [usdValue, setUsdValue] = useState("");
+    const [btcValue, setBtcValue] = useState("");
     const [toggleValueBlockUsd, setToggleValueBlockUsd] = useState(false);
     const [toggleValueBlockBtc, setToggleValueBlockBtc] = useState(false);
     const [toggleValueBlockPercent, setToggleValueBlockPercent] = useState(false);
@@ -56,9 +56,9 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
 
 
     const calculateTotalPercentChange = () => {
-        if(usdValue && totalUsdValue ) {
-            let valueOnPurchasedDay = usdValue;
-            let valueNow = totalUsdValue;
+        if(btcValue && totalBtcValue ) {
+            let valueOnPurchasedDay = btcValue;
+            let valueNow = totalBtcValue;
             let difference =  valueNow - valueOnPurchasedDay;
             let res = (difference / valueOnPurchasedDay ) * 100;
             setTotalPercentValue(res.toFixed(2))
@@ -66,10 +66,10 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
     };
 
     const calculateTotalPercentChange24h = () => {
-        if(totalUsdValue && totalBtcValue && totalUsdValue24hAgo ) {
-            let value24hAgo = totalUsdValue24hAgo;
-            let valueNow = totalUsdValue;
-            let difference = value24hAgo - valueNow;
+        if(totalBtcValue && totalBtcValue && totalBtcValue24hAgo ) {
+            let value24hAgo = totalBtcValue24hAgo;
+            let valueNow = totalBtcValue;
+            let difference = valueNow - value24hAgo;
             let res = (difference / value24hAgo ) * 100;
             setDailyPercentChange(res.toFixed(2))
         }
@@ -78,8 +78,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
 
     const calculateAllUsdValuesOnPurchasedDay = () => {
         if(auth.user) {
-            let r = auth.user.assets.reduce((acc, asset) => acc + asset.transactions.reduce((acc, tr) => acc + (+tr.purchasedPriceUsd * +tr.purchasedAmount), 0), 0);
-            setUsdValue(r);
+            let r = auth.user.assets.reduce((acc, asset) => acc + asset.transactions.reduce((acc, tr) => acc + (+tr.purchasedPrice * +tr.purchasedAmount), 0), 0);
+            setBtcValue(r);
         }
     };
 
@@ -123,11 +123,11 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
             <div className="block--container">
                 <div className="block--container--content">
                     { !toggleValueBlockUsd ?
-                        <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd}
+                        <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd} dollar={true}
                                     type="USD"
-                                    value={totalUsdValue ? totalUsdValue.toFixed(2) : "0.00 $"}/>
+                                    value={totalUsdValue ? totalUsdValue.toFixed(2) : "0.00"}/>
                         :
-                        <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd}
+                        <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd} dollar={true}
                                     type="Daily Change (USD)"
                                     value={totalUsdValue ? (totalUsdValue - totalUsdValue24hAgo).toFixed(2) : "0.00 $"}/>
                     }
@@ -142,11 +142,11 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
                     }
                     { !toggleValueBlockPercent ?
                         <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
-                                    type="Daily Change"
+                                    type="Daily Change (btc)"
                                     value={dailyPercentChange ? dailyPercentChange : "0.00"}/>
                         :
                         <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
-                                    type="Total Change"
+                                    type="Total Change (btc)"
                                     value={totalPercentValue ? totalPercentValue : "0.00"}/>
                     }
                 </div>

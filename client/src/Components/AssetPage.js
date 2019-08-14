@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {getSingleAssetData} from "../actions/assets";
 import {loadUser} from "../actions/auth";
+import AssetMoreDetails from "./AssetMoreDetails";
 
 
 const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transactionsUpdated,loadUser,notesUpdated}) => {
@@ -117,7 +118,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
-                            <ValueBlock type="USD Value" value={ usdValue ? usdValue + " $" : "0.00 $"}/>
+                            <ValueBlock dollar={true} type="USD Value" value={ usdValue ? usdValue + " $" : "0.00 $"}/>
                             <ValueBlock type="Bitcoin Value (BTC)" value={ btcValue ? btcValue : "0.00000000"}/>
                             <ValueBlock alwaysColored={true} type="Total Change" value={ percentValueNow ? percentValueNow : "0.00"}/>
                         </div>
@@ -141,6 +142,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                             </div>
                         </div>
                     </div>
+                    <AssetMoreDetails/>
                 </div>
             </div>
         )
