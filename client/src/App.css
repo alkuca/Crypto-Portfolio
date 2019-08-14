@@ -16,12 +16,15 @@ html,body{
   height:100%;
   position:fixed;
   top: 0;
+  left:0;
   background: rgba(0, 0, 0, 0.45);
   z-index: 1;
     animation-name:fadeInAnim;
     animation-duration: 0.4s;
     animation-fill-mode: forwards;
 }
+
+
 
 /* #####################################  START OF NAVBAR  ###################################### */
 
@@ -447,7 +450,6 @@ html,body{
 /* #####################################  START OF ASSETS  ###################################### */
 
 
-
 .assets--container{
   width:100%;
   margin-top:3px;
@@ -524,6 +526,7 @@ html,body{
   transition:0.2s;
   cursor:pointer;
 }
+
 
 .asset:hover{
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.28);
@@ -2935,7 +2938,42 @@ html{
     opacity:0;
 }
 
+.candle--duration--buttons{
+    display: flex;
+    justify-content: space-evenly;
+    height:39px;
+    margin-top: 25px;
+}
 
+.candle--duration--buttons button{
+    width: 39px;
+    border-radius: 50%;
+    border:3px solid var(--buttonBackground);
+    color: var(--buttonBackground);
+    background: none;
+    cursor:pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.candle--duration--buttons button:hover{
+    transform:scale(1.2);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
+    transition: 0.3s;
+}
+
+.candle--button--active{
+    background: var(--buttonBackground) !important;
+    border:3px solid var(--buttonBackground) !important;
+    color: white !important;
+    transition: 0.3s;
+    transform:scale(1.2);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
+}
 
 
 

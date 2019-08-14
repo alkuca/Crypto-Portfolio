@@ -127,7 +127,7 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                         <div className="graph--inner--container">
                             <div className="graph--content">
                                 { singleAssetData ?
-                                    <TradingViewWidget interval="240" theme={auth.theme === "DARK" ? Themes.DARK : Themes.LIGHT}
+                                    <TradingViewWidget interval={auth.candleDuration} theme={auth.theme === "DARK" ? Themes.DARK : Themes.LIGHT}
                                                        symbol={singleAssetData.id === "bitcoin" ? singleAssetData.symbol + "USD" : singleAssetData.symbol + "BTC"}
                                     />
                                 :null}

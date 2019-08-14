@@ -12,7 +12,8 @@ import {
     REFRESH_TOGGLED,
     RESET_PASSWORD,
     REQUESTED_EMAIL_PASSWORD_RESET,
-    RESET_DATA
+    RESET_DATA,
+    CANDLE_CHANGED
 } from "./types";
 import axios from 'axios';
 import setAuthToken from "../Utils/setAuthToken";
@@ -132,6 +133,18 @@ export const toggleAutoRefresh = (data) => dispatch =>  {
         .then(
             dispatch({
                 type: REFRESH_TOGGLED,
+                payload:data
+            })
+        )
+};
+
+// CHANGE CANDLE DURATION
+export const changeCandleDuration = (data) => dispatch =>  {
+    axios
+        .patch('/users/candle', {candleDuration:data})
+        .then(
+            dispatch({
+                type: CANDLE_CHANGED,
                 payload:data
             })
         )

@@ -132,6 +132,23 @@ router.patch("/refresh", auth,
 );
 
 
+router.patch("/candle", auth,
+    (req, res) => {
+        User.findByIdAndUpdate({_id: req.user.id})
+            .then(user => {
+                if(!user){
+                    return res.status(404).json({ message: "User not found" })
+                } else {
+                    user.candleDuration = req.body.candleDuration;
+                    user.save()
+                    return res.json({ message: "Candle duration changed" })
+                }
+            })
+            .catch(err => console.log(err))
+    }
+);
+
+
 
 
 router.get("/confirmation/:token", async (req, res) => {

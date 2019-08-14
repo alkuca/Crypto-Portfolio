@@ -14,7 +14,8 @@ import {
     RESET_PASSWORD,
     REQUESTED_EMAIL_PASSWORD_RESET,
     GET_ERRORS,
-    RESET_DATA
+    RESET_DATA,
+    CANDLE_CHANGED
 } from "../actions/types";
 
 
@@ -31,6 +32,7 @@ const initialState = {
     note:[],
     noteDeleteLoading:true,
     autoRefresh:false,
+    candleDuration:"",
     passwordReset:false,
     isConfirmed:false,
     requestedPasswordReset:false,
@@ -54,7 +56,8 @@ export default function(state = initialState, action) {
                 transactionDeleteLoading:true,
                 passwordReset:false,
                 errors:[],
-                registerSuccessful: false
+                registerSuccessful: false,
+                candleDuration:action.payload.candleDuration
             };
         case REGISTER_SUCCESS:
             localStorage.setItem("token",action.payload.token);
@@ -123,6 +126,11 @@ export default function(state = initialState, action) {
             return{
                 ...state,
                 theme: action.payload
+            };
+        case CANDLE_CHANGED:
+            return{
+                ...state,
+                candleDuration: action.payload
             };
         case REFRESH_TOGGLED:
             return{

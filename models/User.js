@@ -34,6 +34,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    candleDuration: {
+        type: String,
+        default: 60
+    },
     assets: [{
         id: {
           type: String

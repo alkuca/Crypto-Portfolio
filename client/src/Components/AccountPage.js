@@ -4,11 +4,11 @@ import Navbar from "./Navbar";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import classnames from "classnames";
-import {changeTheme,toggleAutoRefresh} from "../actions/auth";
+import {changeTheme,toggleAutoRefresh,changeCandleDuration} from "../actions/auth";
 import Moment from 'react-moment';
 import ReactTooltip from 'react-tooltip'
 
-const AccountPage = ({ auth,changeTheme,toggleAutoRefresh}) => {
+const AccountPage = ({ auth,changeTheme,toggleAutoRefresh,changeCandleDuration}) => {
 
 
     const [switchToggle, setSwitchToggle] = useState(false);
@@ -43,6 +43,10 @@ const AccountPage = ({ auth,changeTheme,toggleAutoRefresh}) => {
         }else{
             toggleAutoRefresh(true)
         }
+    };
+
+    const handleCandleChange = (e) => {
+        changeCandleDuration(e.target.value);
     };
 
     return (
@@ -89,6 +93,19 @@ const AccountPage = ({ auth,changeTheme,toggleAutoRefresh}) => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="information--content">
+                                <p>Graph time interval (minutes): </p>
+                                <div className="candle--duration--buttons">
+                                    <button className={auth.candleDuration === "1" ? 'candle--button--active' : ''} value="1" onClick={e => handleCandleChange(e)}>1</button>
+                                    <button className={auth.candleDuration === "5" ? 'candle--button--active' : ''} value="5" onClick={e => handleCandleChange(e)}>5</button>
+                                    <button className={auth.candleDuration === "15" ? 'candle--button--active' : ''} value="15" onClick={e => handleCandleChange(e)}>15</button>
+                                    <button className={auth.candleDuration === "30" ? 'candle--button--active' : ''} value="30" onClick={e => handleCandleChange(e)}>30</button>
+                                    <button className={auth.candleDuration === "60" ? 'candle--button--active' : ''} value="60" onClick={e => handleCandleChange(e)}>60</button>
+                                    <button className={auth.candleDuration === "120" ? 'candle--button--active' : ''} value="120" onClick={e => handleCandleChange(e)}>120</button>
+                                    <button className={auth.candleDuration === "240" ? 'candle--button--active' : ''} value="240" onClick={e => handleCandleChange(e)}>240</button>
+                                    <button className={auth.candleDuration === "1440" ? 'candle--button--active' : ''} value="1440" onClick={e => handleCandleChange(e)}>1d</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,4 +119,4 @@ const mapStateToProps = state => ({
     auth: state.auth,
 });
 
-export default withRouter(connect(mapStateToProps, { changeTheme,toggleAutoRefresh })(AccountPage));
+export default withRouter(connect(mapStateToProps, { changeTheme,toggleAutoRefresh,changeCandleDuration })(AccountPage));
