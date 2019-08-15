@@ -36,6 +36,7 @@ const AssetMoreDetails = () => {
     return (
         <div className="more--details--container">
             <div className="more--details--inner--container">
+                <div className="asset--blue--line z--index--1"/>
                 <div className="more--details--content">
                     <div className="more--details--content--navbar">
                         <p onClick={toggleDetails} className={classnames("more--details--content--navbar--tab--button", {

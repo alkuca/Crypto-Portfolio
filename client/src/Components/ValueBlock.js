@@ -1,10 +1,9 @@
-import React, {  } from 'react';
+import React, { } from 'react';
 import '../App.css';
 import classnames from "classnames";
 import NumberFormat from "react-number-format";
 
-const ValueBlock = ({ type,value,toggle,toggleValueBlockUsd,toggleValueBlockBtc, toggleValueBlockPercent,alwaysColored,dollar}) => {
-
+const ValueBlock = ({ type,value,toggle,toggleValueBlockUsd,toggleValueBlockBtc, toggleValueBlockPercent,alwaysColored,dollar, noColor}) => {
 
 
     return (
@@ -14,8 +13,8 @@ const ValueBlock = ({ type,value,toggle,toggleValueBlockUsd,toggleValueBlockBtc,
                 <p className="value--block--value--type">{type}</p>
 
                 <p className={classnames("value--block--value", {
-                    "makeRed":  (toggleValueBlockUsd || toggleValueBlockBtc || toggleValueBlockPercent || alwaysColored)  && value < 0,
-                    "makeGreen": (toggleValueBlockUsd || toggleValueBlockBtc || toggleValueBlockPercent  || alwaysColored) && value > 0
+                    "makeRed":  (!toggleValueBlockUsd || toggleValueBlockBtc || toggleValueBlockPercent || alwaysColored) && !noColor  && value < 0,
+                    "makeGreen": (!toggleValueBlockUsd || toggleValueBlockBtc || toggleValueBlockPercent  || alwaysColored) && !noColor && value > 0
                 })}><NumberFormat value={value} displayType={'text'} thousandSeparator={true}/><span>{alwaysColored ? " %" :null}{dollar? " $" :null}</span></p>
 
             </div>

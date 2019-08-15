@@ -3,7 +3,7 @@ import '../App.css';
 import logo from "../Images/navbarLogo.png";
 import logoMobile from "../Images/navbarLogoMobile.png";
 import logoSecond from "../Images/landingPageSecondLogo.svg";
-import laptop from "../Images/laptop.png";
+import laptop2 from "../Images/laptop2.png";
 import arrowRight from "../Images/arrowRight.svg";
 import RegistrationForm from "./RegistrationForm";
 import { Link } from 'react-router-dom';
@@ -41,7 +41,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div className="landing--page--first--section--container--right">
-                            <img alt="laptop" className="landing--page--first--section--container--right--image" src={laptop} />
+                            <img alt="laptop" className="landing--page--first--section--container--right--image" src={laptop2} />
                         </div>
                     </div>
                 </div>

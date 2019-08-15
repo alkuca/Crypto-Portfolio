@@ -437,8 +437,10 @@ html,body{
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility:    hidden;
     -ms-backface-visibility:     hidden;
-
+    transition:0.2s;
 }
+
+
 
 .makeGreen{
   color:#21AC00 ;
@@ -542,12 +544,16 @@ html,body{
 .asset--blue--line{
   width:10px;
   transition:0.2s;
-    background: var(--linesBackground);
+  background: var(--linesBackground);
   left:0;
   top:0;
   height:100%;
   position: absolute;
   border-radius: 5px 0 0 5px ;
+}
+
+.z--index--1{
+    z-index: 1;
 }
 
 .asset--content{
@@ -2940,13 +2946,14 @@ html{
 
 .candle--duration--buttons{
     display: flex;
-    justify-content: space-evenly;
-    height:39px;
     margin-top: 25px;
+    max-width:500px;
+    height: 100px;
 }
 
 .candle--duration--buttons button{
     width: 39px;
+    height: 39px;
     border-radius: 50%;
     border:3px solid var(--buttonBackground);
     color: var(--buttonBackground);
@@ -2954,6 +2961,10 @@ html{
     cursor:pointer;
     font-weight: bold;
     transition: 0.3s;
+    margin:7px 7px;
+}
+.candle--duration--buttons div{
+    height:39px;
 }
 
 .candle--duration--buttons button:hover{

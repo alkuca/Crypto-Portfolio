@@ -62,6 +62,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
             let difference =  valueNow - valueOnPurchasedDay;
             let res = (difference / valueOnPurchasedDay ) * 100;
             setTotalPercentValue(res.toFixed(2))
+            console.log("now " + valueNow)
+            console.log("purcDay " + valueOnPurchasedDay)
         }
     };
 
@@ -79,7 +81,14 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
     const calculateAllUsdValuesOnPurchasedDay = () => {
         if(auth.user) {
             let r = auth.user.assets.reduce((acc, asset) => acc + asset.transactions.reduce((acc, tr) => acc + (+tr.purchasedPrice * +tr.purchasedAmount), 0), 0);
-            setBtcValue(r);
+
+            let bitcoin = auth.user.assets.filter(asset => asset.id === "bitcoin");
+            let bitcoinAmount;
+            if(bitcoin && bitcoin.length){
+                bitcoinAmount = bitcoin[0].transactions.reduce((acc,tr) => acc + (+tr.purchasedAmount), 0)
+            }
+
+            setBtcValue(r + bitcoinAmount);
         }
     };
 
@@ -122,7 +131,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
             <Navbar/>
             <div className="block--container">
                 <div className="block--container--content">
-                    { !toggleValueBlockUsd ?
+                    { toggleValueBlockUsd ?
                         <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd} dollar={true}
                                     type="USD"
                                     value={totalUsdValue ? totalUsdValue.toFixed(2) : "0.00"}/>
@@ -132,7 +141,7 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
                                     value={totalUsdValue ? (totalUsdValue - totalUsdValue24hAgo).toFixed(2) : "0.00 $"}/>
                     }
                     { !toggleValueBlockBtc ?
-                        <ValueBlock toggle={toggleBtcValues} toggleValueBlockBtc={toggleValueBlockBtc}
+                        <ValueBlock toggle={toggleBtcValues} toggleValueBlockBtc={toggleValueBlockBtc} noColor={true}
                                     type="Bitcoin (BTC)"
                                     value={totalBtcValue ? totalBtcValue.toFixed(8) : "0.00000000"}/>
                         :

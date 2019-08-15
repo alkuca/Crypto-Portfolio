@@ -119,8 +119,8 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                     <div className="block--container">
                         <div className="block--container--content">
                             <ValueBlock dollar={true} type="USD Value" value={ usdValue ? usdValue + " $" : "0.00 $"}/>
-                            <ValueBlock type="Bitcoin Value (BTC)" value={ btcValue ? btcValue : "0.00000000"}/>
-                            <ValueBlock alwaysColored={true} type="Total Change" value={ percentValueNow ? percentValueNow : "0.00"}/>
+                            <ValueBlock noColor={true} type="Bitcoin Value (btc)" value={ btcValue ? btcValue : "0.00000000"}/>
+                            <ValueBlock alwaysColored={true} type="Total Change (btc)" value={ percentValueNow ? percentValueNow : "0.00"}/>
                         </div>
                     </div>
                     <div className="graph--container">
