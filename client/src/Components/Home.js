@@ -62,13 +62,11 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
             let difference =  valueNow - valueOnPurchasedDay;
             let res = (difference / valueOnPurchasedDay ) * 100;
             setTotalPercentValue(res.toFixed(2))
-            console.log("now " + valueNow)
-            console.log("purcDay " + valueOnPurchasedDay)
         }
     };
 
     const calculateTotalPercentChange24h = () => {
-        if(totalBtcValue && totalBtcValue && totalBtcValue24hAgo ) {
+        if(totalBtcValue && totalBtcValue24hAgo ) {
             let value24hAgo = totalBtcValue24hAgo;
             let valueNow = totalBtcValue;
             let difference = valueNow - value24hAgo;

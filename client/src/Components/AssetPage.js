@@ -24,6 +24,13 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
     const [btcValue, setBtcValue] = useState("");
     const [percentValueNow, setPercentValueNow] = useState("");
 
+    const [toggleValueBlockUsd, setToggleValueBlockUsd] = useState(false);
+    const [toggleValueBlockBtc, setToggleValueBlockBtc] = useState(false);
+    const [toggleValueBlockPercent, setToggleValueBlockPercent] = useState(false);
+    const [totalUsdValue24hAgo, setTotalUsdValue24hAgo] = useState("");
+    const [totalBtcValue24hAgo, setTotalBtcValue24hAgo] = useState("");
+    const [dailyPercentChange,setDailyPercentChange] = useState("");
+
     const arrSum = arr => arr.reduce((a,b) => a + b, 0);
 
     const toggleAddTransactionModal = () => {
@@ -50,13 +57,30 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
         }
     };
 
+    const calculateTotalUsdValue24hAgo = () => {
+        if(userAssetData && singleAssetData && auth.user){
+            let res = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.price_change_24h_in_currency.usd);
+            let res2 = arrSum(res);
+            setTotalUsdValue24hAgo(res2.toFixed(2))
+        }
+    };
+
+
     const calculateTotalBtcValue = () => {
         if( auth.user && singleAssetData) {
             if(userAssetData && userAssetData[0].transactions && userAssetData[0].transactions.length){
                 let res =  userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.btc)
                 let resSum = arrSum(res);
-                setBtcValue(resSum.toFixed(8))
+                setBtcValue(resSum)
             }
+        }
+    };
+
+    const calculateTotalBtcValue24hAgo = () => {
+        if(userAssetData && singleAssetData && auth.user){
+            let res = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * ( singleAssetData.market_data.current_price.btc - singleAssetData.market_data.price_change_24h_in_currency.btc));
+            let res2 = arrSum(res);
+            setTotalBtcValue24hAgo(res2.toFixed(8))
         }
     };
 
@@ -86,6 +110,42 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
         }
     };
 
+    const calculateTotalPercentChange24h = () => {
+        if(btcValue && totalBtcValue24hAgo) {
+            if(userAssetData[0].id === "bitcoin"){
+                let usdValue24hAgo = userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * ( singleAssetData.market_data.current_price.usd - singleAssetData.market_data.price_change_24h_in_currency.usd));
+                let value24hAgo = arrSum(usdValue24hAgo);
+
+                let usdValueNow =  userAssetData[0].transactions.map(transaction => transaction.purchasedAmount * singleAssetData.market_data.current_price.usd)
+                let valueNow = arrSum(usdValueNow);
+
+                let difference = valueNow - value24hAgo;
+                let res = (difference / value24hAgo ) * 100;
+                setDailyPercentChange(res.toFixed(2));
+
+            }else{
+                let value24hAgo = totalBtcValue24hAgo;
+                let valueNow = btcValue;
+                let difference = valueNow - value24hAgo;
+                let res = (difference / value24hAgo ) * 100;
+                setDailyPercentChange(res.toFixed(2));
+            }
+        }
+    };
+
+
+    const toggleUsdValues = () =>{
+        setToggleValueBlockUsd(!toggleValueBlockUsd)
+    };
+
+    const toggleBtcValues = () =>{
+        setToggleValueBlockBtc(!toggleValueBlockBtc)
+    };
+
+    const togglePercentValues = () =>{
+        setToggleValueBlockPercent(!toggleValueBlockPercent)
+    };
+
 
     useEffect(() => {
         findCurrentAssetUserData();
@@ -105,9 +165,14 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
             calculateTotalBtcValue();
             calculateTotalUsdValue();
             calculateTotalPercentChange();
+            calculateTotalUsdValue24hAgo();
+            calculateTotalBtcValue24hAgo();
         }
     }, [singleAssetData,userAssetData]);
 
+    useMemo(() => {
+        calculateTotalPercentChange24h();
+    },[totalBtcValue24hAgo]);
 
         return (
             <div>
@@ -118,9 +183,33 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                     <AssetDetails/>
                     <div className="block--container">
                         <div className="block--container--content">
-                            <ValueBlock dollar={true} type="USD Value" value={ usdValue ? usdValue + " $" : "0.00 $"}/>
-                            <ValueBlock noColor={true} type="Bitcoin Value (btc)" value={ btcValue ? btcValue : "0.00000000"}/>
-                            <ValueBlock alwaysColored={true} type="Total Change (btc)" value={ percentValueNow ? percentValueNow : "0.00"}/>
+                            { toggleValueBlockUsd ?
+                                <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd} dollar={true}
+                                            type="USD Value"
+                                            value={usdValue ? usdValue : "0.00"}/>
+                                :
+                                <ValueBlock toggle={toggleUsdValues} toggleValueBlockUsd={toggleValueBlockUsd} dollar={true}
+                                            type="Daily Change (USD)"
+                                            value={totalUsdValue24hAgo ? totalUsdValue24hAgo : "0.00 $"}/>
+                            }
+                            { !toggleValueBlockBtc ?
+                                <ValueBlock toggle={toggleBtcValues} toggleValueBlockBtc={toggleValueBlockBtc} noColor={true}
+                                            type="Bitcoin Value (BTC)"
+                                            value={btcValue ? btcValue.toFixed(8) : "0.00000000"}/>
+                                :
+                                <ValueBlock toggle={toggleBtcValues} toggleValueBlockBtc={toggleValueBlockBtc}
+                                            type="Daily Change (BTC)"
+                                            value={totalBtcValue24hAgo ? (btcValue - totalBtcValue24hAgo).toFixed(8) : "0.00000000"}/>
+                            }
+                            { !toggleValueBlockPercent ?
+                                <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
+                                            type="Daily Change (btc)"
+                                            value={dailyPercentChange ? dailyPercentChange : "0.00"}/>
+                                :
+                                <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
+                                            type="Total Change (btc)"
+                                            value={percentValueNow ? percentValueNow : "0.00"}/>
+                            }
                         </div>
                     </div>
                     <div className="graph--container">

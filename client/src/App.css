@@ -2608,7 +2608,9 @@ button:focus{
     width:92%;
     margin-top:-50px;
 }
-
+.headroom{
+    z-index: 2 !important;
+}
 
 .landing--page--second--section{
     background: url('Images/landingPageSecondBg.svg') no-repeat;
