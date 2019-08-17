@@ -7,15 +7,9 @@ import {withRouter} from "react-router-dom";
 import logoLoader from "../Images/logoLoaderGif.gif";
 import logoLoaderWhite from "../Images/loaderLogoWhite.gif";
 import classnames from "classnames";
-import {
-    setLiveUsdData,
-    setLiveBtcData,
-    setLivePercentData,
-    getSingleAssetDataForState,
-    resetLiveData
-} from "../actions/assets";
+import {setLiveUsdData, setLiveBtcData, setLivePercentData, getSingleAssetDataForState, resetLiveData} from "../actions/assets";
 import NumberFormat from 'react-number-format';
-
+import ReactTooltip from 'react-tooltip'
 
 const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState}) => {
 
@@ -116,7 +110,6 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveB
         }
     }, []);
 
-
     return (
         <Link to={`/asset/`+id}>
             <div className="asset">
@@ -126,13 +119,22 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveB
                         <img alt="asset" className="asset--image" src={image}/>
                         <p className="asset--name">{name}</p>
                     </div>
-                    <p className="asset--amount"><NumberFormat value={amount} displayType={'text'} thousandSeparator={true}/></p>
-                    <p className="asset--value">{ assets ? <NumberFormat value={multiplyUsdPriceWithAmount().toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={"$ "}/>
-                        :
-                        <img className="home--page--asset--loader" src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}</p>
+                        <p className="asset--amount">
+                            <span className="tooltip tooltip--amount">Holdings</span>
+                            <NumberFormat value={amount.toFixed(2)} displayType={'text'} thousandSeparator={true}/>
+                        </p>
+                        <p className="asset--value">
+                            <span className="tooltip tooltip--value">Holding value in USD</span>
+                            {assets ?
+                            <NumberFormat value={multiplyUsdPriceWithAmount().toFixed(2)} displayType={'text'}
+                                          thousandSeparator={true} prefix={"$ "}/>
+                            :
+                            <img className="home--page--asset--loader"
+                                 src={auth.theme === "LIGHT" ? logoLoader : logoLoaderWhite} alt="loader"/>}</p>
                     <p className={classnames("asset--change", {
                         "makeRed":  checkIfNegative()
                     })}>
+                        <span className="tooltip tooltip--change">Daily USD change</span>
                         {
                             assets ?
                                 assets.market_data.price_change_percentage_24h.toFixed(2) + " %"
@@ -148,8 +150,7 @@ const Asset = ({ auth,image,name,amount,id,setLiveUsdData,resetLiveData,setLiveB
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    userAssets: state.assets.userAssets,
-    transactionDeleted: state.auth.lastTransactionDeleted,
+    userAssets: state.assets.userAssets
 });
 
 export default withRouter(connect(mapStateToProps, {resetLiveData,setLiveUsdData,setLiveBtcData,setLivePercentData,getSingleAssetDataForState})(Asset));
