@@ -30,9 +30,9 @@ const LandingPage = () => {
                         <div className="landing--page--first--section--container--left">
                             <h1 className="landing--page--first--section--container--left--title">Track your assets</h1>
                             <p className="landing--page--first--section--container--left--text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Duis molestie elit id semper bibendum. Quisque luctus rhoncus
-                                elit vel pharetra. Sed orci sapien.
+                                Keep track of all your crypto assets
+                                supported on any device, accessed directly with your browser.
+                                View live graph data, historical data, market data, latest tweeter posts and more.
                             </p>
                             <div className="landing--page--get--started--button">
                                 <Link to="/register">

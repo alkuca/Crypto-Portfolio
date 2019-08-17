@@ -203,11 +203,11 @@ const AssetPage = ({ auth, singleAssetData ,match,getSingleAssetData,transaction
                             }
                             { !toggleValueBlockPercent ?
                                 <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
-                                            type="Daily Change (btc)"
+                                            type="Daily Change (BTC)"
                                             value={dailyPercentChange ? dailyPercentChange : "0.00"}/>
                                 :
                                 <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
-                                            type="Total Change (btc)"
+                                            type="Total Change (BTC)"
                                             value={percentValueNow ? percentValueNow : "0.00"}/>
                             }
                         </div>

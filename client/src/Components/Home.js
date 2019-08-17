@@ -149,11 +149,11 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
                     }
                     { !toggleValueBlockPercent ?
                         <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
-                                    type="Daily Change (btc)"
+                                    type="Daily Change (BTC)"
                                     value={dailyPercentChange ? dailyPercentChange : "0.00"}/>
                         :
                         <ValueBlock toggle={togglePercentValues} toggleValueBlockPercent={toggleValueBlockPercent} alwaysColored={true}
-                                    type="Total Change (btc)"
+                                    type="Total Change (BTC)"
                                     value={totalPercentValue ? totalPercentValue : "0.00"}/>
                     }
                 </div>
