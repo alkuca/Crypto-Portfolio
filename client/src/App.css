@@ -461,6 +461,10 @@ html,body{
     white-space: nowrap;
 }
 
+.more--details--content--details div a{
+    word-wrap: break-word
+}
+
 .asset--change:hover .tooltip--change{
     transition: 0.3s;
     transition-delay: 0.5s;
