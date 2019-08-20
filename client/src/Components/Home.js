@@ -94,6 +94,8 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
     useEffect(() => {
         loadUser();
         resetLiveData();
+        setDailyPercentChange("");
+        setTotalPercentValue("")
     }, []);
 
     useMemo(()=>{
