@@ -81,12 +81,13 @@ const Home = ({ auth,loadUser,assetLiveUsdData,assetLiveBtcData,resetLiveData,as
             let r = auth.user.assets.reduce((acc, asset) => acc + asset.transactions.reduce((acc, tr) => acc + (+tr.purchasedPrice * +tr.purchasedAmount), 0), 0);
 
             let bitcoin = auth.user.assets.filter(asset => asset.id === "bitcoin");
-            let bitcoinAmount;
-            if(bitcoin && bitcoin.length){
-                bitcoinAmount = bitcoin[0].transactions.reduce((acc,tr) => acc + (+tr.purchasedAmount), 0)
-            }
 
-            setBtcValue(r + bitcoinAmount);
+            if(bitcoin && bitcoin.length){
+                let bitcoinAmount = bitcoin[0].transactions.reduce((acc,tr) => acc + (+tr.purchasedAmount), 0)
+                setBtcValue(r + bitcoinAmount);
+            }else{
+                setBtcValue(r);
+            }
         }
     };
 
