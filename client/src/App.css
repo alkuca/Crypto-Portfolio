@@ -2586,7 +2586,7 @@ button:focus{
     -o-background-size: cover;
     background-size: cover;
     position: relative;
-    height:1000px;
+    height:100%;
 }
 
 .landing--page--first--section--container{
